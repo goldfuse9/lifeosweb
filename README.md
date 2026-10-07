@@ -6,7 +6,7 @@ Prezentační onepage pro aplikaci LifeOS. Čisté HTML a CSS, žádný build.
 
 ```
 index.html            celá stránka (styly jsou uvnitř)
-img/                  snímky obrazovek aplikace (vymyšlená data)
+img/                  snímky obrazovek (vymyšlená data) a ikona aplikace
 favicon.png
 apple-touch-icon.png
 ```
