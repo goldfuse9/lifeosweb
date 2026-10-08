@@ -26,3 +26,14 @@ Stačí otevřít `index.html` v prohlížeči.
 - Cena a zkušební doba: sekce `id="cena"`
 - Připravované funkce: sekce `id="brzy"`
 - Snímky obrazovek: složka `img/` (390 × 844 px při 2× hustotě)
+
+## Testovací stránka „Nevzpomínej. Ukaž to.“ (Netlify)
+
+Složka `test-horecka/` je samostatná stránka pro test zájmu: rozhovor u doktora,
+skutečná obrazovka z aplikace a předobjednávka ročního plánu se slevou.
+`netlify.toml` říká Netlify, ať publikuje právě tuhle složku.
+
+- E-maily z předobjednávky se ukládají v Netlify → **Forms → predobjednavka**.
+- Počet lidí, kteří klikli na „Předobjednat“, je v **Forms → klik**.
+- U nového webu je potřeba v Netlify zapnout **Forms → Enable form detection**
+  a pak web nasadit znovu.

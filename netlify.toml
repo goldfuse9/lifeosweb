@@ -1,0 +1,9 @@
+# Netlify nasazuje jen testovací stránku „Nevzpomínej. Ukaž to.“
+# (GitHub Pages dál servíruje hlavní web z kořene repozitáře.)
+[build]
+  publish = "test-horecka"
+
+[[headers]]
+  for = "/media/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

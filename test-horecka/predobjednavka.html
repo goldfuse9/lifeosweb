@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LifeOS – předobjednávka</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FAFAF9">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FAFAF9}
+a{color:#17161A}a:hover{color:#514F57}
+@keyframes lf-in{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes lf-check{from{transform:scale(.3) rotate(-20deg);opacity:0}to{transform:none;opacity:1}}
+.lf-card{animation:lf-in .6s cubic-bezier(.2,1,.3,1) both}
+.lf-ok{animation:lf-check .7s cubic-bezier(.2,1.5,.4,1) both}
+.lf-in:focus{outline:3px solid #9B3FE0;outline-offset:2px}
+.lf-chips{display:flex;flex-wrap:wrap;gap:8px}
+.lf-chip{position:relative}
+.lf-chip input{position:absolute;opacity:0;width:1px;height:1px}
+.lf-chip span{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:999px;font:700 15px 'Plus Jakarta Sans',system-ui,sans-serif;cursor:pointer;background:#FFFFFF;color:#17161A;border:1.5px solid #D9D8DC;box-sizing:border-box}
+.lf-chip input:checked + span{background:#17161A;color:#FFFFFF;border-color:#17161A}
+.lf-chip input:focus-visible + span{outline:3px solid #9B3FE0;outline-offset:2px}
+.lf-btn{min-height:60px;border:0;border-radius:999px;font:800 18px 'Plus Jakarta Sans',system-ui,sans-serif;cursor:pointer;background:#EEEEEC;color:#514F57;transition:transform .2s ease,background .2s ease}
+.lf-btn.ready{background:#D7F23A;color:#17161A;box-shadow:0 14px 30px rgba(160,190,20,.38)}
+.lf-btn.ready:hover{transform:translateY(-2px)}
+.lf-err{margin:0;font-size:14px;color:#B42318;font-weight:600}
+.lf-hp{position:absolute;left:-9999px}
+@media (prefers-reduced-motion:reduce){.lf-card,.lf-ok{animation:none!important}}
+</style>
+</head>
+<body>
+<div style="width:100%;min-height:100vh;box-sizing:border-box;background:#FAFAF9;color:#17161A;font-family:'Plus Jakarta Sans',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;position:relative;overflow:hidden;display:flex;flex-direction:column">
+  <div style="position:absolute;left:50%;top:-200px;transform:translateX(-50%);width:1000px;max-width:200%;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(215,242,58,.42),rgba(250,250,249,0) 62%);pointer-events:none"></div>
+
+  <header style="position:relative;max-width:1200px;width:100%;box-sizing:border-box;margin:0 auto;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px">
+    <a href="./" style="display:flex;align-items:center;font-weight:800;font-size:24px;letter-spacing:-0.035em;text-decoration:none;min-height:44px">LifeOS</a>
+    <a href="./" style="display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:999px;font-weight:600;font-size:15px;color:#514F57;text-decoration:none">Zpět</a>
+  </header>
+
+  <main style="position:relative;flex:1;display:flex;align-items:center;justify-content:center;padding:24px 24px 72px">
+
+    <!-- Netlify Forms: formulář se při nasazení sám zaregistruje -->
+    <form id="form" class="lf-card" name="predobjednavka" method="POST" data-netlify="true" netlify-honeypot="web" novalidate style="width:100%;max-width:520px;background:#FFFFFF;border:1px solid #EEEEEC;border-radius:40px;padding:40px 32px;box-sizing:border-box;display:flex;flex-direction:column;gap:22px;box-shadow:0 30px 70px -30px rgba(23,22,26,.28)">
+      <input type="hidden" name="form-name" value="predobjednavka">
+      <p class="lf-hp"><label>Nevyplňujte <input name="web" tabindex="-1" autocomplete="off"></label></p>
+
+      <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-start">
+        <span style="background:#FFF1E0;color:#7A4300;border-radius:999px;padding:6px 12px;font-size:13px;font-weight:700">Aplikaci právě dokončujeme</span>
+        <h1 style="margin:0;font-size:clamp(30px,4vw,40px);line-height:1.05;letter-spacing:-0.04em;font-weight:800;text-wrap:balance">Podržíme vám cenu 649&nbsp;Kč</h1>
+        <p style="margin:0;font-size:17px;line-height:1.5;color:#514F57">LifeOS zatím není ke stažení. Nechte e-mail a dáme vám vědět jako prvním. Sleva vám zůstane. Teď nic neplatíte.</p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <label for="email" style="font-size:14px;font-weight:700">E-mail</label>
+        <input id="email" name="email" class="lf-in" type="email" required autocomplete="email" inputmode="email" placeholder="vas@email.cz" style="min-height:56px;border-radius:18px;border:1.5px solid #D9D8DC;padding:0 18px;font:600 17px 'Plus Jakarta Sans',system-ui,sans-serif;color:#17161A;background:#FFFFFF">
+      </div>
+
+      <fieldset style="border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:10px">
+        <legend style="font-size:14px;font-weight:700;padding:0;margin-bottom:10px">Co byste používali nejvíc? <span style="font-weight:500;color:#7A7780">(nepovinné)</span></legend>
+        <div class="lf-chips">
+          <label class="lf-chip"><input type="checkbox" name="zajem" value="Horečka a léky"><span>Horečka a léky</span></label>
+          <label class="lf-chip"><input type="checkbox" name="zajem" value="Dokumenty od lékaře"><span>Dokumenty od lékaře</span></label>
+          <label class="lf-chip"><input type="checkbox" name="zajem" value="Očkování"><span>Očkování</span></label>
+          <label class="lf-chip"><input type="checkbox" name="zajem" value="Termíny celé rodiny"><span>Termíny celé rodiny</span></label>
+        </div>
+      </fieldset>
+
+      <label for="souhlas" style="display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.45;color:#514F57;cursor:pointer;min-height:44px">
+        <input id="souhlas" name="souhlas" value="ano" type="checkbox" required style="width:22px;height:22px;margin:0;flex:none;accent-color:#17161A">
+        Souhlasím, že mi LifeOS pošle e-mail o spuštění. E-mail nikomu nedáme a můžete ho kdykoli smazat.
+      </label>
+
+      <p id="err" class="lf-err" role="alert" hidden></p>
+      <button id="send" type="submit" class="lf-btn">Rezervovat slevu</button>
+      <span style="text-align:center;font-size:13px;color:#7A7780">Roční plán po spuštění: 1 080 Kč. Pro vás první rok 649 Kč.</span>
+    </form>
+
+    <div id="done" class="lf-card" hidden style="width:100%;max-width:520px;background:#FFFFFF;border:1px solid #EEEEEC;border-radius:40px;padding:48px 32px;box-sizing:border-box;flex-direction:column;align-items:center;gap:18px;text-align:center;box-shadow:0 30px 70px -30px rgba(23,22,26,.28)">
+      <span class="lf-ok" style="width:88px;height:88px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 45%,#D7F23A 0%,#C6E82E 50%,#E6F7A0 100%);box-shadow:0 18px 40px rgba(160,190,20,.38)">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#17161A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+      </span>
+      <h1 style="margin:0;font-size:clamp(30px,4vw,40px);line-height:1.05;letter-spacing:-0.04em;font-weight:800">Máte to rezervované</h1>
+      <p style="margin:0;font-size:17px;line-height:1.5;color:#514F57;max-width:26em">Až LifeOS spustíme, napíšeme vám na <b id="doneEmail" style="color:#17161A"></b>. Cena 649 Kč za první rok platí.</p>
+      <a href="./" style="display:inline-flex;align-items:center;min-height:48px;padding:0 22px;border-radius:999px;background:#17161A;color:#FFFFFF;font-weight:700;font-size:15px;text-decoration:none;margin-top:6px">Zpět na úvod</a>
+    </div>
+  </main>
+</div>
+
+<!-- Druhý, skrytý formulář jen počítá, kolik lidí kliklo na „Předobjednat“ -->
+<form name="klik" data-netlify="true" hidden><input type="hidden" name="form-name" value="klik"><input name="odkud"></form>
+
+<script>
+(function () {
+  var form = document.getElementById('form');
+  var email = document.getElementById('email');
+  var ok = document.getElementById('souhlas');
+  var btn = document.getElementById('send');
+  var err = document.getElementById('err');
+  var done = document.getElementById('done');
+
+  function encode(fd) {
+    var parts = [];
+    fd.forEach(function (v, k) { parts.push(encodeURIComponent(k) + '=' + encodeURIComponent(v)); });
+    return parts.join('&');
+  }
+  function post(body) {
+    return fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body });
+  }
+
+  // počítadlo kliknutí: jeden záznam na návštěvu této stránky
+  try {
+    if (!sessionStorage.getItem('lf-klik')) {
+      sessionStorage.setItem('lf-klik', '1');
+      post('form-name=klik&odkud=' + encodeURIComponent(document.referrer || 'primo')).catch(function () {});
+    }
+  } catch (e) {}
+
+  function valid() { return /.+@.+\..+/.test(email.value.trim()) && ok.checked; }
+  function sync() { btn.classList.toggle('ready', valid()); }
+  email.addEventListener('input', sync);
+  ok.addEventListener('change', sync);
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    err.hidden = true;
+    if (!/.+@.+\..+/.test(email.value.trim())) { err.textContent = 'Zadejte e-mail ve tvaru vas@email.cz.'; err.hidden = false; email.focus(); return; }
+    if (!ok.checked) { err.textContent = 'Zaškrtněte souhlas, ať vám můžeme napsat.'; err.hidden = false; ok.focus(); return; }
+    btn.disabled = true; btn.textContent = 'Odesílám…';
+    post(encode(new FormData(form)))
+      .then(function (r) {
+        if (!r.ok) throw new Error(r.status);
+        document.getElementById('doneEmail').textContent = email.value.trim();
+        form.hidden = true;
+        done.hidden = false; done.style.display = 'flex';
+      })
+      .catch(function () {
+        btn.disabled = false; btn.textContent = 'Rezervovat slevu';
+        err.textContent = 'Odeslání se nepovedlo. Zkontrolujte připojení a zkuste to znovu.';
+        err.hidden = false;
+      });
+  });
+})();
+</script>
+</body>
+</html>

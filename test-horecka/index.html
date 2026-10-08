@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LifeOS – Nevzpomínej. Ukaž to.</title>
+<meta name="description" content="Doktor se zeptá, od kdy má teplotu a co dostal za lék. S LifeOS to neříkáte zpaměti, ukážete to.">
+<meta name="theme-color" content="#FAFAF9">
+<meta property="og:title" content="LifeOS – Nevzpomínej. Ukaž to.">
+<meta property="og:description" content="Teplota, léky a časy dítěte na jednom místě. Předobjednávka se slevou 40 %.">
+<meta property="og:image" content="media/poster.jpg">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FAFAF9}
+a{color:#17161A}a:hover{color:#514F57}
+@keyframes lf-pop{from{opacity:0;transform:translateY(12px) scale(.94)}to{opacity:1;transform:none}}
+@keyframes lf-fade{from{opacity:0}to{opacity:1}}
+@keyframes lf-gone{to{opacity:0;visibility:hidden}}
+@keyframes lf-dot{0%,60%,100%{transform:translateY(0);opacity:.35}30%{transform:translateY(-4px);opacity:1}}
+@keyframes lf-doubt{to{opacity:.42}}
+@keyframes lf-strike{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes lf-reveal{from{filter:blur(14px) saturate(.6);opacity:.55;transform:scale(.97)}to{filter:none;opacity:1;transform:none}}
+@keyframes lf-up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.lf-bub{display:grid}
+.lf-bub > *{grid-area:1/1}
+.lf-dots{display:flex;gap:5px;align-items:center;height:100%}
+.lf-dots i{width:7px;height:7px;border-radius:50%;background:currentColor;animation:lf-dot 1s ease-in-out infinite}
+.lf-dots i:nth-child(2){animation-delay:.15s}.lf-dots i:nth-child(3){animation-delay:.3s}
+@keyframes lf-cross{from{text-decoration-color:rgba(81,79,87,0)}to{text-decoration-color:rgba(81,79,87,1)}}
+.lf-x{text-decoration:line-through;text-decoration-thickness:2.5px;text-decoration-color:rgba(81,79,87,0)}
+/* úvod: LifeOS uprostřed obrazovky, pak vyjede do hlavičky */
+@keyframes lf-logo-in{from{opacity:0;transform:translateY(calc(50vh - 40px)) scale(2.2)}to{opacity:1;transform:translateY(calc(50vh - 40px)) scale(2.6)}}
+@keyframes lf-logo-up{from{transform:translateY(calc(50vh - 40px)) scale(2.6)}to{transform:none}}
+@keyframes lf-show{from{opacity:0}to{opacity:1}}
+.lf-logo{display:inline-block;transform-origin:center center;animation:lf-logo-in .7s cubic-bezier(.2,1,.3,1) .1s both, lf-logo-up .9s cubic-bezier(.7,0,.2,1) 1s both}
+.lf-after{animation:lf-show .6s ease 1.7s both}
+/* 1 lékař */
+.lf-d1{animation:lf-pop .5s cubic-bezier(.2,1.3,.4,1) 2.3s both}
+.lf-d1 .lf-dots{animation:lf-gone .15s linear 3.5s forwards}
+.lf-d1 .lf-txt{animation:lf-fade .35s ease 3.5s both}
+/* 2 rodič */
+.lf-p1{animation:lf-pop .5s cubic-bezier(.2,1.3,.4,1) 4.7s both, lf-doubt .8s ease 13.2s forwards}
+.lf-p1 .lf-dots{animation:lf-gone .15s linear 6.2s forwards}
+.lf-p1 .lf-txt{animation:lf-fade .35s ease 6.2s both, lf-cross .6s ease 13.0s forwards}
+/* 3 lékař */
+.lf-d2{animation:lf-pop .5s cubic-bezier(.2,1.3,.4,1) 7.6s both}
+.lf-d2 .lf-dots{animation:lf-gone .15s linear 8.8s forwards}
+.lf-d2 .lf-txt{animation:lf-fade .35s ease 8.8s both}
+/* 4 rodič – vzpomíná déle */
+.lf-p2{animation:lf-pop .5s cubic-bezier(.2,1.3,.4,1) 10.0s both, lf-doubt .8s ease 13.4s forwards}
+.lf-p2 .lf-dots{animation:lf-gone .15s linear 11.8s forwards}
+.lf-p2 .lf-txt{animation:lf-fade .35s ease 11.8s both, lf-cross .6s ease 13.2s forwards}
+/* věta a odpověď telefonu */
+.lf-h1{animation:lf-pop .8s cubic-bezier(.2,1,.3,1) 14.0s both}
+.lf-h2{animation:lf-pop .8s cubic-bezier(.2,1,.3,1) 14.6s both}
+.lf-phone{animation:lf-up .9s cubic-bezier(.2,1,.3,1) 2.1s both}
+.lf-screen{animation:lf-reveal 1s ease 14.6s both}
+.lf-hint{animation:lf-gone .4s ease 14.6s forwards}
+.lf-cta{transition:transform .2s ease}
+.lf-cta:hover{transform:translateY(-2px)}
+@media (prefers-reduced-motion:reduce){
+  .lf-d1,.lf-d2,.lf-p1,.lf-p2,.lf-h1,.lf-h2,.lf-phone,.lf-screen,.lf-txt{animation:none!important}
+  .lf-logo,.lf-after{animation:none!important}
+  .lf-dots,.lf-hint{display:none!important}
+  .lf-p1,.lf-p2{opacity:.42}.lf-x{text-decoration-color:#514F57}
+}
+</style>
+</head>
+<body>
+<div style="width:100%;min-height:100vh;box-sizing:border-box;background:#FAFAF9;color:#17161A;font-family:'Plus Jakarta Sans',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;position:relative;overflow:hidden">
+
+  <div style="position:absolute;left:-240px;top:-240px;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle,rgba(247,147,30,.22),rgba(250,250,249,0) 66%);pointer-events:none"></div>
+  <div style="position:absolute;right:-240px;top:120px;width:820px;height:820px;border-radius:50%;background:radial-gradient(circle,rgba(238,63,122,.18),rgba(250,250,249,0) 66%);pointer-events:none"></div>
+
+  <header style="position:relative;z-index:5;max-width:1200px;box-sizing:border-box;margin:0 auto;padding:22px 24px;display:flex;align-items:center;justify-content:center">
+    <span class="lf-logo" style="font-weight:800;font-size:24px;line-height:32px;letter-spacing:-0.035em">LifeOS</span>
+  </header>
+
+  <!-- 1. situace u doktora + odpověď v telefonu -->
+  <section class="lf-after" style="position:relative;max-width:1200px;box-sizing:border-box;margin:0 auto;padding:32px 24px 56px;display:flex;flex-wrap:wrap;align-items:center;gap:56px">
+
+    <div style="flex:1 1 460px;min-width:0;display:flex;flex-direction:column;gap:28px">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="lf-d1" style="display:flex;align-items:flex-end;gap:10px;align-self:flex-start;max-width:88%">
+          <span style="width:42px;height:42px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;background:#E8EFFD;color:#2F6FE0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3v5a4 4 0 0 0 8 0V3"></path><path d="M10 12v3a5 5 0 0 0 10 0v-2"></path><circle cx="20" cy="11" r="2"></circle></svg>
+          </span>
+          <span class="lf-bub" style="background:#FFFFFF;border:1px solid #EEEEEC;border-radius:24px 24px 24px 6px;padding:14px 20px;font-size:clamp(18px,1.9vw,22px);line-height:1.35;font-weight:700;box-shadow:0 12px 30px -12px rgba(23,22,26,.18)">
+            <span class="lf-dots" aria-hidden="true" style="color:#7A7780"><i></i><i></i><i></i></span>
+            <span class="lf-txt">„Od kdy má teplotu?“</span>
+          </span>
+        </div>
+        <div class="lf-p1" style="display:flex;align-items:flex-end;gap:10px;align-self:flex-end;max-width:88%">
+          <span class="lf-bub" style="background:#F1F0EE;border-radius:24px 24px 6px 24px;padding:14px 20px;font-size:clamp(18px,1.9vw,22px);line-height:1.35;font-weight:600;color:#514F57">
+            <span class="lf-dots" aria-hidden="true" style="color:#7A7780"><i></i><i></i><i></i></span>
+            <span class="lf-txt lf-x">„Nevím… Od úterý? Nebo od středy…“</span>
+          </span>
+          <span style="width:42px;height:42px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;background:#FFF1E0;color:#7A4300;font-weight:800;font-size:13px">Vy</span>
+        </div>
+        <div class="lf-d2" style="display:flex;align-items:flex-end;gap:10px;align-self:flex-start;max-width:88%">
+          <span style="width:42px;height:42px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;background:#E8EFFD;color:#2F6FE0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3v5a4 4 0 0 0 8 0V3"></path><path d="M10 12v3a5 5 0 0 0 10 0v-2"></path><circle cx="20" cy="11" r="2"></circle></svg>
+          </span>
+          <span class="lf-bub" style="background:#FFFFFF;border:1px solid #EEEEEC;border-radius:24px 24px 24px 6px;padding:14px 20px;font-size:clamp(18px,1.9vw,22px);line-height:1.35;font-weight:700;box-shadow:0 12px 30px -12px rgba(23,22,26,.18)">
+            <span class="lf-dots" aria-hidden="true" style="color:#7A7780"><i></i><i></i><i></i></span>
+            <span class="lf-txt">„Co jste mu podali za léky?“</span>
+          </span>
+        </div>
+        <div class="lf-p2" style="display:flex;align-items:flex-end;gap:10px;align-self:flex-end;max-width:88%">
+          <span class="lf-bub" style="background:#F1F0EE;border-radius:24px 24px 6px 24px;padding:14px 20px;font-size:clamp(18px,1.9vw,22px);line-height:1.35;font-weight:600;color:#514F57">
+            <span class="lf-dots" aria-hidden="true" style="color:#7A7780"><i></i><i></i><i></i></span>
+            <span class="lf-txt lf-x">„Počkejte chviličku, musím si vzpomenout… Nurofen? Nebo Panadol? Něco takového.“</span>
+          </span>
+          <span style="width:42px;height:42px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;background:#FFF1E0;color:#7A4300;font-weight:800;font-size:13px">Vy</span>
+        </div>
+      </div>
+
+      <h1 style="margin:0;font-size:clamp(54px,7.6vw,100px);line-height:.96;letter-spacing:-0.05em;font-weight:800">
+        <span class="lf-h1" style="display:block">Nevzpomínej.</span>
+        <span class="lf-h2" style="display:block">Ukaž to.</span>
+      </h1>
+    </div>
+
+    <div style="flex:1 1 360px;min-width:0;display:flex;justify-content:center">
+      <div class="lf-phone" style="position:relative;width:340px;max-width:100%;border-radius:54px;padding:10px;box-sizing:border-box;background:linear-gradient(145deg,#3A3840,#17161A 45%,#2E2D33);box-shadow:inset 0 0 0 2px #55535C,0 50px 90px -24px rgba(23,22,26,.38)">
+        <div style="position:relative;border-radius:45px;overflow:hidden;aspect-ratio:390/844;background:#FCFBFA">
+          <div class="lf-screen" style="position:absolute;inset:0">
+            <video id="osa" poster="media/poster.jpg" muted loop playsinline preload="auto" aria-label="Časová osa v aplikaci LifeOS: úterý 21:40, teplota 38,6 °C, lék Nurofen sirup 10 ml" style="width:100%;height:100%;object-fit:cover;display:block"><source src="media/osa.mp4" type="video/mp4"><source src="media/osa.webm" type="video/webm"></video>
+          </div>
+          <div class="lf-hint" aria-hidden="true" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
+            <span style="width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.85);font-size:34px;font-weight:800;color:#514F57;box-shadow:0 10px 30px rgba(23,22,26,.12)">?</span>
+          </div>
+          <div style="position:absolute;left:50%;top:10px;transform:translateX(-50%);width:30%;height:26px;border-radius:999px;background:#0B0B0D"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. cena a tlačítko -->
+  <section class="lf-after" style="position:relative;padding:40px 24px 96px">
+    <div style="position:absolute;left:50%;top:0;transform:translateX(-50%);width:900px;max-width:100%;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(215,242,58,.42),rgba(250,250,249,0) 64%);pointer-events:none"></div>
+    <div style="position:relative;max-width:520px;margin:0 auto;background:#FFFFFF;border:1px solid #EEEEEC;border-radius:40px;padding:40px 32px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;box-shadow:0 30px 70px -30px rgba(23,22,26,.28)">
+      <span style="background:#17161A;color:#FFFFFF;border-radius:999px;padding:8px 16px;font-size:14px;font-weight:700">Předobjednávka · roční plán</span>
+      <div style="display:flex;align-items:baseline;justify-content:center;flex-wrap:wrap;gap:6px 14px">
+        <span style="font-size:22px;font-weight:700;color:#7A7780;text-decoration:line-through">1 080 Kč</span>
+        <span style="font-size:clamp(64px,9vw,88px);font-weight:800;letter-spacing:-0.06em;line-height:.95">649 Kč</span>
+      </div>
+      <span style="font-size:16px;font-weight:600;color:#514F57">první rok · −40 % pro první rodiče</span>
+      <a href="predobjednavka.html" class="lf-cta" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:60px;width:100%;max-width:360px;border-radius:999px;background:#D7F23A;color:#17161A;font-weight:800;font-size:18px;text-decoration:none;box-shadow:0 14px 30px rgba(160,190,20,.38)">Předobjednat se slevou
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+      </a>
+      <span style="font-size:14px;color:#7A7780">Teď nic neplatíte.</span>
+    </div>
+  </section>
+
+  <footer class="lf-after" style="position:relative;max-width:1200px;box-sizing:border-box;margin:0 auto;padding:0 24px 36px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:13px;color:#7A7780">
+    <span>© 2026 LifeOS</span>
+    <span>Ukázková data. LifeOS nenahrazuje lékařskou péči.</span>
+  </footer>
+</div>
+<script>
+(function () {
+  var v = document.getElementById('osa');
+  if (!v) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return; // zůstane statický snímek s rozsvíceným záznamem
+  setTimeout(function () {
+    try { v.currentTime = 0; var p = v.play(); if (p && p.catch) p.catch(function () {}); } catch (e) {}
+  }, 14600);
+})();
+</script>
+</body>
+</html>
