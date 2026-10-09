@@ -37,3 +37,12 @@ skutečná obrazovka z aplikace a předobjednávka ročního plánu se slevou.
 - Počet lidí, kteří klikli na „Předobjednat“, je v **Forms → klik**.
 - U nového webu je potřeba v Netlify zapnout **Forms → Enable form detection**
   a pak web nasadit znovu.
+
+### Platba přes Stripe
+
+- Odkaz na Stripe Payment Link se vkládá do `test-horecka/config.js`
+  (`window.LIFEOS_STRIPE_LINK = 'https://buy.stripe.com/…'`).
+- Prázdný odkaz = jen rezervace e-mailem, nic se neplatí.
+- S odkazem: formulář uloží e-mail do Netlify Forms (`krok=platba`)
+  a přesměruje na Stripe s předvyplněným e-mailem.
+- V Payment Linku nastav po platbě přesměrování na `https://romarte.cz/dekujeme.html`.

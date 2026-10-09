@@ -46,12 +46,13 @@ a{color:#17161A}a:hover{color:#514F57}
     <!-- Netlify Forms: formulář se při nasazení sám zaregistruje -->
     <form id="form" class="lf-card" name="predobjednavka" method="POST" data-netlify="true" netlify-honeypot="web" novalidate style="width:100%;max-width:520px;background:#FFFFFF;border:1px solid #EEEEEC;border-radius:40px;padding:40px 32px;box-sizing:border-box;display:flex;flex-direction:column;gap:22px;box-shadow:0 30px 70px -30px rgba(23,22,26,.28)">
       <input type="hidden" name="form-name" value="predobjednavka">
+      <input type="hidden" id="krok" name="krok" value="rezervace">
       <p class="lf-hp"><label>Nevyplňujte <input name="web" tabindex="-1" autocomplete="off"></label></p>
 
       <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-start">
         <span style="background:#FFF1E0;color:#7A4300;border-radius:999px;padding:6px 12px;font-size:13px;font-weight:700">Aplikaci právě dokončujeme</span>
-        <h1 style="margin:0;font-size:clamp(30px,4vw,40px);line-height:1.05;letter-spacing:-0.04em;font-weight:800;text-wrap:balance">Podržíme vám cenu 649&nbsp;Kč</h1>
-        <p style="margin:0;font-size:17px;line-height:1.5;color:#514F57">LifeOS zatím není ke stažení. Nechte e-mail a dáme vám vědět jako prvním. Sleva vám zůstane. Teď nic neplatíte.</p>
+        <h1 data-pay="Předobjednávka za 649 Kč" style="margin:0;font-size:clamp(30px,4vw,40px);line-height:1.05;letter-spacing:-0.04em;font-weight:800;text-wrap:balance">Podržíme vám cenu 649&nbsp;Kč</h1>
+        <p data-pay="LifeOS zatím není ke stažení. Zaplatíte teď první rok se slevou a přístup dostanete mezi prvními. Když aplikaci nespustíme, vrátíme vám celou částku." style="margin:0;font-size:17px;line-height:1.5;color:#514F57">LifeOS zatím není ke stažení. Nechte e-mail a dáme vám vědět jako prvním. Sleva vám zůstane. Teď nic neplatíte.</p>
       </div>
 
       <div style="display:flex;flex-direction:column;gap:8px">
@@ -71,12 +72,12 @@ a{color:#17161A}a:hover{color:#514F57}
 
       <label for="souhlas" style="display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.45;color:#514F57;cursor:pointer;min-height:44px">
         <input id="souhlas" name="souhlas" value="ano" type="checkbox" required style="width:22px;height:22px;margin:0;flex:none;accent-color:#17161A">
-        Souhlasím, že mi LifeOS pošle e-mail o spuštění. E-mail nikomu nedáme a můžete ho kdykoli smazat.
+        <span data-pay="Souhlasím, že mi LifeOS bude psát o spuštění a přístupu do aplikace. E-mail nikomu nedáme a můžete ho kdykoli smazat.">Souhlasím, že mi LifeOS pošle e-mail o spuštění. E-mail nikomu nedáme a můžete ho kdykoli smazat.</span>
       </label>
 
       <p id="err" class="lf-err" role="alert" hidden></p>
-      <button id="send" type="submit" class="lf-btn">Rezervovat slevu</button>
-      <span style="text-align:center;font-size:13px;color:#7A7780">Roční plán po spuštění: 1 080 Kč. Pro vás první rok 649 Kč.</span>
+      <button id="send" type="submit" class="lf-btn" data-pay="Pokračovat k platbě">Rezervovat slevu</button>
+      <span data-pay="Roční plán po spuštění: 1 080 Kč. Pro vás první rok 649 Kč. Platba kartou přes zabezpečenou bránu Stripe." style="text-align:center;font-size:13px;color:#7A7780">Roční plán po spuštění: 1 080 Kč. Pro vás první rok 649 Kč.</span>
     </form>
 
     <div id="done" class="lf-card" hidden style="width:100%;max-width:520px;background:#FFFFFF;border:1px solid #EEEEEC;border-radius:40px;padding:48px 32px;box-sizing:border-box;flex-direction:column;align-items:center;gap:18px;text-align:center;box-shadow:0 30px 70px -30px rgba(23,22,26,.28)">
@@ -93,14 +94,22 @@ a{color:#17161A}a:hover{color:#514F57}
 <!-- Druhý, skrytý formulář jen počítá, kolik lidí kliklo na „Předobjednat“ -->
 <form name="klik" data-netlify="true" hidden><input type="hidden" name="form-name" value="klik"><input name="odkud"></form>
 
+<script src="config.js"></script>
 <script>
 (function () {
+  var PAY = window.LIFEOS_STRIPE_LINK || '';
   var form = document.getElementById('form');
   var email = document.getElementById('email');
   var ok = document.getElementById('souhlas');
   var btn = document.getElementById('send');
   var err = document.getElementById('err');
   var done = document.getElementById('done');
+  var label = 'Rezervovat slevu';
+  if (PAY) {
+    document.querySelectorAll('[data-pay]').forEach(function (el) { el.textContent = el.getAttribute('data-pay'); });
+    document.getElementById('krok').value = 'platba';
+    label = 'Pokračovat k platbě';
+  }
 
   function encode(fd) {
     var parts = [];
@@ -129,7 +138,17 @@ a{color:#17161A}a:hover{color:#514F57}
     err.hidden = true;
     if (!/.+@.+\..+/.test(email.value.trim())) { err.textContent = 'Zadejte e-mail ve tvaru vas@email.cz.'; err.hidden = false; email.focus(); return; }
     if (!ok.checked) { err.textContent = 'Zaškrtněte souhlas, ať vám můžeme napsat.'; err.hidden = false; ok.focus(); return; }
-    btn.disabled = true; btn.textContent = 'Odesílám…';
+    btn.disabled = true; btn.textContent = PAY ? 'Přesměrovávám na platbu…' : 'Odesílám…';
+    if (PAY) {
+      // e-mail si uložíme (i kdyby platbu nedokončil), pak hned na Stripe
+      var go = function () {
+        var sep = PAY.indexOf('?') === -1 ? '?' : '&';
+        location.href = PAY + sep + 'prefilled_email=' + encodeURIComponent(email.value.trim());
+      };
+      post(encode(new FormData(form))).then(go, go);
+      setTimeout(go, 2500);
+      return;
+    }
     post(encode(new FormData(form)))
       .then(function (r) {
         if (!r.ok) throw new Error(r.status);
@@ -138,7 +157,7 @@ a{color:#17161A}a:hover{color:#514F57}
         done.hidden = false; done.style.display = 'flex';
       })
       .catch(function () {
-        btn.disabled = false; btn.textContent = 'Rezervovat slevu';
+        btn.disabled = false; btn.textContent = label;
         err.textContent = 'Odeslání se nepovedlo. Zkontrolujte připojení a zkuste to znovu.';
         err.hidden = false;
       });

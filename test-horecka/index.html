@@ -152,7 +152,7 @@ a{color:#17161A}a:hover{color:#514F57}
       <a href="predobjednavka.html" class="lf-cta" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:60px;width:100%;max-width:360px;border-radius:999px;background:#D7F23A;color:#17161A;font-weight:800;font-size:18px;text-decoration:none;box-shadow:0 14px 30px rgba(160,190,20,.38)">Předobjednat se slevou
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
       </a>
-      <span style="font-size:14px;color:#7A7780">Teď nic neplatíte.</span>
+      <span data-pay="Platba kartou přes Stripe. Když LifeOS nespustíme, vrátíme vám celou částku." style="font-size:14px;color:#7A7780">Teď nic neplatíte.</span>
     </div>
   </section>
 
@@ -170,6 +170,13 @@ a{color:#17161A}a:hover{color:#514F57}
   setTimeout(function () {
     try { v.currentTime = 0; var p = v.play(); if (p && p.catch) p.catch(function () {}); } catch (e) {}
   }, 14600);
+})();
+</script>
+<script src="config.js"></script>
+<script>
+(function () {
+  if (!window.LIFEOS_STRIPE_LINK) return;
+  document.querySelectorAll('[data-pay]').forEach(function (el) { el.textContent = el.getAttribute('data-pay'); });
 })();
 </script>
 </body>
