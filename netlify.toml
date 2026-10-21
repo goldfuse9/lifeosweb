@@ -1,7 +1,7 @@
-# Netlify nasazuje jen testovací stránku „Nevzpomínej. Ukaž to.“
-# (GitHub Pages dál servíruje hlavní web z kořene repozitáře.)
+# Netlify (romarte.cz) nasazuje složku web/: rozcestník, stránka pro rodiny a pro školky.
+# Starší testovací stránka s předobjednávkou zůstává v test-horecka/, ale nenasazuje se.
 [build]
-  publish = "test-horecka"
+  publish = "web"
 
 [[headers]]
   for = "/media/*"

@@ -46,3 +46,10 @@ skutečná obrazovka z aplikace a předobjednávka ročního plánu se slevou.
 - S odkazem: formulář uloží e-mail do Netlify Forms (`krok=platba`)
   a přesměruje na Stripe s předvyplněným e-mailem.
 - V Payment Linku nastav po platbě přesměrování na `https://romarte.cz/dekujeme.html`.
+
+## romarte.cz (Netlify) – složka `web/`
+
+- `index.html` – rozcestník napůl: vlevo LifeOS pro rodiny, vpravo Digitální školka
+- `rodiny.html` – rozhovor u doktora, video časové osy, co aplikace umí
+- `skolky.html` – co ve školce zdržuje, tablet a ředitelna, kdo co vidí
+- Bez ceny a bez formulářů. Staré adresy `/predobjednavka` a `/dekujeme` přesměrují na úvod.
