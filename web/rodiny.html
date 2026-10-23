@@ -34,9 +34,14 @@ a{color:#17161A}a:hover{color:#514F57}
 .rd-p2{animation:rd-pop .5s cubic-bezier(.2,1.3,.4,1) 5.9s both, rd-doubt .7s ease 7.8s forwards}.rd-p2 .rd-dots{animation:rd-gone .1s linear 7.1s forwards}.rd-p2 .rd-t{animation:rd-fade .3s ease 7.1s both, rd-cross .6s ease 7.6s forwards}
 .rd-h{animation:rd-pop .8s cubic-bezier(.2,1,.3,1) 8.4s both}
 .rd-phone{animation:rd-up 1s cubic-bezier(.2,1,.3,1) .2s both}
+@keyframes rd-flow{0%{opacity:0;transform:translateX(-24px) scale(.9)}15%{opacity:1;transform:none}80%{opacity:1;transform:none}100%{opacity:0;transform:translateX(24px)}}
+@keyframes rd-beat{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.rd-flow{animation:rd-flow 3.6s ease-in-out infinite}
+.rd-f2{animation-delay:.6s}.rd-f3{animation-delay:1.2s}.rd-f4{animation-delay:1.8s}.rd-f5{animation-delay:2.4s}
+.rd-beat{animation:rd-beat 1.8s ease-in-out infinite}
 .rd-card{transition:transform .4s cubic-bezier(.2,1,.3,1)}
 .rd-card:hover{transform:translateY(-6px)}
-@media (prefers-reduced-motion:reduce){.rd-d1,.rd-d2,.rd-p1,.rd-p2,.rd-h,.rd-phone,.rd-t{animation:none!important}.rd-dots{display:none!important}.rd-p1,.rd-p2{opacity:.42}.rd-x{text-decoration-color:#514F57}.rd-card{transition:none}}
+@media (prefers-reduced-motion:reduce){.rd-d1,.rd-d2,.rd-p1,.rd-p2,.rd-h,.rd-phone,.rd-t,.rd-flow,.rd-beat{animation:none!important}.rd-dots{display:none!important}.rd-p1,.rd-p2{opacity:.42}.rd-x{text-decoration-color:#514F57}.rd-card{transition:none}}
 </style>
 </head>
 <body>
@@ -116,7 +121,38 @@ a{color:#17161A}a:hover{color:#514F57}
     </div>
   </section>
 
-  <!-- 3. propojení se školkou -->
+  <!-- 3. Apple Zdraví a Health Connect -->
+  <section style="position:relative;background:#FFFFFF;border-top:1px solid #F3E6DD">
+    <div style="max-width:1200px;box-sizing:border-box;margin:0 auto;padding:24px 24px 96px;display:flex;flex-wrap:wrap;align-items:center;gap:56px">
+      <div style="flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:16px">
+        <span style="align-self:flex-start;background:#FFF1E0;color:#7A4300;border-radius:999px;padding:6px 12px;font-size:13px;font-weight:800">Připravujeme</span>
+        <h2 style="margin:0;font-size:clamp(32px,4vw,50px);line-height:1.04;letter-spacing:-0.045em;font-weight:800;text-wrap:balance">Spojte LifeOS se zdravím v telefonu</h2>
+        <p style="margin:0;font-size:18px;line-height:1.5;color:#514F57;max-width:28em">Chytrý teploměr, hodinky nebo váha už data ukládají. LifeOS si je vezme sám a zařadí do správného dne.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:6px">
+          <span style="display:inline-flex;align-items:center;gap:10px;background:#F4F4F3;border-radius:16px;padding:10px 16px 10px 10px;font-weight:700;font-size:16px"><span style="width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#17161A;color:#FFFFFF"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"></rect><path d="M11 18.5h2"></path></svg></span><span style="display:flex;flex-direction:column;line-height:1.2">Apple Zdraví<span style="font-size:13px;font-weight:600;color:#6F6C75">iPhone, Apple Watch</span></span></span>
+          <span style="display:inline-flex;align-items:center;gap:10px;background:#F4F4F3;border-radius:16px;padding:10px 16px 10px 10px;font-weight:700;font-size:16px"><span style="width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#17694F;color:#FFFFFF"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"></rect><path d="M11 18.5h2"></path></svg></span><span style="display:flex;flex-direction:column;line-height:1.2">Health Connect<span style="font-size:13px;font-weight:600;color:#6F6C75">Android, hodinky, váhy</span></span></span>
+        </div>
+        <p style="margin:0;font-size:14px;color:#6F6C75">Co se načte, určujete vy. Každý údaj zvlášť povolíte v telefonu.</p>
+      </div>
+
+      <div style="flex:1 1 460px;min-width:0;display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap">
+        <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
+          <span class="rd-flow" style="display:flex;align-items:center;gap:10px;background:#FDE8EF;border-radius:16px;padding:10px 16px 10px 10px;font-weight:700;font-size:15px"><span style="width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#FFFFFF;color:#B1245E"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 14.8V4a2 2 0 0 0-4 0v10.8a4 4 0 1 0 4 0z"></path></svg></span>Teplota</span>
+          <span class="rd-flow rd-f2" style="display:flex;align-items:center;gap:10px;background:#FFF1E0;border-radius:16px;padding:10px 16px 10px 10px;font-weight:700;font-size:15px"><span style="width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#FFFFFF;color:#7A4300"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2-5 4 10 2-5h6"></path></svg></span>Tep</span>
+          <span class="rd-flow rd-f3" style="display:flex;align-items:center;gap:10px;background:#E6EEFC;border-radius:16px;padding:10px 16px 10px 10px;font-weight:700;font-size:15px"><span style="width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#FFFFFF;color:#2F6FE0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"></path></svg></span>Spánek</span>
+          <span class="rd-flow rd-f4" style="display:flex;align-items:center;gap:10px;background:#E0F5EC;border-radius:16px;padding:10px 16px 10px 10px;font-weight:700;font-size:15px"><span style="width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#FFFFFF;color:#17694F"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="4"></rect><path d="M9 9.5a4 4 0 0 1 6 0L12 13z"></path></svg></span>Hmotnost a výška</span>
+          <span class="rd-flow rd-f5" style="display:flex;align-items:center;gap:10px;background:#F3E9FD;border-radius:16px;padding:10px 16px 10px 10px;font-weight:700;font-size:15px"><span style="width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#FFFFFF;color:#7B2FBF"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M12 8v4l3 2"></path></svg></span>Cyklus</span>
+        </div>
+        <svg width="56" height="24" viewBox="0 0 56 24" fill="none" stroke="#B9B7BD" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12h48M42 4l8 8-8 8"></path></svg>
+        <div class="rd-beat" style="width:200px;border-radius:30px;padding:22px;box-sizing:border-box;background:linear-gradient(160deg,#FFE9D2,#F8CFA6);display:flex;flex-direction:column;gap:10px;box-shadow:0 30px 60px -24px rgba(247,147,30,.55)">
+          <span style="font-weight:800;font-size:22px;letter-spacing:-0.035em">LifeOS</span>
+          <span style="background:#FFFFFF;border-radius:14px;padding:10px 12px;font-size:13px;line-height:1.3"><b style="display:block;font-size:12px;color:#8A1E4A">Út 21:40</b><span style="font-weight:800;font-size:16px">38,6 °C</span><span style="display:block;font-size:12px;color:#6F6C75">z teploměru</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. propojení se školkou -->
   <section style="position:relative;padding:96px 24px">
     <div style="max-width:1100px;margin:0 auto;border-radius:40px;background:#17161A;color:#FFFFFF;padding:clamp(32px,5vw,56px);box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;gap:40px;overflow:hidden;position:relative">
       <div aria-hidden="true" style="position:absolute;right:-160px;top:-160px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(215,242,58,.35),rgba(23,22,26,0) 66%)"></div>
