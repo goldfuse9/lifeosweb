@@ -61,17 +61,18 @@ Je to čisté HTML bez buildu, takže běží stejně na Netlify i na Cloudflare
 Hlavičky jsou ve `web/_headers`, přesměrování ve `web/_redirects` — oba hostingy
 je čtou ze stejných souborů.
 
-### Cloudflare Pages — lifeos.romarte.cz
-1. Cloudflare → **Workers & Pages → Create** → dole „Looking to deploy Pages? **Get started**“
-   → **Import an existing Git repository** → `lifeosweb`.
-2. Název projektu **`lifeosweb`**, branch `main`, Framework preset **None**,
-   Build command **prázdné**, Build output directory **`web`**.
-   (Totéž je ve `wrangler.jsonc`.)
-3. Web poběží na `https://lifeosweb.pages.dev`. Každý push do `main` se nasadí sám.
-4. Projekt → **Custom domains → Set up a custom domain** → `lifeos.romarte.cz`.
-5. U Active24 (DNS domény romarte.cz) přidat záznam **CNAME**: název `lifeos`,
-   hodnota `lifeosweb.pages.dev`. DNS zůstává u Active24, e-mail ani romarte.cz se nemění.
-6. Cloudflare doménu ověří a vydá certifikát (obvykle do pár minut, max. 24 h).
+### Cloudflare (Workers) — lifeos.romarte.cz
+1. Cloudflare → **Workers & Pages → Create** → import repozitáře `lifeosweb` z GitHubu.
+2. Název projektu **`lifeosweb`** (musí sedět s `name` ve `wrangler.jsonc`).
+3. **Advanced settings → Path: `/`** (kořen repa). Build příkaz výchozí (`npx wrangler deploy`).
+   Co se nasadí, určuje `wrangler.jsonc` (složka `web/`).
+4. Web poběží na `https://lifeosweb.<účet>.workers.dev`. Každý push do `main` se nasadí sám.
+5. Subdoména: Worker umí vlastní doménu jen tehdy, když je DNS domény na Cloudflare.
+   - Cloudflare → **Add a domain** → `romarte.cz` (Free) → zkontrolovat načtené záznamy,
+     hlavně **MX** (e-mail), TXT a záznamy pro romarte.cz/www (Netlify).
+   - U Active24 změnit **nameservery** na ty, které ukáže Cloudflare.
+   - Projekt → **Settings → Domains & Routes → Add → Custom domain** → `lifeos.romarte.cz`.
+     Záznam i certifikát vytvoří Cloudflare sám.
 
 Na jedné doméně může v jednu chvíli běžet jen jeden hosting. Netlify může dál
 běžet na své adrese `*.netlify.app` jako záloha nebo testovací verze.
