@@ -1,9 +1,5 @@
 # Netlify (romarte.cz) nasazuje složku web/: rozcestník, stránka pro rodiny a pro školky.
 # Starší testovací stránka s předobjednávkou zůstává v test-horecka/, ale nenasazuje se.
+# Hlavičky jsou ve web/_headers a přesměrování ve web/_redirects — stejné soubory čte i Cloudflare Pages.
 [build]
   publish = "web"
-
-[[headers]]
-  for = "/media/*"
-  [headers.values]
-    Cache-Control = "public, max-age=604800"

@@ -53,3 +53,24 @@ skutečná obrazovka z aplikace a předobjednávka ročního plánu se slevou.
 - `rodiny.html` – rozhovor u doktora, video časové osy, co aplikace umí
 - `skolky.html` – co ve školce zdržuje, tablet a ředitelna, kdo co vidí
 - Bez ceny a bez formulářů. Staré adresy `/predobjednavka` a `/dekujeme` přesměrují na úvod.
+
+## romarte.cz — Netlify i Cloudflare Pages
+
+Nasazuje se složka `web/` (rozcestník `index.html`, `rodiny.html`, `skolky.html`).
+Je to čisté HTML bez buildu, takže běží stejně na Netlify i na Cloudflare Pages.
+Hlavičky jsou ve `web/_headers`, přesměrování ve `web/_redirects` — oba hostingy
+je čtou ze stejných souborů.
+
+### Cloudflare Pages
+1. Cloudflare → **Workers & Pages → Create → Pages → Connect to Git** → repozitář `lifeosweb`.
+2. Production branch `main`, **Framework preset: None**, **Build command: prázdné**,
+   **Build output directory: `web`**.
+3. Web poběží na `https://<název-projektu>.pages.dev`. Každý push do `main` se nasadí sám,
+   ostatní větve dostanou vlastní náhledovou adresu.
+4. Vlastní doména: **Custom domains → romarte.cz** (a `www.romarte.cz`). Pro hlavní doménu
+   (bez www) musí být DNS na Cloudflare — u Active24 se změní nameservery na ty, které ukáže
+   Cloudflare. Před změnou zkontrolovat, že Cloudflare načetl všechny DNS záznamy,
+   hlavně **MX** (e-mail) a ověřovací TXT záznamy.
+
+Na jedné doméně může v jednu chvíli běžet jen jeden hosting. Netlify může dál
+běžet na své adrese `*.netlify.app` jako záloha nebo testovací verze.

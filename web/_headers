@@ -1,0 +1,7 @@
+# Hlavičky pro Netlify i Cloudflare Pages (oba tento soubor čtou).
+/media/*
+  Cache-Control: public, max-age=604800
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
