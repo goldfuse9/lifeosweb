@@ -1,0 +1,9 @@
+// Cloudflare Workers se statickými soubory: vizitka a rozcestník na romarte.cz.
+// V Cloudflare: druhý projekt z repa lifeosweb, název „romarte“, Path „/romarte“.
+{
+  "name": "romarte",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./site"
+  }
+}
