@@ -1,0 +1,10 @@
+// Cloudflare (Workers se statickými soubory): nasadí složku web/ beze změny.
+// Název musí sedět s názvem projektu v Cloudflare (Workers & Pages).
+// Hlavičky (web/_headers) a přesměrování (web/_redirects) Cloudflare čte stejně jako Netlify.
+{
+  "name": "lifeosweb",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./web"
+  }
+}

@@ -61,16 +61,16 @@ Je to čisté HTML bez buildu, takže běží stejně na Netlify i na Cloudflare
 Hlavičky jsou ve `web/_headers`, přesměrování ve `web/_redirects` — oba hostingy
 je čtou ze stejných souborů.
 
-### Cloudflare Pages
-1. Cloudflare → **Workers & Pages → Create → Pages → Connect to Git** → repozitář `lifeosweb`.
-2. Production branch `main`, **Framework preset: None**, **Build command: prázdné**,
-   **Build output directory: `web`**.
-3. Web poběží na `https://<název-projektu>.pages.dev`. Každý push do `main` se nasadí sám,
-   ostatní větve dostanou vlastní náhledovou adresu.
-4. Vlastní doména: **Custom domains → romarte.cz** (a `www.romarte.cz`). Pro hlavní doménu
-   (bez www) musí být DNS na Cloudflare — u Active24 se změní nameservery na ty, které ukáže
-   Cloudflare. Před změnou zkontrolovat, že Cloudflare načetl všechny DNS záznamy,
-   hlavně **MX** (e-mail) a ověřovací TXT záznamy.
+### Cloudflare
+1. Cloudflare → **Workers & Pages → Create** → import repozitáře `lifeosweb` z GitHubu.
+2. Název projektu **`lifeosweb`** (musí sedět s `name` ve `wrangler.jsonc`).
+3. V **Advanced settings → Path** nechat **`/`** (kořen repa) — co se nasadí, určuje
+   `wrangler.jsonc` (složka `web/`). Build příkaz výchozí (`npx wrangler deploy`).
+4. Web poběží na `https://lifeosweb.<účet>.workers.dev`. Každý push do `main` se nasadí sám.
+5. Vlastní doména: v projektu **Settings → Domains & Routes → Add → Custom domain** →
+   `romarte.cz` a `www.romarte.cz`. Doména musí mít DNS na Cloudflare — u Active24 se změní
+   nameservery na ty, které ukáže Cloudflare. Předtím zkontrolovat, že Cloudflare načetl
+   všechny DNS záznamy, hlavně **MX** (e-mail) a ověřovací TXT.
 
 Na jedné doméně může v jednu chvíli běžet jen jeden hosting. Netlify může dál
 běžet na své adrese `*.netlify.app` jako záloha nebo testovací verze.
