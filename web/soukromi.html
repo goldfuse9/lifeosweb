@@ -44,7 +44,7 @@
 
 <h3>Jen když funkci zapnete</h3>
 <ul>
-  <li><strong>Čtení dokumentů přes AI:</strong> fotka dokumentu a přečtený text se pošlou šifrovaně na server LifeOS v EU a odtud ke zpracování společnosti Anthropic. Nic se neukládá; počítá se jen počet skenů. Jméno ani jiná data z aplikace se neposílají.</li>
+  <li><strong>Čtení dokumentů přes AI:</strong> fotka dokumentu a přečtený text se pošlou šifrovaně na server LifeOS v EU a odtud ke zpracování společnosti Anthropic. My je neukládáme, počítá se jen počet skenů. Anthropic je podle svých podmínek pro API smaže do 30 dnů a nepoužívá je k trénování AI. Jméno ani jiná data z aplikace se neposílají.</li>
   <li><strong>Čtení textu přes OCR.space:</strong> zmenšená fotka dokumentu se pošle přes server LifeOS do služby OCR.space k přečtení textu. Nic se neukládá. Bez zapnutí čte text sám telefon.</li>
   <li><strong>Digitální školka</strong> (jen po propojení kódem od školky). Do školky jde to, co sami odešlete: omluvenky, kdo dítě vyzvedne, zprávy učitelkám, odpovědi na akce, vaše jméno a kontakt, alergie, zdravotní omezení a postup při potížích, a léky, které má dítě ve školce dostávat (název, dávka, časy, pokyn a váš souhlas). Ze školky přicházejí zprávy, jídelníček, akce, fotky a platby. Data jsou uložená na serveru školky v EU; jejich správcem je vaše školka. Ostatní data z LifeOS (zdravotní karta, dokumenty, jiní členové rodiny) do školky nejdou.</li>
   <li><strong>Vzkaz vývojáři</strong> (Já → Napsat nám): text vzkazu, verze aplikace a anonymní kód telefonu.</li>
@@ -69,10 +69,23 @@
 <h2>Kdo data zpracovává</h2>
 <ul>
   <li><strong>Supabase</strong> — server LifeOS a server školky, datacentrum v EU.</li>
-  <li><strong>Anthropic</strong> — čtení dokumentů přes AI (jen po zapnutí, nic neukládá).</li>
+  <li><strong>Anthropic</strong> — čtení dokumentů přes AI (jen po zapnutí; smaže do 30 dnů, netrénuje na nich).</li>
   <li><strong>OCR.space</strong> — čtení textu z fotky (jen po zapnutí, nic neukládá).</li>
 </ul>
+<p>Tyto služby smějí údaje použít jen ke zpracování pro LifeOS a musí je chránit stejně jako my.</p>
 <p>Právní základ: u zdravotních údajů, AI, OCR a školky váš výslovný souhlas, který dáváte zapnutím funkce a můžete ho kdykoli vypnout. U anonymního počítání instalací náš oprávněný zájem znát počet používaných verzí.</p>
+
+<h2>Jak dlouho údaje uchováváme</h2>
+<ul>
+  <li><strong>Data v telefonu a zálohy:</strong> dokud je sami nesmažete.</li>
+  <li><strong>ID instalace a verze:</strong> po dobu používání aplikace; po smazání účtu v aplikaci vznikne nové ID a staré už s ničím nesouvisí.</li>
+  <li><strong>Fotky a text pro čtení přes AI a OCR:</strong> my je neukládáme vůbec; u Anthropic nejdéle 30 dnů.</li>
+  <li><strong>Vzkaz vývojáři:</strong> do vyřízení, nejdéle 2 roky.</li>
+  <li><strong>Školka:</strong> podle pravidel školky.</li>
+</ul>
+
+<h2>Zabezpečení</h2>
+<p>Data v telefonu jsou šifrovaná (AES-256) klíčem chráněným vaším heslem. Vše, co jde mimo telefon, se přenáší šifrovaně (HTTPS/TLS). Server je v EU a přístup k údajům hlídají pravidla databáze.</p>
 
 <h2 id="smazani">Smazání dat a účtu</h2>
 <div class="box">
@@ -116,7 +129,7 @@
 
 <h3>Only when you turn the feature on</h3>
 <ul>
-  <li><strong>AI document reading:</strong> the photo of a document and the recognised text are sent encrypted to the LifeOS server in the EU and on to Anthropic for processing. Nothing is stored; only the number of scans is counted. Your name and other app data are not sent.</li>
+  <li><strong>AI document reading:</strong> the photo of a document and the recognised text are sent encrypted to the LifeOS server in the EU and on to Anthropic for processing. We do not store them; only the number of scans is counted. Under its API terms, Anthropic deletes them within 30 days and does not use them to train AI. Your name and other app data are not sent.</li>
   <li><strong>Text reading via OCR.space:</strong> a reduced photo of the document is sent through the LifeOS server to OCR.space to read the text. Nothing is stored. Without it, the phone reads the text itself.</li>
   <li><strong>Digital nursery</strong> (only after linking with a code from the nursery). What you send yourself goes to the nursery: absence notes, who picks the child up, messages to teachers, replies to events, your name and contact, allergies, health restrictions and what to do if problems arise, and medications the child should receive at the nursery (name, dose, times, instructions and your consent). Messages, menus, events, photos and payments come from the nursery. The data is stored on the nursery server in the EU; the nursery is its controller. Other LifeOS data (the health record, documents, other family members) does not go to the nursery.</li>
   <li><strong>Message to the developer</strong> (Me → Write to us): the message text, app version and an anonymous phone code.</li>
@@ -141,10 +154,23 @@
 <h2>Who processes data</h2>
 <ul>
   <li><strong>Supabase</strong> — the LifeOS server and the nursery server, data centre in the EU.</li>
-  <li><strong>Anthropic</strong> — AI document reading (only when turned on, stores nothing).</li>
+  <li><strong>Anthropic</strong> — AI document reading (only when turned on; deleted within 30 days, not used for training).</li>
   <li><strong>OCR.space</strong> — reading text from photos (only when turned on, stores nothing).</li>
 </ul>
+<p>These services may use the data only to process it for LifeOS and must protect it as we do.</p>
 <p>Legal basis: for health data, AI, OCR and the nursery, your explicit consent, given by turning the feature on and withdrawable at any time. For anonymous install counting, our legitimate interest in knowing how many versions are in use.</p>
+
+<h2>How long we keep data</h2>
+<ul>
+  <li><strong>Data on the phone and backups:</strong> until you delete them.</li>
+  <li><strong>Install ID and version:</strong> while you use the app; deleting the account in the app creates a new ID and the old one is no longer linked to anything.</li>
+  <li><strong>Photos and text for AI and OCR reading:</strong> we do not store them at all; at Anthropic for up to 30 days.</li>
+  <li><strong>Message to the developer:</strong> until resolved, at most 2 years.</li>
+  <li><strong>Nursery:</strong> under the nursery's rules.</li>
+</ul>
+
+<h2>Security</h2>
+<p>Data on the phone is encrypted (AES-256) with a key protected by your password. Everything that leaves the phone is transferred encrypted (HTTPS/TLS). The server is in the EU and access to data is enforced by database rules.</p>
 
 <h2 id="delete">Deleting data and the account</h2>
 <div class="box">
