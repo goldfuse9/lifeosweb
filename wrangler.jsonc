@@ -1,11 +1,20 @@
-// Cloudflare Workers se statickými soubory: nasadí složku web/ beze změny.
+// Cloudflare Workers: statické soubory ze složky web/ + malý worker (src/worker.js)
+// pro přihlášky testerů na /api/tester.
 // Název musí sedět s názvem projektu v Cloudflare (Workers & Pages).
-// Hlavičky (web/_headers) a přesměrování (web/_redirects) Cloudflare čte stejně jako Netlify.
+// Hlavičky (web/_headers) a přesměrování (web/_redirects) Cloudflare čte i tady.
 // Web: lifeos.romarte.cz (Custom domain v projektu; DNS romarte.cz je na Cloudflare).
 {
   "name": "lifeosweb",
+  "main": "src/worker.js",
   "compatibility_date": "2026-10-01",
   "assets": {
-    "directory": "./web"
-  }
+    "directory": "./web",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  // Logy zapnuté: každá přihláška je vidět v Cloudflare → lifeosweb → Logs.
+  "observability": { "enabled": true }
+  // E-mailové upozornění: až bude romarte.cz v Cloudflare Email (viz README),
+  // přidej sem (za čárku):
+  // "send_email": [{ "name": "LIFEOS_MAIL", "destination_address": "artejsem@gmail.com" }]
 }

@@ -87,3 +87,13 @@ běžet na své adrese `*.netlify.app` jako záloha nebo testovací verze.
 | lifeds.romarte.cz | `lifeds/site/` | `lifeds` (Path `/lifeds`) | Digitální školka |
 
 Staré adresy `lifeos.romarte.cz/rodiny` a `/skolky` přesměrují na nové weby (`web/_redirects`).
+
+## Přihlášky testerů pro Android (lifeos.romarte.cz)
+
+Tlačítko „Android“ otevře formulář, který pošle e-mail na `/api/tester` (worker `src/worker.js`).
+
+- Každá přihláška je vidět v Cloudflare → Workers & Pages → lifeosweb → **Logs** (záznam `android-tester`).
+- E-mailové upozornění: v Cloudflare zapni e-mail pro doménu romarte.cz a do `wrangler.jsonc` přidej
+  `"send_email": [{ "name": "LIFEOS_MAIL", "destination_address": "artejsem@gmail.com" }]`.
+  Odesílatel je `web@romarte.cz` (jde změnit proměnnou `MAIL_FROM`).
+- Přidání testera: Google Play Console → LifeOS → Testování → Interní testování → Testeři → seznam e-mailů → poslat mu odkaz pro připojení.
