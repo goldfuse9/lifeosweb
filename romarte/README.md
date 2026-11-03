@@ -1,7 +1,7 @@
 # romarte.cz — vizitka a rozcestník
 
 Čisté HTML (`site/index.html`), bez buildu. Odkazuje na LifeOS (lifeos.romarte.cz)
-a Digitální školku (lifeos.romarte.cz/skolky).
+a Digitální školku (lifeds.romarte.cz).
 
 Před zveřejněním doplnit v `site/index.html`: `[E-MAIL]`, `[TELEFON]`, `[IČO]`.
 

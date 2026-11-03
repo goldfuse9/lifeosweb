@@ -1,0 +1,9 @@
+// Cloudflare Workers se statickými soubory: Digitální školka na lifeds.romarte.cz.
+// V Cloudflare: další projekt z repa lifeosweb, název „lifeds“, Path „/lifeds“.
+{
+  "name": "lifeds",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./site"
+  }
+}

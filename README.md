@@ -76,3 +76,14 @@ je čtou ze stejných souborů.
 
 Na jedné doméně může v jednu chvíli běžet jen jeden hosting. Netlify může dál
 běžet na své adrese `*.netlify.app` jako záloha nebo testovací verze.
+
+
+## Weby na Cloudflare (od listopadu 2026)
+
+| Doména | Složka | Projekt v Cloudflare | Co tam je |
+| --- | --- | --- | --- |
+| romarte.cz | `romarte/site/` | `romarte` (Path `/romarte`) | vizitka, odkazy na oba projekty |
+| lifeos.romarte.cz | `web/` | `lifeosweb` (kořen, `wrangler.jsonc`) | aplikace LifeOS pro rodiny, zásady, podmínky |
+| lifeds.romarte.cz | `lifeds/site/` | `lifeds` (Path `/lifeds`) | Digitální školka |
+
+Staré adresy `lifeos.romarte.cz/rodiny` a `/skolky` přesměrují na nové weby (`web/_redirects`).
