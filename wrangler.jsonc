@@ -13,8 +13,7 @@
     "run_worker_first": ["/api/*"]
   },
   // Logy zapnuté: každá přihláška je vidět v Cloudflare → lifeosweb → Logs.
-  "observability": { "enabled": true }
-  // E-mailové upozornění: až bude romarte.cz v Cloudflare Email (viz README),
-  // přidej sem (za čárku):
-  // "send_email": [{ "name": "LIFEOS_MAIL", "destination_address": "artejsem@gmail.com" }]
+  "observability": { "enabled": true },
+  // E-mailové upozornění na každou přihlášku (Email Routing na romarte.cz, ověřená adresa).
+  "send_email": [{ "name": "LIFEOS_MAIL", "destination_address": "artejsem@gmail.com" }]
 }

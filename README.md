@@ -93,7 +93,6 @@ Staré adresy `lifeos.romarte.cz/rodiny` a `/skolky` přesměrují na nové weby
 Tlačítko „Android“ otevře formulář, který pošle e-mail na `/api/tester` (worker `src/worker.js`).
 
 - Každá přihláška je vidět v Cloudflare → Workers & Pages → lifeosweb → **Logs** (záznam `android-tester`).
-- E-mailové upozornění: v Cloudflare zapni e-mail pro doménu romarte.cz a do `wrangler.jsonc` přidej
-  `"send_email": [{ "name": "LIFEOS_MAIL", "destination_address": "artejsem@gmail.com" }]`.
-  Odesílatel je `web@romarte.cz` (jde změnit proměnnou `MAIL_FROM`).
+- E-mailové upozornění chodí na `artejsem@gmail.com` (Email Routing na romarte.cz, vazba `send_email` v `wrangler.jsonc`).
+  Odesílatel je `web@romarte.cz`; „Odpovědět“ jde rovnou testerovi.
 - Přidání testera: Google Play Console → LifeOS → Testování → Interní testování → Testeři → seznam e-mailů → poslat mu odkaz pro připojení.
