@@ -40,7 +40,7 @@ a{color:#17161A}a:hover{color:#514F57}
 .fig-doc{animation:in-fig-r 1s cubic-bezier(.2,1,.3,1) .35s both}
 .fig-dad svg{animation:breathe 4.5s ease-in-out infinite}
 .fig-doc svg{animation:breathe 5.2s ease-in-out .8s infinite}
-.doc-eyes{transform-origin:190px 210px;animation:blink 4s linear 1s infinite}
+.doc-eyes{transform-origin:190px 201px;animation:blink 4s linear 1s infinite}
 
 .chat{display:flex;flex-direction:column}
 .b{display:flex;align-items:flex-end;gap:10px;max-width:92%;margin-bottom:12px;max-height:140px;overflow:visible}
@@ -89,7 +89,8 @@ a{color:#17161A}a:hover{color:#514F57}
 .p-l2{right:calc(50% + 190px);top:52%}
 .p-r1{left:calc(50% + 180px);top:16%}
 .p-r2{left:calc(50% + 210px);top:58%}
-.p-b1{left:calc(50% + 70px);top:6%}
+.p-b1{left:calc(50% + 70px);top:11%}
+.p-sec{left:calc(50% + 190px);top:76%}
 .p-b2{right:calc(50% + 80px);bottom:7%}
 .dots-nav{position:absolute;left:50%;bottom:3.5%;transform:translateX(-50%);display:flex;gap:8px;z-index:5}
 
@@ -123,9 +124,54 @@ a{color:#17161A}a:hover{color:#514F57}
 .dot.on{width:26px;background:#17161A}
 #hint{transition:opacity .4s ease}
 #glow{transition:background .8s ease}
+
+.av{display:flex;flex-direction:column;align-items:center;gap:6px}
+.avc{width:84px;height:84px;border-radius:50%;overflow:hidden;border:4px solid #FFFFFF;box-shadow:0 18px 36px -18px rgba(23,22,26,.45);display:block}
+.avc svg{width:100%;height:100%;display:block}
+.av.back .avc{width:68px;height:68px}
+.avt{background:#FFFFFF;border-radius:999px;padding:4px 11px;font-size:12px;font-weight:800;box-shadow:0 8px 18px -10px rgba(23,22,26,.35);white-space:nowrap}
+.a-1{right:calc(50% + 172px);top:30%}
+.a-2{left:calc(50% + 172px);bottom:17%}
+.a-3{left:calc(50% + 410px);top:37%}
+.a-4{right:calc(50% + 410px);top:33%}
+.flt{animation:fc-float 6s ease-in-out infinite}
+.sec-grid{position:relative;max-width:1120px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:56px;align-items:center}
+.sec-vis{position:relative;height:440px}
+.ring{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;border:1.5px dashed #E1D5C8}
+.lock{position:absolute;left:50%;top:50%;width:168px;height:168px;margin:-84px 0 0 -84px;border-radius:48px;background:linear-gradient(145deg,#33323A,#17161A 60%);display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 2px #45434C,0 40px 80px -30px rgba(23,22,26,.55);animation:lockp 3.2s ease-in-out infinite}
+@keyframes lockp{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+.chip{position:absolute;background:#FFFFFF;border-radius:999px;padding:9px 16px;font-size:14px;font-weight:800;box-shadow:0 16px 34px -18px rgba(23,22,26,.4)}
+.orb-av{position:absolute;width:72px;height:72px;border-radius:50%;border:4px solid #FFFFFF;box-shadow:0 18px 36px -18px rgba(23,22,26,.45)}
+.orb-av svg{border-radius:50%;display:block}
+.orb-av i{position:absolute;right:-6px;bottom:-4px;width:26px;height:26px;border-radius:50%;background:#17161A;color:#D7F23A;display:flex;align-items:center;justify-content:center;border:2px solid #FFFFFF}
+.orb-av i svg{width:13px;height:13px;border-radius:0}
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px}
+.sitem{display:flex;gap:12px;align-items:flex-start;background:#FFFFFF;border-radius:20px;padding:16px;box-shadow:0 18px 40px -30px rgba(23,22,26,.35)}
+.sitem > span:last-child{display:flex;flex-direction:column;gap:3px;line-height:1.35}
+.sitem b{font-size:15px}
+.sitem > span:last-child > span{font-size:14px;color:#6F6C75}
+.si{width:40px;height:40px;flex:none;border-radius:13px;display:flex;align-items:center;justify-content:center;background:#F2F6E4;color:#3F4D00}
+.z-av{position:absolute;width:76px;height:76px;border-radius:50%;overflow:hidden;border:4px solid #FFFFFF;box-shadow:0 18px 36px -18px rgba(23,22,26,.45)}
+.z-av svg{display:block}
+@media (max-width:1100px){.a-3,.a-4{display:none}}
+@media (max-width:860px){.sec-grid{grid-template-columns:1fr;gap:20px}.sec-vis{height:340px;max-width:420px;width:100%;margin:0 auto}.ring{max-width:92vw;max-height:92vw}.z-av{display:none}}
+@media (max-width:760px){
+  .deco{display:none!important}
+  .p-sec{left:8px;top:24%}
+  #hint{display:none!important}
+  .avc{width:60px;height:60px;border-width:3px}.av.back .avc{width:54px;height:54px}.avt{font-size:11px;padding:3px 9px}
+  .a-1{right:auto;left:8px;top:40%}
+  .a-2{left:auto;right:8px;bottom:auto;top:43%}
+  .sgrid{grid-template-columns:1fr}
+  .lock{width:132px;height:132px;margin:-66px 0 0 -66px;border-radius:38px}
+  .lock svg{width:56px;height:56px}
+  .orb-av{width:60px;height:60px}
+}
+@media (prefers-reduced-motion:reduce){.flt,.lock{animation:none!important}}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="g-zena" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FDE8EF"/><stop offset="1" stop-color="#F9CFDD"/></linearGradient><symbol id="av-zena" viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="url(#g-zena)"/><path d="M13 44 C9 22 17 10 28 10 C40 10 48 22 44 44 Z" fill="#5A3A2A"/><path d="M7 58 C9 45 17 40 28 40 C39 40 47 45 49 58 Z" fill="#EE3F7A"/><path d="M23 35 L33 35 L33 41 Q28 44 23 41 Z" fill="#F2C29E" opacity=".85"/><ellipse cx="28" cy="27" rx="11.5" ry="12" fill="#F2C29E"/><path d="M16 25 C16 14 26 11 31 12 C38 13 41 18 40 25 C35 20 26 18 16 25 Z" fill="#5A3A2A"/><circle cx="22.5" cy="27" r="1.9" fill="#2A1E18"/><circle cx="33.5" cy="27" r="1.9" fill="#2A1E18"/><path d="M24 33 Q28 36.5 32 33" stroke="#8A3A2A" stroke-width="1.6" fill="none" stroke-linecap="round"/><circle cx="20" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/><circle cx="36" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/></symbol><linearGradient id="g-muz" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E6EEFC"/><stop offset="1" stop-color="#C9DAF8"/></linearGradient><symbol id="av-muz" viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="url(#g-muz)"/><path d="M7 58 C9 45 17 40 28 40 C39 40 47 45 49 58 Z" fill="#2F6FE0"/><path d="M23 35 L33 35 L33 41 Q28 44 23 41 Z" fill="#C98E6A" opacity=".85"/><ellipse cx="28" cy="27" rx="11.5" ry="12" fill="#C98E6A"/><path d="M16.5 24 C15 13 24 10 29 10.5 C37 11 41 16 39.5 24 C37 18 31 16.5 28 16.5 C24 16.5 19 18 16.5 24 Z" fill="#2A2420"/><circle cx="22.5" cy="27" r="1.9" fill="#2A1E18"/><circle cx="33.5" cy="27" r="1.9" fill="#2A1E18"/><path d="M24 33 Q28 36.5 32 33" stroke="#8A3A2A" stroke-width="1.6" fill="none" stroke-linecap="round"/><circle cx="20" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/><circle cx="36" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/><path d="M18.5 30 C19 38 24 41 28 41 C32 41 37 38 37.5 30 C35 35 31 36 28 36 C25 36 21 35 18.5 30 Z" fill="#2A2420"/></symbol><linearGradient id="g-holka" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF1E0"/><stop offset="1" stop-color="#FFDDB5"/></linearGradient><symbol id="av-holka" viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="url(#g-holka)"/><circle cx="13" cy="24" r="6.5" fill="#B97A3E"/><circle cx="43" cy="24" r="6.5" fill="#B97A3E"/><circle cx="13" cy="24" r="2" fill="#D7F23A" transform="translate(4 -5)"/><path d="M7 58 C9 45 17 40 28 40 C39 40 47 45 49 58 Z" fill="#F7931E"/><path d="M23 35 L33 35 L33 41 Q28 44 23 41 Z" fill="#F6CBA8" opacity=".85"/><ellipse cx="28" cy="27" rx="11.5" ry="12" fill="#F6CBA8"/><path d="M17 25 C17 15 39 15 39 25 C34 20 22 20 17 25 Z" fill="#B97A3E"/><circle cx="22.5" cy="27" r="1.9" fill="#2A1E18"/><circle cx="33.5" cy="27" r="1.9" fill="#2A1E18"/><path d="M24 33 Q28 36.5 32 33" stroke="#8A3A2A" stroke-width="1.6" fill="none" stroke-linecap="round"/><circle cx="20" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/><circle cx="36" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/></symbol><linearGradient id="g-kluk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E0F5EC"/><stop offset="1" stop-color="#BFE9D6"/></linearGradient><symbol id="av-kluk" viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="url(#g-kluk)"/><path d="M7 58 C9 45 17 40 28 40 C39 40 47 45 49 58 Z" fill="#17A06B"/><path d="M23 35 L33 35 L33 41 Q28 44 23 41 Z" fill="#E8B48E" opacity=".85"/><ellipse cx="28" cy="27" rx="11.5" ry="12" fill="#E8B48E"/><path d="M16.5 25 C14 14 24 10 30 11 C36 11 42 15 39.5 25 C38 21 35 19 32 18 C30 21 22 22 16.5 25 Z" fill="#3B2A22"/><path d="M27 11 C29 8 33 8 34 10" stroke="#3B2A22" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="22.5" cy="27" r="1.9" fill="#2A1E18"/><circle cx="33.5" cy="27" r="1.9" fill="#2A1E18"/><path d="M24 33 Q28 36.5 32 33" stroke="#8A3A2A" stroke-width="1.6" fill="none" stroke-linecap="round"/><circle cx="20" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/><circle cx="36" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/></symbol><linearGradient id="g-babicka" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3E9FD"/><stop offset="1" stop-color="#E2D0FA"/></linearGradient><symbol id="av-babicka" viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="url(#g-babicka)"/><circle cx="28" cy="10" r="5.5" fill="#D4D2D8"/><path d="M7 58 C9 45 17 40 28 40 C39 40 47 45 49 58 Z" fill="#9B3FE0"/><path d="M23 35 L33 35 L33 41 Q28 44 23 41 Z" fill="#EBBB98" opacity=".85"/><ellipse cx="28" cy="27" rx="11.5" ry="12" fill="#EBBB98"/><path d="M16.5 25 C16 15 40 15 39.5 25 C35 19 22 19 16.5 25 Z" fill="#D4D2D8"/><circle cx="22.5" cy="27" r="1.9" fill="#2A1E18"/><circle cx="33.5" cy="27" r="1.9" fill="#2A1E18"/><path d="M24 33 Q28 36.5 32 33" stroke="#8A3A2A" stroke-width="1.6" fill="none" stroke-linecap="round"/><circle cx="20" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/><circle cx="36" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/><circle cx="22.5" cy="27" r="4.3" fill="none" stroke="#3A3840" stroke-width="1.3"/><circle cx="33.5" cy="27" r="4.3" fill="none" stroke="#3A3840" stroke-width="1.3"/><path d="M26.8 27 L29.2 27" stroke="#3A3840" stroke-width="1.3"/></symbol><linearGradient id="g-deda" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EAF2DC"/><stop offset="1" stop-color="#D4E6B5"/></linearGradient><symbol id="av-deda" viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="url(#g-deda)"/><path d="M7 58 C9 45 17 40 28 40 C39 40 47 45 49 58 Z" fill="#5C7A2A"/><path d="M23 35 L33 35 L33 41 Q28 44 23 41 Z" fill="#D9A07B" opacity=".85"/><ellipse cx="28" cy="27" rx="11.5" ry="12" fill="#D9A07B"/><path d="M16 27 C15 19 18 16 20 17 L20 26 Z" fill="#E7E5E9"/><path d="M40 27 C41 19 38 16 36 17 L36 26 Z" fill="#E7E5E9"/><circle cx="22.5" cy="27" r="1.9" fill="#2A1E18"/><circle cx="33.5" cy="27" r="1.9" fill="#2A1E18"/><path d="M24 33 Q28 36.5 32 33" stroke="#8A3A2A" stroke-width="1.6" fill="none" stroke-linecap="round"/><circle cx="20" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/><circle cx="36" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/><path d="M21.5 32 C24.5 30 31.5 30 34.5 32 C31.5 34 24.5 34 21.5 32 Z" fill="#E7E5E9"/><path d="M20 23.5 Q22.5 22 25 23.5 M31 23.5 Q33.5 22 36 23.5" stroke="#B9B7BD" stroke-width="1.6" fill="none" stroke-linecap="round"/></symbol><linearGradient id="g-teen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E6F6FD"/><stop offset="1" stop-color="#C2E8F8"/></linearGradient><symbol id="av-teen" viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="url(#g-teen)"/><path d="M12 30 C8 14 18 6 28 6 C40 6 48 14 44 30 C42 22 38 18 28 18 C18 18 14 22 12 30 Z" fill="#1E1612"/><path d="M7 58 C9 45 17 40 28 40 C39 40 47 45 49 58 Z" fill="#17161A"/><path d="M23 35 L33 35 L33 41 Q28 44 23 41 Z" fill="#8D5A3B" opacity=".85"/><ellipse cx="28" cy="27" rx="11.5" ry="12" fill="#8D5A3B"/><path d="M16 24 C16 15 22 12 28 12 C35 12 40 15 40 24 C36 19 30 18 28 18 C24 18 19 19 16 24 Z" fill="#1E1612"/><circle cx="22.5" cy="27" r="1.9" fill="#2A1E18"/><circle cx="33.5" cy="27" r="1.9" fill="#2A1E18"/><path d="M24 33 Q28 36.5 32 33" stroke="#8A3A2A" stroke-width="1.6" fill="none" stroke-linecap="round"/><circle cx="20" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/><circle cx="36" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/><path d="M14 26 C14 12 42 12 42 26" stroke="#D7F23A" stroke-width="3" fill="none"/><rect x="11" y="23" width="6" height="9" rx="3" fill="#D7F23A"/><rect x="39" y="23" width="6" height="9" rx="3" fill="#D7F23A"/></symbol><linearGradient id="g-miminko" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF6D6"/><stop offset="1" stop-color="#FFE89A"/></linearGradient><symbol id="av-miminko" viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="url(#g-miminko)"/><path d="M7 58 C9 45 17 40 28 40 C39 40 47 45 49 58 Z" fill="#F2C94C"/><path d="M23 35 L33 35 L33 41 Q28 44 23 41 Z" fill="#F8D5B8" opacity=".85"/><ellipse cx="28" cy="27" rx="11.5" ry="12" fill="#F8D5B8"/><path d="M26 13 C24 9 28 7 30 9 C31 11 29 13 27 12" stroke="#C99A5E" stroke-width="1.8" fill="none" stroke-linecap="round"/><circle cx="22.5" cy="27" r="1.9" fill="#2A1E18"/><circle cx="33.5" cy="27" r="1.9" fill="#2A1E18"/><path d="M24 33 Q28 36.5 32 33" stroke="#8A3A2A" stroke-width="1.6" fill="none" stroke-linecap="round"/><circle cx="20" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/><circle cx="36" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/></symbol></defs></svg>
 <div id="root" class="intro-mode">
 
   <!-- =================== 1. ÚVOD =================== -->
@@ -133,7 +179,25 @@ a{color:#17161A}a:hover{color:#514F57}
     <section class="scene" aria-label="Situace v ordinaci" style="position:relative;height:100vh;min-height:560px;overflow:hidden;background:linear-gradient(180deg,#FFF6EF 0%,#FBEFE6 70%,#F3E3D6 100%)">
       <!-- místnost -->
       <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;height:18%;background:#EEDCCB"></div>
-      <div aria-hidden="true" style="position:absolute;right:8%;top:10%;width:min(220px,22vw);aspect-ratio:3/4;border-radius:18px;background:#FFFFFF;box-shadow:inset 0 0 0 10px #F3E6DA;opacity:.8"></div>
+      <div class="deco" aria-hidden="true" style="position:absolute;left:4%;top:6%;width:min(250px,18vw);aspect-ratio:5/4;border-radius:14px;background:#FFFFFF;padding:8px;box-shadow:0 18px 40px -26px rgba(122,67,0,.35)">
+        <div style="position:relative;width:100%;height:100%;border-radius:8px;overflow:hidden;background:linear-gradient(180deg,#CFE6F7,#F3F8FB)">
+          <div style="position:absolute;right:16%;top:18%;width:22%;aspect-ratio:1;border-radius:50%;background:#FFE7A3;box-shadow:0 0 30px 10px rgba(255,231,163,.7)"></div>
+          <div style="position:absolute;left:-10%;bottom:-18%;width:70%;height:50%;border-radius:50%;background:#BFDDB0"></div>
+          <div style="position:absolute;right:-12%;bottom:-24%;width:70%;height:50%;border-radius:50%;background:#A9D19A"></div>
+          <div style="position:absolute;inset:0;background:repeating-linear-gradient(180deg,rgba(255,255,255,.55) 0 3px,rgba(255,255,255,0) 3px 16px);height:46%"></div>
+          <div style="position:absolute;left:50%;top:0;bottom:0;width:6px;margin-left:-3px;background:#FFFFFF"></div>
+        </div>
+      </div>
+      <div class="deco" aria-hidden="true" style="position:absolute;right:9%;top:8%;width:min(170px,13vw);aspect-ratio:3/4.2;border-radius:12px;background:#FFFFFF;box-shadow:0 18px 40px -26px rgba(122,67,0,.35);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4%;font-weight:800;color:#2A2930;letter-spacing:.18em;line-height:1">
+        <span style="font-size:min(44px,3.2vw)">E</span><span style="font-size:min(26px,1.9vw)">F P</span><span style="font-size:min(18px,1.35vw)">T O Z</span><span style="font-size:min(13px,1vw)">L P E D</span><span style="font-size:min(9px,.75vw);color:#EE3F7A">P E C F D</span>
+      </div>
+      <div class="deco" aria-hidden="true" style="position:absolute;right:28%;top:7%;width:min(74px,5.4vw);aspect-ratio:1;border-radius:50%;background:#FFFFFF;box-shadow:inset 0 0 0 5px #F3E6DA,0 14px 30px -18px rgba(122,67,0,.4)">
+        <span style="position:absolute;left:50%;top:22%;width:3px;height:29%;margin-left:-1.5px;border-radius:2px;background:#2A2930"></span>
+        <span style="position:absolute;left:50%;top:50%;width:26%;height:3px;margin-top:-1.5px;border-radius:2px;background:#EE3F7A"></span>
+      </div>
+      <div class="deco" aria-hidden="true" style="position:absolute;left:41%;bottom:15%;height:24vh;aspect-ratio:120/200">
+        <svg viewBox="0 0 120 200" width="100%" height="100%"><path d="M60 130 C40 100 18 96 8 70 C30 72 50 92 60 120 Z" fill="#7FB069"/><path d="M60 128 C66 92 90 70 112 64 C108 92 84 112 60 128 Z" fill="#6A9E57"/><path d="M60 126 C52 88 56 46 70 20 C80 52 74 96 60 126 Z" fill="#8CC07A"/><path d="M60 128 C48 106 30 84 34 50 C50 70 58 96 60 128 Z" fill="#5E8F4D"/><path d="M30 130 L90 130 L82 196 Q60 204 38 196 Z" fill="#F7931E"/><rect x="26" y="124" width="68" height="12" rx="5" fill="#F9A94A"/></svg>
+      </div>
       <div aria-hidden="true" style="position:absolute;left:-160px;top:-180px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,rgba(247,147,30,.18),rgba(255,246,239,0) 66%)"></div>
       <div aria-hidden="true" style="position:absolute;right:-200px;bottom:-160px;width:680px;height:680px;border-radius:50%;background:radial-gradient(circle,rgba(238,63,122,.12),rgba(255,246,239,0) 66%)"></div>
 
@@ -141,76 +205,172 @@ a{color:#17161A}a:hover{color:#514F57}
 
       <!-- lékař (zepředu) -->
       <div class="fig-doc" style="position:absolute;right:3%;bottom:4%;height:66vh;aspect-ratio:380/470;z-index:2">
-        <svg viewBox="0 0 380 470" width="100%" height="100%" role="img" aria-label="Lékař za stolem">
-          <defs>
-            <linearGradient id="coat" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"></stop><stop offset="1" stop-color="#E9EDF1"></stop></linearGradient>
-          </defs>
-          <path d="M66 470 C68 384 88 322 130 300 C154 290 174 286 190 286 C206 286 226 290 250 300 C292 322 312 384 314 470 Z" fill="url(#coat)"></path>
-          <path d="M160 292 L190 372 L220 292 Z" fill="#1F9E8F"></path>
-          <path d="M160 292 L176 300 L190 372 L150 330 Z" fill="#F4F6F8"></path>
-          <path d="M220 292 L204 300 L190 372 L230 330 Z" fill="#F4F6F8"></path>
-          <path d="M174 252 L206 252 L210 298 Q190 308 170 298 Z" fill="#B97E5A"></path>
-          <ellipse cx="132" cy="212" rx="11" ry="16" fill="#C68A64"></ellipse>
-          <ellipse cx="248" cy="212" rx="11" ry="16" fill="#C68A64"></ellipse>
-          <ellipse cx="190" cy="206" rx="58" ry="66" fill="#C98E6A"></ellipse>
-          <path d="M132 204 C126 150 158 126 192 126 C228 126 256 150 248 204 C240 178 216 166 190 168 C164 168 142 178 132 204 Z" fill="#2A2420"></path>
-          <path d="M150 150 C170 136 206 134 228 148" stroke="#5A4A40" stroke-width="5" fill="none" stroke-linecap="round" opacity=".55"></path>
-          <path d="M156 190 Q168 184 180 190" stroke="#2A2420" stroke-width="4" fill="none" stroke-linecap="round"></path>
-          <path d="M200 190 Q212 184 224 190" stroke="#2A2420" stroke-width="4" fill="none" stroke-linecap="round"></path>
-          <g class="doc-eyes"><circle cx="168" cy="210" r="4.5" fill="#2A2420"></circle><circle cx="212" cy="210" r="4.5" fill="#2A2420"></circle></g>
-          <circle cx="168" cy="210" r="17" fill="none" stroke="#17161A" stroke-width="3"></circle>
-          <circle cx="212" cy="210" r="17" fill="none" stroke="#17161A" stroke-width="3"></circle>
-          <path d="M185 210 L195 210" stroke="#17161A" stroke-width="3"></path>
-          <path d="M174 238 Q190 250 206 238" stroke="#7A3F2A" stroke-width="4" fill="none" stroke-linecap="round"></path>
-          <circle cx="150" cy="232" r="9" fill="#E07A6A" opacity=".25"></circle><circle cx="230" cy="232" r="9" fill="#E07A6A" opacity=".25"></circle>
-          <path d="M162 296 C146 330 150 366 172 380" stroke="#3A3840" stroke-width="5" fill="none" stroke-linecap="round"></path>
-          <path d="M218 296 C232 324 232 350 222 366" stroke="#3A3840" stroke-width="5" fill="none" stroke-linecap="round"></path>
-          <circle cx="222" cy="372" r="10" fill="#9AA3AD" stroke="#3A3840" stroke-width="4"></circle>
-          <rect x="246" y="330" width="40" height="12" rx="3" fill="#2F6FE0"></rect>
-          <!-- stůl -->
-          <rect x="0" y="396" width="380" height="74" fill="#E7D6C5"></rect>
-          <rect x="0" y="390" width="380" height="12" rx="4" fill="#F4E8DC"></rect>
-          <rect x="212" y="316" width="132" height="78" rx="9" fill="#CFCDD2"></rect>
-          <circle cx="278" cy="355" r="7" fill="#E7E5E9"></circle>
-          <ellipse cx="128" cy="392" rx="26" ry="11" fill="#C98E6A"></ellipse>
-          <path d="M96 390 C100 360 112 340 128 334 L150 344 C138 356 132 372 132 388 Z" fill="#F1F4F7"></path>
-          <rect x="30" y="372" width="54" height="18" rx="4" fill="#FFFFFF"></rect>
-          <rect x="34" y="364" width="54" height="10" rx="3" fill="#D7F23A"></rect>
-        </svg>
+        <svg viewBox="0 0 380 470" width="100%" height="100%" role="img" aria-label="Lékařka za stolem">
+  <defs>
+    <linearGradient id="dCoat" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".6" stop-color="#F2F5F8"/><stop offset="1" stop-color="#DDE3EA"/></linearGradient>
+    <linearGradient id="dSkin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D9A27E"/><stop offset="1" stop-color="#C4835E"/></linearGradient>
+    <linearGradient id="dHair" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4A3329"/><stop offset="1" stop-color="#21160F"/></linearGradient>
+    <linearGradient id="dDesk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EBDACA"/><stop offset="1" stop-color="#D9C3AE"/></linearGradient>
+    <linearGradient id="dLap" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E3E2E6"/><stop offset="1" stop-color="#B9B7BF"/></linearGradient>
+    <radialGradient id="dCheek"><stop offset="0" stop-color="#E5735F" stop-opacity=".45"/><stop offset="1" stop-color="#E5735F" stop-opacity="0"/></radialGradient>
+  </defs>
+  <!-- vlasy vzadu + drdol -->
+  <circle cx="196" cy="112" r="30" fill="url(#dHair)"/>
+  <path d="M184 96 C196 88 212 92 218 104" stroke="#6B4E40" stroke-width="4" fill="none" stroke-linecap="round" opacity=".7"/>
+  <path d="M126 204 C116 146 154 120 192 120 C232 120 266 146 256 204 L258 258 C244 270 228 262 224 248 L158 248 C154 262 138 270 124 258 Z" fill="url(#dHair)"/>
+  <!-- krk -->
+  <path d="M170 244 L210 244 L215 296 Q190 312 165 296 Z" fill="#B97A55"/>
+  <path d="M170 252 Q190 266 210 252 L211 266 Q190 278 169 266 Z" fill="#A86C4A" opacity=".6"/>
+  <!-- plášť -->
+  <path d="M58 470 C60 388 82 326 126 304 C150 292 168 288 190 288 C212 288 230 292 254 304 C298 326 320 388 322 470 Z" fill="url(#dCoat)"/>
+  <path d="M164 292 L190 360 L216 292 Z" fill="#1F9E8F"/>
+  <path d="M170 292 L190 344 L210 292" fill="none" stroke="#17806F" stroke-width="3"/>
+  <path d="M164 292 L146 302 L176 396 L190 360 Z" fill="#FFFFFF" stroke="#D5DCE3" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M216 292 L234 302 L204 396 L190 360 Z" fill="#FFFFFF" stroke="#D5DCE3" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M190 396 L190 470" stroke="#D5DCE3" stroke-width="2"/>
+  <path d="M98 372 C106 414 106 446 102 470" stroke="#D5DCE3" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M282 372 C274 414 274 446 278 470" stroke="#D5DCE3" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- kapsa, propisky -->
+  <rect x="240" y="334" width="6" height="26" rx="3" fill="#2F6FE0"/>
+  <rect x="250" y="338" width="6" height="22" rx="3" fill="#EE3F7A"/>
+  <rect x="232" y="352" width="46" height="40" rx="7" fill="#F7F9FB" stroke="#D5DCE3" stroke-width="2.5"/>
+  <!-- jmenovka -->
+  <rect x="106" y="350" width="50" height="30" rx="6" fill="#FFFFFF" stroke="#D5DCE3" stroke-width="2"/>
+  <rect x="112" y="356" width="13" height="18" rx="3" fill="#D7F23A"/>
+  <rect x="130" y="358" width="20" height="4" rx="2" fill="#C2C9D1"/>
+  <rect x="130" y="366" width="14" height="4" rx="2" fill="#D9DEE4"/>
+  <!-- fonendoskop -->
+  <path d="M158 300 C138 334 144 376 172 392" stroke="#34323A" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M222 300 C240 330 240 354 230 372" stroke="#34323A" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <circle cx="230" cy="382" r="12" fill="#C3CAD2" stroke="#34323A" stroke-width="4"/>
+  <circle cx="230" cy="382" r="4" fill="#9AA3AD"/>
+  <!-- uši + náušnice -->
+  <ellipse cx="134" cy="202" rx="10" ry="15" fill="#C4835E"/>
+  <ellipse cx="246" cy="202" rx="10" ry="15" fill="#C4835E"/>
+  <circle cx="134" cy="221" r="3.5" fill="#D7F23A"/>
+  <circle cx="246" cy="221" r="3.5" fill="#D7F23A"/>
+  <!-- obličej -->
+  <ellipse cx="190" cy="198" rx="56" ry="63" fill="url(#dSkin)"/>
+  <path d="M136 210 C142 246 166 262 190 262 C214 262 238 246 244 210 C236 238 214 252 190 252 C166 252 144 238 136 210 Z" fill="#B47450" opacity=".35"/>
+  <!-- ofina -->
+  <path d="M132 200 C126 148 158 124 192 124 C228 124 256 148 250 198 C244 172 230 156 214 150 C200 168 166 184 132 200 Z" fill="url(#dHair)"/>
+  <path d="M160 142 C178 132 204 130 224 140" stroke="#6B4E40" stroke-width="4" fill="none" stroke-linecap="round" opacity=".7"/>
+  <path d="M148 172 C164 164 186 156 204 146" stroke="#6B4E40" stroke-width="3" fill="none" stroke-linecap="round" opacity=".5"/>
+  <!-- obočí -->
+  <path d="M155 182 Q167 175 180 180" stroke="#2C1E17" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M200 180 Q213 175 225 182" stroke="#2C1E17" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <!-- oči -->
+  <g class="doc-eyes">
+    <ellipse cx="168" cy="201" rx="7" ry="7.5" fill="#FFFFFF"/><circle cx="168" cy="202" r="4.6" fill="#3A2A20"/><circle cx="169.8" cy="200.2" r="1.5" fill="#FFFFFF"/>
+    <ellipse cx="212" cy="201" rx="7" ry="7.5" fill="#FFFFFF"/><circle cx="212" cy="202" r="4.6" fill="#3A2A20"/><circle cx="213.8" cy="200.2" r="1.5" fill="#FFFFFF"/>
+  </g>
+  <!-- brýle -->
+  <rect x="149" y="187" width="38" height="29" rx="12" fill="#FFFFFF" fill-opacity=".14" stroke="#17161A" stroke-width="3"/>
+  <rect x="193" y="187" width="38" height="29" rx="12" fill="#FFFFFF" fill-opacity=".14" stroke="#17161A" stroke-width="3"/>
+  <path d="M187 199 Q190 195 193 199" stroke="#17161A" stroke-width="3" fill="none"/>
+  <path d="M153 192 L162 189" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+  <!-- nos, tváře, úsměv -->
+  <path d="M191 208 Q185 224 193 228" stroke="#A86C4A" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <circle cx="152" cy="230" r="14" fill="url(#dCheek)"/>
+  <circle cx="228" cy="230" r="14" fill="url(#dCheek)"/>
+  <path d="M174 238 Q190 252 206 238" stroke="#7A3424" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M178 240 Q190 248 202 240" fill="#FFFFFF" opacity=".9"/>
+  <!-- stůl -->
+  <rect x="0" y="398" width="380" height="72" fill="url(#dDesk)"/>
+  <rect x="0" y="390" width="380" height="12" rx="4" fill="#F4E8DC"/>
+  <rect x="0" y="402" width="380" height="5" fill="#CDB49C" opacity=".5"/>
+  <!-- notebook (zadní strana) -->
+  <path d="M206 314 Q206 308 212 308 L338 308 Q344 308 344 314 L348 392 L202 392 Z" fill="url(#dLap)"/>
+  <path d="M210 312 L340 312" stroke="#FFFFFF" stroke-width="2" opacity=".6"/>
+  <circle cx="275" cy="350" r="9" fill="#F2F1F4" opacity=".9"/>
+  <rect x="196" y="388" width="158" height="7" rx="3" fill="#A9A7AF"/>
+  <!-- hrnek -->
+  <path d="M16 360 L46 360 L43 392 Q31 398 19 392 Z" fill="#D7F23A"/>
+  <path d="M46 368 C58 368 58 384 45 384" stroke="#B7CF26" stroke-width="5" fill="none"/>
+  <path d="M24 350 C20 342 30 338 26 330 M36 350 C32 342 42 338 38 330" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"/>
+  <!-- papíry -->
+  <g transform="rotate(-5 90 384)"><rect x="56" y="372" width="76" height="22" rx="3" fill="#FFFFFF"/><rect x="62" y="378" width="40" height="3" rx="1.5" fill="#D9DEE4"/><rect x="62" y="385" width="56" height="3" rx="1.5" fill="#D9DEE4"/></g>
+  <!-- ruka s perem -->
+  <path d="M118 312 C92 330 80 362 84 394 L148 394 C142 372 138 352 146 334 Z" fill="url(#dCoat)" stroke="#D5DCE3" stroke-width="2" stroke-linejoin="round"/><path d="M96 352 C92 366 92 380 94 392" stroke="#D5DCE3" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <ellipse cx="134" cy="392" rx="25" ry="11" fill="#C98A64"/>
+  <path d="M120 388 Q134 382 150 388" stroke="#A86C4A" stroke-width="2" fill="none" opacity=".7"/>
+  <path d="M140 390 L176 368" stroke="#17161A" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M170 372 L176 368" stroke="#D7F23A" stroke-width="4.5" stroke-linecap="round"/>
+</svg>
       </div>
 
       <!-- otec s dítětem (zezadu) -->
       <div class="fig-dad" style="position:absolute;left:2%;bottom:-2%;height:80vh;aspect-ratio:420/560;z-index:3">
-        <svg viewBox="0 0 420 560" width="100%" height="100%" role="img" aria-label="Otec drží v náruči nemocné dítě, pohled zezadu">
-          <defs>
-            <linearGradient id="shirt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5A79C2"></stop><stop offset="1" stop-color="#3F5B9E"></stop></linearGradient>
-          </defs>
-          <!-- hlava dítěte (dívá se přes rameno) -->
-          <circle cx="122" cy="198" r="54" fill="#F2C29E"></circle>
-          <ellipse cx="70" cy="204" rx="9" ry="13" fill="#E8B08A"></ellipse>
-          <path d="M68 194 C64 152 94 128 124 130 C158 132 180 156 176 190 C168 170 148 158 126 158 C100 158 80 172 68 194 Z" fill="#B97A3E"></path>
-          <path d="M112 136 C118 148 132 152 144 148" stroke="#9A6330" stroke-width="5" fill="none" stroke-linecap="round"></path>
-          <path d="M96 202 q9 7 18 0" stroke="#5A3A2A" stroke-width="3.5" fill="none" stroke-linecap="round"></path>
-          <path d="M128 202 q9 7 18 0" stroke="#5A3A2A" stroke-width="3.5" fill="none" stroke-linecap="round"></path>
-          <circle cx="98" cy="218" r="10" fill="#EE3F7A" opacity=".32"></circle>
-          <circle cx="146" cy="218" r="10" fill="#EE3F7A" opacity=".32"></circle>
-          <path d="M114 232 q7 -4 14 0" stroke="#8A3A2A" stroke-width="3" fill="none" stroke-linecap="round"></path>
-          <!-- otec -->
-          <path d="M58 560 C60 420 70 330 110 290 C140 262 180 252 210 250 C240 252 284 262 312 290 C352 330 362 420 364 560 Z" fill="url(#shirt)"></path>
-          <path d="M210 262 L210 560" stroke="#36508E" stroke-width="3" opacity=".45"></path>
-          <path d="M110 292 C78 322 66 372 72 420 C74 438 90 442 98 432 C102 400 108 362 120 332 Z" fill="#3F5B9E"></path>
-          <path d="M312 290 C350 312 368 362 372 430 C376 482 370 522 364 560 L330 560 C334 520 336 468 332 420 Z" fill="#3F5B9E"></path>
-          <path d="M176 254 Q210 272 244 254 L242 266 Q210 282 178 266 Z" fill="#36508E"></path>
-          <path d="M182 214 L238 214 L242 258 Q210 270 178 258 Z" fill="#D9A07B"></path>
-          <ellipse cx="151" cy="178" rx="11" ry="17" fill="#D9A07B"></ellipse>
-          <ellipse cx="269" cy="178" rx="11" ry="17" fill="#D9A07B"></ellipse>
-          <ellipse cx="210" cy="166" rx="60" ry="68" fill="#3B2A22"></ellipse>
-          <path d="M170 128 C196 112 232 116 250 136" stroke="#5A4236" stroke-width="6" fill="none" stroke-linecap="round" opacity=".6"></path>
-          <path d="M160 196 C170 214 190 222 210 222 C230 222 250 214 260 196" stroke="#2B1E18" stroke-width="5" fill="none" opacity=".5"></path>
-          <!-- ručička dítěte na tátově zádech -->
-          <path d="M150 252 C170 246 196 252 212 264 C222 272 214 284 202 282 C184 278 168 274 148 274 Z" fill="#F7B3C7"></path>
-          <ellipse cx="214" cy="276" rx="13" ry="10" fill="#F2C29E"></ellipse>
-        </svg>
+        <svg viewBox="0 0 420 560" width="100%" height="100%" role="img" aria-label="Táta drží v náruči nemocné dítě, pohled zezadu">
+  <defs>
+    <linearGradient id="fShirt" x1="0" y1="0" x2=".3" y2="1"><stop offset="0" stop-color="#6283CF"/><stop offset=".55" stop-color="#4766AE"/><stop offset="1" stop-color="#36528F"/></linearGradient>
+    <linearGradient id="fSleeve" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4E6DB6"/><stop offset="1" stop-color="#344E8A"/></linearGradient>
+    <linearGradient id="fHair" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4A3428"/><stop offset="1" stop-color="#2A1C14"/></linearGradient>
+    <linearGradient id="fSkin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E2AE8A"/><stop offset="1" stop-color="#CC9370"/></linearGradient>
+    <linearGradient id="kSkin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F8D2B2"/><stop offset="1" stop-color="#EDB792"/></linearGradient>
+    <linearGradient id="kHair" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#D49654"/><stop offset="1" stop-color="#A86A32"/></linearGradient>
+    <linearGradient id="kPj" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FAC6D6"/><stop offset="1" stop-color="#F29BB8"/></linearGradient>
+    <radialGradient id="kCheek"><stop offset="0" stop-color="#EE3F7A" stop-opacity=".55"/><stop offset="1" stop-color="#EE3F7A" stop-opacity="0"/></radialGradient>
+    <radialGradient id="fLight" cx=".3" cy=".1" r=".8"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".22"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+  </defs>
+  <!-- plyšový zajíček (ucho za dítětem) -->
+  <path d="M40 214 C24 172 26 132 42 130 C58 130 64 172 60 216 Z" fill="#EDE6F7" transform="rotate(-8 50 216)"/>
+  <path d="M44 204 C36 176 38 150 45 148 C52 150 54 176 52 206 Z" fill="#F7B3C7" transform="rotate(-8 50 216)"/>
+  <path d="M60 212 C52 172 58 136 72 136 C86 138 86 176 78 214 Z" fill="#E4DCF2" transform="rotate(6 70 214)"/>
+  <!-- rameno dítěte v pyžamu -->
+  <path d="M74 334 C50 290 74 238 126 238 C156 240 176 250 186 264 L182 334 Z" fill="url(#kPj)"/><path d="M76 280 C84 262 100 254 118 252" stroke="#FFFFFF" stroke-width="4" fill="none" opacity=".35" stroke-linecap="round"/>
+  <!-- hlava dítěte -->
+  <circle cx="128" cy="190" r="60" fill="url(#kHair)"/>
+  <ellipse cx="79" cy="210" rx="9" ry="12" fill="#EDB792"/>
+  <ellipse cx="128" cy="206" rx="50" ry="48" fill="url(#kSkin)"/>
+  <path d="M78 198 C74 160 100 138 130 140 C162 142 184 164 180 198 C172 180 160 170 148 168 C144 180 130 182 122 172 C114 184 98 190 78 198 Z" fill="url(#kHair)"/>
+  <path d="M100 152 C108 146 118 146 124 152 M134 148 C142 144 152 146 158 152" stroke="#E5AD6B" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <circle cx="86" cy="168" r="10" fill="url(#kHair)"/><circle cx="172" cy="168" r="10" fill="url(#kHair)"/>
+  <!-- chladivá náplast na čele -->
+  <g transform="rotate(-7 132 180)"><rect x="112" y="170" width="42" height="18" rx="8" fill="#FFFFFF" opacity=".95"/><rect x="119" y="176" width="28" height="6" rx="3" fill="#BFE3F7"/></g>
+  <!-- ospalé oči -->
+  <path d="M98 208 q10 7 20 0" stroke="#5A3A2A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  <path d="M136 208 q10 7 20 0" stroke="#5A3A2A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  <path d="M99 211 l-4 3 M155 211 l4 3" stroke="#5A3A2A" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M100 196 q8 -3 16 0 M138 196 q8 -3 16 0" stroke="#B57A45" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+  <ellipse cx="102" cy="226" rx="15" ry="10" fill="url(#kCheek)"/>
+  <ellipse cx="154" cy="226" rx="15" ry="10" fill="url(#kCheek)"/>
+  <path d="M126 216 q4 4 0 7" stroke="#D69872" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  <path d="M119 238 q9 -5 18 0" stroke="#9A4A36" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- táta: tělo -->
+  <path d="M56 560 C58 420 70 330 110 290 C140 262 180 252 210 250 C240 252 284 262 312 290 C352 330 364 420 366 560 Z" fill="url(#fShirt)"/>
+  <path d="M56 560 C58 420 70 330 110 290 C140 262 180 252 210 250 C240 252 284 262 312 290 C352 330 364 420 366 560 Z" fill="url(#fLight)"/>
+  <path d="M210 266 L210 560" stroke="#2F4880" stroke-width="2.5" opacity=".35"/>
+  <path d="M150 330 C162 384 158 446 150 530" stroke="#2F4880" stroke-width="3" fill="none" opacity=".25" stroke-linecap="round"/>
+  <path d="M272 330 C262 390 266 452 276 530" stroke="#2F4880" stroke-width="3" fill="none" opacity=".25" stroke-linecap="round"/>
+  <path d="M240 300 C256 304 272 314 282 326" stroke="#8FA8E2" stroke-width="7" fill="none" opacity=".35" stroke-linecap="round"/>
+  <!-- rukávy -->
+  <path d="M110 292 C72 320 56 372 62 420 C66 442 90 448 102 434 C106 400 112 366 126 336 Z" fill="url(#fSleeve)"/>
+  <path d="M312 290 C350 312 368 362 372 430 C376 482 370 522 364 560 L330 560 C334 520 336 468 332 420 Z" fill="url(#fSleeve)"/>
+  <path d="M84 360 C78 380 76 402 80 420" stroke="#7E98D6" stroke-width="4" fill="none" opacity=".35" stroke-linecap="round"/>
+  <!-- límec -->
+  <path d="M172 256 Q210 276 248 256 L252 270 Q210 292 168 270 Z" fill="#2F4880"/>
+  <!-- krk -->
+  <path d="M182 212 L238 212 L242 260 Q210 272 178 260 Z" fill="url(#fSkin)"/>
+  <path d="M184 226 Q210 238 236 226 L238 240 Q210 250 182 240 Z" fill="#B97E5A" opacity=".35"/>
+  <!-- uši -->
+  <ellipse cx="151" cy="176" rx="11" ry="17" fill="#D9A07B"/>
+  <path d="M150 168 q5 8 0 16" stroke="#B97E5A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <ellipse cx="269" cy="176" rx="11" ry="17" fill="#D9A07B"/>
+  <path d="M270 168 q-5 8 0 16" stroke="#B97E5A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- hlava zezadu -->
+  <ellipse cx="210" cy="164" rx="60" ry="68" fill="url(#fHair)"/>
+  <path d="M164 128 C186 108 230 108 254 130" stroke="#6E5244" stroke-width="5" fill="none" opacity=".6" stroke-linecap="round"/>
+  <path d="M176 152 C190 144 206 146 214 156 M210 140 C224 134 240 138 246 150 M170 180 C182 172 196 174 204 182 M216 176 C228 170 242 172 250 182" stroke="#5E4537" stroke-width="3" fill="none" opacity=".55" stroke-linecap="round"/>
+  <path d="M158 198 C170 222 190 228 210 228 C230 228 250 222 262 198 C252 212 232 218 210 218 C188 218 168 212 158 198 Z" fill="#6B5143" opacity=".55"/>
+  <!-- ručička dítěte kolem tátova krku -->
+  <path d="M140 248 C164 238 198 244 216 258 C228 268 220 286 206 284 C186 280 166 274 144 274 Z" fill="url(#kPj)"/>
+  <path d="M160 252 l2 4 4 0 -3 3 1 4 -4 -2 -4 2 1 -4 -3 -3 4 0 Z" fill="#FFFFFF" opacity=".85"/>
+  <path d="M190 258 l2 4 4 0 -3 3 1 4 -4 -2 -4 2 1 -4 -3 -3 4 0 Z" fill="#FFFFFF" opacity=".85"/>
+  <path d="M196 274 q10 0 16 -4" stroke="#E07A9C" stroke-width="2" fill="none" opacity=".6"/>
+  <ellipse cx="216" cy="278" rx="14" ry="11" fill="url(#kSkin)"/>
+  <path d="M220 272 q6 3 8 9 M214 274 q5 4 6 10" stroke="#D69872" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>
       </div>
 
       <!-- rozhovor -->
@@ -262,13 +422,7 @@ a{color:#17161A}a:hover{color:#514F57}
           <div class="step" data-s="0">
             <div class="fc front p-hd d1"><div class="head">Celá rodina pod jedním účtem</div></div>
             <div class="fc front p-r1 d2"><div class="card" style="display:flex;flex-direction:column;gap:10px">
-              <div style="display:flex">
-                <span style="width:52px;height:52px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block"><svg viewBox="0 0 56 56" width="100%" height="100%" role="img" aria-label="Žena"><circle cx="28" cy="28" r="28" fill="#FDE8EF"></circle><path d="M12 40 C10 20 18 10 28 10 C40 10 46 20 44 40 Z" fill="#5A3A2A"></path><circle cx="28" cy="25" r="11" fill="#F2C29E"></circle><path d="M17 23 C18 14 38 12 39 23 C34 18 24 18 17 23Z" fill="#5A3A2A"></path><path d="M8 56 C10 44 18 39 28 39 C38 39 46 44 48 56Z" fill="#EE3F7A"></path></svg></span>
-                <span style="width:52px;height:52px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block"><svg viewBox="0 0 56 56" width="100%" height="100%" role="img" aria-label="Muž"><circle cx="28" cy="28" r="28" fill="#E6EEFC"></circle><circle cx="28" cy="25" r="11" fill="#C98E6A"></circle><path d="M17 22 C17 13 39 12 39 22 C34 17 22 17 17 22Z" fill="#2A2420"></path><path d="M20 30 C22 37 34 37 36 30 C34 34 22 34 20 30Z" fill="#2A2420"></path><path d="M8 56 C10 44 18 39 28 39 C38 39 46 44 48 56Z" fill="#2F6FE0"></path></svg></span>
-                <span style="width:52px;height:52px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block"><svg viewBox="0 0 56 56" width="100%" height="100%" role="img" aria-label="Dítě"><circle cx="28" cy="28" r="28" fill="#FFF1E0"></circle><circle cx="15" cy="22" r="6" fill="#B97A3E"></circle><circle cx="41" cy="22" r="6" fill="#B97A3E"></circle><circle cx="28" cy="28" r="10" fill="#F2C29E"></circle><path d="M18 25 C19 17 37 17 38 25 C33 21 23 21 18 25Z" fill="#B97A3E"></path><path d="M12 56 C13 46 20 41 28 41 C36 41 43 46 44 56Z" fill="#F7931E"></path></svg></span>
-                <span style="width:52px;height:52px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block"><svg viewBox="0 0 56 56" width="100%" height="100%" role="img" aria-label="Babička"><circle cx="28" cy="28" r="28" fill="#F3E9FD"></circle><circle cx="28" cy="11" r="6" fill="#C9C7CC"></circle><circle cx="28" cy="25" r="11" fill="#E9B896"></circle><path d="M17 24 C17 14 39 14 39 24 C34 19 22 19 17 24Z" fill="#C9C7CC"></path><circle cx="23.5" cy="26" r="3.6" fill="none" stroke="#3A3840" stroke-width="1.4"></circle><circle cx="32.5" cy="26" r="3.6" fill="none" stroke="#3A3840" stroke-width="1.4"></circle><path d="M8 56 C10 44 18 39 28 39 C38 39 46 44 48 56Z" fill="#9B3FE0"></path></svg></span>
-                <span style="width:52px;height:52px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block"><svg viewBox="0 0 56 56" width="100%" height="100%" role="img" aria-label="Děda"><circle cx="28" cy="28" r="28" fill="#E0F5EC"></circle><circle cx="28" cy="25" r="11" fill="#D9A07B"></circle><path d="M17 26 C16 20 18 17 20 18 L20 26Z" fill="#E7E5E9"></path><path d="M39 26 C40 20 38 17 36 18 L36 26Z" fill="#E7E5E9"></path><path d="M22 31 C25 29 31 29 34 31 C31 33 25 33 22 31Z" fill="#E7E5E9"></path><path d="M8 56 C10 44 18 39 28 39 C38 39 46 44 48 56Z" fill="#17694F"></path></svg></span>
-              </div>
+              <div style="display:flex"><span style="width:52px;height:52px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" role="img" aria-label="zena"><use href="#av-zena"></use></svg></span><span style="width:52px;height:52px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" role="img" aria-label="muz"><use href="#av-muz"></use></svg></span><span style="width:52px;height:52px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" role="img" aria-label="holka"><use href="#av-holka"></use></svg></span><span style="width:52px;height:52px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" role="img" aria-label="kluk"><use href="#av-kluk"></use></svg></span><span style="width:52px;height:52px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" role="img" aria-label="babicka"><use href="#av-babicka"></use></svg></span><span style="width:52px;height:52px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" role="img" aria-label="deda"><use href="#av-deda"></use></svg></span></div>
               <span style="font-size:14px;font-weight:700">Vy, partner, děti, prarodiče</span>
             </div></div>
             <div class="fc front p-r2 d3"><div class="card" style="display:flex;align-items:center;gap:12px">
@@ -280,6 +434,7 @@ a{color:#17161A}a:hover{color:#514F57}
               <span style="display:flex;flex-direction:column;line-height:1.3"><b style="font-size:15px">David zapsal lék</b><span style="font-size:13px;color:#D9D8DC">Filip · Nurofen 10 ml</span></span>
             </div></div>
             <div class="fc back p-b2 d5"><div style="width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 50% 45%,#D7F23A 0%,#C6E82E 50%,#E6F7A0 100%)"></div></div>
+            <div class="fc front p-sec d5"><div class="card" style="display:flex;align-items:center;gap:8px;padding:10px 14px;font-weight:800;font-size:13px"><span style="width:28px;height:28px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:#17161A;color:#D7F23A"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"></rect><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"></path></svg></span>Šifrováno · AES-256</div></div>
           </div>
 
           <!-- krok 2: Časová osa -->
@@ -298,6 +453,7 @@ a{color:#17161A}a:hover{color:#514F57}
               <span style="display:flex;flex-direction:column;line-height:1.3"><b style="font-size:15px">Apple Zdraví · Health Connect</b><span style="font-size:13px;color:#6F6C75">teploměr zapíše sám · brzy</span></span>
             </div></div>
             <div class="fc back p-b1 d5"><div class="card" style="background:#F3E9FD;color:#6E24B0;font-weight:700;font-size:14px">Postřeh dne: horečka od úterý</div></div>
+            <div class="fc av back a-1 d5"><span class="avc"><svg viewBox="0 0 56 56" role="img" aria-label="Táta zapsal"><use href="#av-muz"></use></svg></span><span class="avt">Táta zapsal</span></div><div class="fc av front a-3 d4"><span class="avc"><svg viewBox="0 0 56 56" role="img" aria-label="Ema, 4 roky"><use href="#av-holka"></use></svg></span><span class="avt">Ema, 4 roky</span></div>
           </div>
 
           <!-- krok 3: Dokumenty -->
@@ -316,6 +472,7 @@ a{color:#17161A}a:hover{color:#514F57}
               <span style="display:flex;flex-direction:column;line-height:1.3"><b style="font-size:15px">eRecept</b><span style="font-size:13px;color:#6F6C75">kód po ruce v lékárně</span></span>
             </div></div>
             <div class="fc back p-b2 d5"><div class="card" style="background:#E6EEFC;color:#2C4A8C;font-weight:700;font-size:14px">Očkovací průkaz · 1,4 MB</div></div>
+            <div class="fc av back a-2 d5"><span class="avc"><svg viewBox="0 0 56 56" role="img" aria-label="Babička"><use href="#av-babicka"></use></svg></span><span class="avt">Babička</span></div><div class="fc av front a-4 d4"><span class="avc"><svg viewBox="0 0 56 56" role="img" aria-label="Děda"><use href="#av-deda"></use></svg></span><span class="avt">Děda</span></div>
           </div>
 
           <!-- krok 4: Nouzová karta -->
@@ -328,6 +485,7 @@ a{color:#17161A}a:hover{color:#514F57}
               <span style="display:flex;flex-direction:column;line-height:1.3"><b style="font-size:15px">Zavolat: David</b><span style="font-size:13px;color:#6F6C75">manžel</span></span>
             </div></div>
             <div class="fc back p-b1 d5"><div style="width:110px;height:110px;border-radius:50%;background:radial-gradient(circle at 50% 45%,#EE3F7A 0%,#F2729A 48%,#F7B3C7 100%)"></div></div>
+            <div class="fc av back a-1 d5"><span class="avc"><svg viewBox="0 0 56 56" role="img" aria-label="Adéla"><use href="#av-teen"></use></svg></span><span class="avt">Adéla</span></div><div class="fc av front a-3 d4"><span class="avc"><svg viewBox="0 0 56 56" role="img" aria-label="Klára"><use href="#av-zena"></use></svg></span><span class="avt">Klára</span></div>
           </div>
 
           <!-- krok 5: Kalendář a školka -->
@@ -346,6 +504,7 @@ a{color:#17161A}a:hover{color:#514F57}
               <span style="display:flex;flex-direction:column;line-height:1.3"><b style="font-size:15px">Preventivní prohlídka</b><span style="font-size:13px;color:#6F6C75">pediatr · čt 9:00</span></span>
             </div></div>
             <div class="fc back p-b2 d5"><div class="card" style="background:#FFF1E0;color:#7A4300;font-weight:700;font-size:14px">Připomenutí léku · 19:00</div></div>
+            <div class="fc av back a-2 d5"><span class="avc"><svg viewBox="0 0 56 56" role="img" aria-label="Adam"><use href="#av-kluk"></use></svg></span><span class="avt">Adam</span></div><div class="fc av front a-4 d4"><span class="avc"><svg viewBox="0 0 56 56" role="img" aria-label="Nela"><use href="#av-miminko"></use></svg></span><span class="avt">Nela</span></div>
           </div>
 
           <div class="dots-nav" aria-hidden="true">
@@ -358,11 +517,42 @@ a{color:#17161A}a:hover{color:#514F57}
         </div>
       </div>
 
+      <!-- bezpečí -->
+      <section id="bezpeci" aria-labelledby="bezpeci-h" style="position:relative;padding:120px 20px 110px;overflow:hidden;background:#FBF7F3">
+        <div aria-hidden="true" style="position:absolute;left:-220px;top:10%;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(47,111,224,.12),rgba(251,247,243,0) 66%)"></div>
+        <div class="sec-grid">
+          <div class="sec-vis" aria-hidden="true">
+            <span class="ring" style="width:300px;height:300px"></span>
+            <span class="ring" style="width:440px;height:440px;opacity:.6"></span>
+            <div class="lock"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#D7F23A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"></rect><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"></path><circle cx="12" cy="15.3" r="1.4" fill="#D7F23A"></circle></svg></div>
+            <span class="chip flt" style="left:4%;top:16%">AES-256</span>
+            <span class="chip flt" style="right:2%;top:46%;animation-delay:1.2s">Face ID</span>
+            <span class="chip flt" style="left:10%;bottom:12%;animation-delay:2.1s">Servery v EU</span>
+            <span class="orb-av flt" style="right:12%;top:8%;animation-delay:.6s"><svg viewBox="0 0 56 56" width="100%" height="100%" role="img" aria-label="zena"><use href="#av-zena"></use></svg><i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"></rect><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"></path></svg></i></span>
+            <span class="orb-av flt" style="right:20%;bottom:6%;animation-delay:1.8s"><svg viewBox="0 0 56 56" width="100%" height="100%" role="img" aria-label="deda"><use href="#av-deda"></use></svg><i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"></rect><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"></path></svg></i></span>
+            <span class="orb-av flt" style="left:0;top:52%;animation-delay:2.6s;width:56px;height:56px"><svg viewBox="0 0 56 56" width="100%" height="100%" role="img" aria-label="kluk"><use href="#av-kluk"></use></svg><i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"></rect><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"></path></svg></i></span>
+          </div>
+          <div>
+            <span style="display:inline-flex;align-items:center;gap:8px;background:#FFFFFF;border-radius:999px;padding:6px 14px 6px 6px;font-size:13px;font-weight:800;color:#17161A;box-shadow:0 6px 18px -8px rgba(23,22,26,.25)"><span style="width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#17161A;color:#D7F23A"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"></rect><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"></path></svg></span>Bezpečí na prvním místě</span>
+            <h2 id="bezpeci-h" style="margin:18px 0 0;font-size:clamp(40px,5.2vw,72px);line-height:.98;letter-spacing:-0.05em;font-weight:800">Vaše data.<br>Jen vaše.</h2>
+            <p style="margin:18px 0 0;font-size:clamp(17px,1.5vw,19px);line-height:1.55;color:#514F57;max-width:34em">Zdravotní záznamy jsou to nejosobnější, co máte. LifeOS je zamyká tak, že klíč k nim máte jen vy.</p>
+            <div class="sgrid"><div class="sitem"><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"></rect><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"></path></svg></span><span><b>Šifrování AES-256</b><span>Záznamy, dokumenty i léky jsou v aplikaci zašifrované.</span></span></div><div class="sitem"><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"></circle><path d="M11 12l9-9M17 6l3 3M15 8l2 2"></path></svg></span><span><b>Heslo neznáme ani my</b><span>Nikde ho neukládáme. Klíč k datům z něj vzniká až ve vašem telefonu.</span></span></div><div class="sitem"><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"></path><path d="M9 10v1M15 10v1M12 10v3h-1M9.5 16a3.5 3.5 0 0 0 5 0"></path></svg></span><span><b>Face ID a otisk prstu</b><span>Aplikace se sama zamkne a odemknete ji jen vy.</span></span></div><div class="sitem"><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 18 10a4 4 0 0 1 0 8z"></path><path d="M10 14l1.5 1.5L14.5 12"></path></svg></span><span><b>Šifrované zálohy</b><span>Bez vašeho hesla zálohu neotevře nikdo. Ani my.</span></span></div><div class="sitem"><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"></path></svg></span><span><b>Servery v EU</b><span>Co odchází z telefonu, putuje šifrovaně do datacentra v EU.</span></span></div><div class="sitem"><span class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18"></path><path d="M10.6 5.1A10 10 0 0 1 12 5c5 0 9 4.5 10 7-.4 1-1.2 2.3-2.4 3.5M6.6 6.6C4.6 7.9 3.1 9.9 2 12c1 2.5 5 7 10 7 1.7 0 3.2-.5 4.6-1.3"></path></svg></span><span><b>Žádná reklama ani prodej dat</b><span>Nesledujeme vás a data nepoužíváme k trénování AI.</span></span></div></div>
+            <a href="soukromi.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:26px;font-weight:800;font-size:15px;color:#17161A">Jak s daty zacházíme
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          </div>
+        </div>
+      </section>
+
       <!-- konec: zapoj se -->
       <section id="zapoj" style="position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:96px 20px;overflow:hidden;background:#FBF7F3;color:#17161A">
+        <span class="z-av flt" aria-hidden="true" style="left:9%;top:18%"><svg viewBox="0 0 56 56" width="100%" height="100%"><use href="#av-teen"></use></svg></span>
+        <span class="z-av flt" aria-hidden="true" style="right:10%;top:26%;width:64px;height:64px;animation-delay:1.4s"><svg viewBox="0 0 56 56" width="100%" height="100%"><use href="#av-babicka"></use></svg></span>
+        <span class="z-av flt" aria-hidden="true" style="left:14%;bottom:16%;width:58px;height:58px;animation-delay:2.2s"><svg viewBox="0 0 56 56" width="100%" height="100%"><use href="#av-kluk"></use></svg></span>
+        <span class="z-av flt" aria-hidden="true" style="right:13%;bottom:12%;animation-delay:.8s"><svg viewBox="0 0 56 56" width="100%" height="100%"><use href="#av-muz"></use></svg></span>
         <div aria-hidden="true" style="position:absolute;left:-180px;top:-200px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,rgba(238,63,122,.16),rgba(251,247,243,0) 66%)"></div>
         <div aria-hidden="true" style="position:absolute;right:-200px;bottom:-220px;width:680px;height:680px;border-radius:50%;background:radial-gradient(circle,rgba(215,242,58,.40),rgba(251,247,243,0) 66%)"></div>
         <div style="position:relative;width:100%;max-width:880px;display:flex;flex-direction:column;align-items:center;gap:28px;text-align:center">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:10px"><div style="display:flex"><span style="width:48px;height:48px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" role="img" aria-label="babicka"><use href="#av-babicka"></use></svg></span><span style="width:48px;height:48px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" role="img" aria-label="muz"><use href="#av-muz"></use></svg></span><span style="width:48px;height:48px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" role="img" aria-label="holka"><use href="#av-holka"></use></svg></span><span style="width:48px;height:48px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" role="img" aria-label="zena"><use href="#av-zena"></use></svg></span><span style="width:48px;height:48px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" role="img" aria-label="teen"><use href="#av-teen"></use></svg></span><span style="width:48px;height:48px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" role="img" aria-label="deda"><use href="#av-deda"></use></svg></span><span style="width:48px;height:48px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" role="img" aria-label="miminko"><use href="#av-miminko"></use></svg></span></div><span style="font-size:14px;font-weight:700;color:#6F6C75">Rodiče, prarodiče, lékaři… místo je pro každého</span></div>
           <h2 style="margin:0;font-size:clamp(44px,7vw,92px);line-height:.95;letter-spacing:-0.05em;font-weight:800">Zapoj se do testování</h2>
           <p style="margin:0;font-size:clamp(17px,1.6vw,20px);line-height:1.5;color:#514F57;max-width:30em">Vyzkoušej LifeOS dřív než ostatní a řekni nám, co ti chybí.</p>
           <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px">
