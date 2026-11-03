@@ -3,251 +3,426 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>LifeOS pro rodiny – Nevzpomínej. Ukaž to.</title>
+<title>LifeOS – Nevzpomínej. Ukaž.</title>
 <meta name="description" content="Teploty, léky, zprávy od lékaře a očkování celé rodiny v jednom telefonu.">
-<meta name="theme-color" content="#FAFAF9">
-<meta property="og:title" content="LifeOS pro rodiny – Nevzpomínej. Ukaž to.">
+<meta name="theme-color" content="#FBF7F3">
+<meta property="og:title" content="LifeOS – Nevzpomínej. Ukaž.">
 <meta property="og:description" content="Teploty, léky, zprávy od lékaře a očkování celé rodiny v jednom telefonu.">
-<meta property="og:image" content="img/osa.jpg">
+<meta property="og:image" content="https://lifeos.romarte.cz/img/osa.jpg">
 <link rel="icon" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
 <style>
-body{margin:0;background:#FFF5EE}
+body{margin:0;background:#FBF7F3}
 a{color:#17161A}a:hover{color:#514F57}
-@keyframes rd-pop{from{opacity:0;transform:translateY(12px) scale(.94)}to{opacity:1;transform:none}}
-@keyframes rd-fade{from{opacity:0}to{opacity:1}}
-@keyframes rd-gone{to{opacity:0;visibility:hidden}}
-@keyframes rd-dot{0%,60%,100%{transform:translateY(0);opacity:.35}30%{transform:translateY(-4px);opacity:1}}
-@keyframes rd-doubt{to{opacity:.42}}
-@keyframes rd-cross{from{text-decoration-color:rgba(81,79,87,0)}to{text-decoration-color:rgba(81,79,87,1)}}
-@keyframes rd-up{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
-.rd-bub{display:grid}.rd-bub > *{grid-area:1/1}
-.rd-dots{display:flex;gap:5px;align-items:center}
-.rd-dots i{width:7px;height:7px;border-radius:50%;background:currentColor;animation:rd-dot 1s ease-in-out infinite}
-.rd-dots i:nth-child(2){animation-delay:.15s}.rd-dots i:nth-child(3){animation-delay:.3s}
-.rd-x{text-decoration:line-through;text-decoration-thickness:2.5px;text-decoration-color:rgba(81,79,87,0)}
-.rd-d1{animation:rd-pop .5s cubic-bezier(.2,1.3,.4,1) .3s both}.rd-d1 .rd-dots{animation:rd-gone .1s linear 1.3s forwards}.rd-d1 .rd-t{animation:rd-fade .3s ease 1.3s both}
-.rd-p1{animation:rd-pop .5s cubic-bezier(.2,1.3,.4,1) 2.2s both, rd-doubt .7s ease 7.6s forwards}.rd-p1 .rd-dots{animation:rd-gone .1s linear 3.4s forwards}.rd-p1 .rd-t{animation:rd-fade .3s ease 3.4s both, rd-cross .6s ease 7.4s forwards}
-.rd-d2{animation:rd-pop .5s cubic-bezier(.2,1.3,.4,1) 4.3s both}.rd-d2 .rd-dots{animation:rd-gone .1s linear 5.2s forwards}.rd-d2 .rd-t{animation:rd-fade .3s ease 5.2s both}
-.rd-p2{animation:rd-pop .5s cubic-bezier(.2,1.3,.4,1) 5.9s both, rd-doubt .7s ease 7.8s forwards}.rd-p2 .rd-dots{animation:rd-gone .1s linear 7.1s forwards}.rd-p2 .rd-t{animation:rd-fade .3s ease 7.1s both, rd-cross .6s ease 7.6s forwards}
-.rd-h{animation:rd-pop .8s cubic-bezier(.2,1,.3,1) 8.4s both}
-.rd-phone{animation:rd-up 1s cubic-bezier(.2,1,.3,1) .2s both}
-@keyframes rd-flow{0%{opacity:0;transform:translateX(-24px) scale(.9)}15%{opacity:1;transform:none}80%{opacity:1;transform:none}100%{opacity:0;transform:translateX(24px)}}
-@keyframes rd-beat{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
-.rd-flow{animation:rd-flow 3.6s ease-in-out infinite}
-.rd-f2{animation-delay:.6s}.rd-f3{animation-delay:1.2s}.rd-f4{animation-delay:1.8s}.rd-f5{animation-delay:2.4s}
-.rd-beat{animation:rd-beat 1.8s ease-in-out infinite}
-@keyframes rd-mem{from{opacity:0;transform:translateY(18px) scale(.95)}to{opacity:1;transform:none}}
-@keyframes rd-ring{0%{box-shadow:0 0 0 0 rgba(238,63,122,.45)}70%{box-shadow:0 0 0 10px rgba(238,63,122,0)}100%{box-shadow:0 0 0 0 rgba(238,63,122,0)}}
-.rd-m{animation:rd-mem .6s cubic-bezier(.2,1.2,.4,1) both;transition:transform .35s cubic-bezier(.2,1,.3,1)}
-.rd-m:hover{transform:translateY(-4px)}
-.rd-m1{animation-delay:.1s}.rd-m2{animation-delay:.25s}.rd-m3{animation-delay:.4s}.rd-m4{animation-delay:.55s}.rd-m5{animation-delay:.7s}
-.rd-live{animation:rd-ring 2s ease-out infinite}
-.rd-card{transition:transform .4s cubic-bezier(.2,1,.3,1)}
-.rd-card:hover{transform:translateY(-6px)}
-@media (prefers-reduced-motion:reduce){.rd-d1,.rd-d2,.rd-p1,.rd-p2,.rd-h,.rd-phone,.rd-t,.rd-flow,.rd-beat,.rd-m,.rd-live{animation:none!important}.rd-dots{display:none!important}.rd-p1,.rd-p2{opacity:.42}.rd-x{text-decoration-color:#514F57}.rd-card{transition:none}}
+*{box-sizing:border-box}
+
+/* ---------- ÚVOD: ordinace ---------- */
+@keyframes in-scene{from{opacity:0}to{opacity:1}}
+@keyframes in-fig-l{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:none}}
+@keyframes in-fig-r{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+@keyframes breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.92)}to{opacity:1;transform:none}}
+@keyframes show{from{opacity:0}to{opacity:1}}
+@keyframes gone{to{opacity:0;visibility:hidden}}
+@keyframes dot{0%,60%,100%{transform:translateY(0);opacity:.35}30%{transform:translateY(-4px);opacity:1}}
+@keyframes collapse{from{max-height:140px;margin-bottom:12px;opacity:1}to{max-height:0;margin-bottom:0;opacity:0}}
+@keyframes fog{from{opacity:0;backdrop-filter:blur(0);-webkit-backdrop-filter:blur(0)}to{opacity:1;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}}
+@keyframes title-in{from{opacity:0;transform:scale(1.08);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+@keyframes title-out{to{opacity:0;transform:scale(.12);filter:blur(4px)}}
+@keyframes hint{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+.scene{animation:in-scene .8s ease both}
+.fig-dad{animation:in-fig-l 1s cubic-bezier(.2,1,.3,1) .2s both}
+.fig-doc{animation:in-fig-r 1s cubic-bezier(.2,1,.3,1) .35s both}
+.fig-dad svg{animation:breathe 4.5s ease-in-out infinite}
+.fig-doc svg{animation:breathe 5.2s ease-in-out .8s infinite}
+.doc-eyes{transform-origin:190px 210px;animation:blink 4s linear 1s infinite}
+
+.chat{display:flex;flex-direction:column}
+.b{display:flex;align-items:flex-end;gap:10px;max-width:92%;margin-bottom:12px;max-height:140px;overflow:visible}
+.b.doc{align-self:flex-end;flex-direction:row-reverse}
+.b.dad{align-self:flex-start}
+.bub{display:grid;border-radius:22px;padding:13px 18px;font-size:clamp(16px,1.6vw,20px);line-height:1.35;box-shadow:0 14px 30px -14px rgba(23,22,26,.25)}
+.bub > *{grid-area:1/1}
+.doc .bub{background:#FFFFFF;border-radius:22px 22px 6px 22px;font-weight:700}
+.dad .bub{background:#17161A;color:#FFFFFF;border-radius:22px 22px 22px 6px;font-weight:600}
+.who{width:36px;height:36px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
+.doc .who{background:#E8EFFD;color:#2F6FE0}
+.dad .who{background:#FFE9D2;color:#7A4300}
+.dots{display:flex;gap:5px;align-items:center}
+.dots i{width:7px;height:7px;border-radius:50%;background:currentColor;animation:dot 1s ease-in-out infinite}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+
+/* časování rozhovoru */
+.b1{animation:pop .45s cubic-bezier(.2,1.3,.4,1) .9s both}  .b1 .dots{animation:gone .1s linear 1.7s forwards} .b1 .t{animation:show .3s ease 1.7s both}
+.b2{animation:pop .45s cubic-bezier(.2,1.3,.4,1) 2.6s both} .b2 .dots{animation:gone .1s linear 3.4s forwards} .b2 .t{animation:show .3s ease 3.4s both}
+.b3{animation:pop .45s cubic-bezier(.2,1.3,.4,1) 4.4s both} .b3 .dots{animation:gone .1s linear 5.1s forwards} .b3 .t{animation:show .3s ease 5.1s both}
+.b4{animation:pop .45s cubic-bezier(.2,1.3,.4,1) 6s both}   .b4 .dots{animation:gone .1s linear 6.9s forwards} .b4 .t{animation:show .3s ease 6.9s both}
+.b5{animation:pop .45s cubic-bezier(.2,1.3,.4,1) 7.9s both} .b5 .dots{animation:gone .1s linear 8.6s forwards} .b5 .t{animation:show .3s ease 8.6s both}
+.b6{animation:pop .45s cubic-bezier(.2,1.3,.4,1) 9.6s both} .b6 .dots{animation:gone .1s linear 10.9s forwards} .b6 .t{animation:show .3s ease 10.9s both}
+
+.fogged{position:absolute;inset:0;z-index:20;background:rgba(251,247,243,.78);animation:fog 1.1s ease 11.8s both;pointer-events:none}
+.big{position:absolute;inset:0;z-index:21;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;pointer-events:none}
+.big h1{margin:0;font-size:clamp(54px,9vw,132px);line-height:.95;letter-spacing:-0.055em;font-weight:800;animation:title-in .9s cubic-bezier(.2,1,.3,1) 12.4s both, title-out .6s cubic-bezier(.7,0,.8,.4) 14s forwards}
+.skip{position:absolute;right:20px;bottom:20px;z-index:30;min-height:44px;padding:0 18px;border-radius:999px;border:0;background:rgba(255,255,255,.85);font:700 14px 'Plus Jakarta Sans',system-ui,sans-serif;color:#514F57;cursor:pointer}
+
+/* ---------- ONE PAGE ---------- */
+@keyframes phone-in{from{opacity:0;transform:scale(.2)}to{opacity:1;transform:none}}
+@keyframes fc-in{from{opacity:0;transform:translateY(24px) scale(.94)}to{opacity:1;transform:none}}
+@keyframes fc-float{0%,100%{translate:0 0}50%{translate:0 -8px}}
+@keyframes tap{0%{opacity:0;transform:scale(.4)}30%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(1.8)}}
+.phone-in{animation:phone-in .8s cubic-bezier(.2,1.2,.3,1) both}
+.fc{position:absolute;animation:fc-in .7s cubic-bezier(.2,1.1,.3,1) both, fc-float 6s ease-in-out 1s infinite}
+.fc.d1{animation-delay:.05s,1s}.fc.d2{animation-delay:.18s,1.6s}.fc.d3{animation-delay:.31s,2.2s}.fc.d4{animation-delay:.44s,2.8s}.fc.d5{animation-delay:.57s,3.4s}
+.front{z-index:4}
+.back{z-index:1;opacity:.85;filter:saturate(.9)}
+.card{background:#FFFFFF;border-radius:24px;padding:16px 18px;box-shadow:0 24px 50px -24px rgba(23,22,26,.35)}
+.head{font-size:clamp(26px,2.6vw,40px);line-height:1.02;letter-spacing:-0.045em;font-weight:800;max-width:11ch}
+.screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;transition:opacity .55s ease, transform .55s cubic-bezier(.2,1,.3,1)}
+.tap{position:absolute;width:46px;height:46px;border-radius:50%;background:rgba(238,63,122,.35);border:2px solid rgba(238,63,122,.8);animation:tap 1.1s ease .2s both;pointer-events:none}
+
+.p-hd{right:calc(50% + 210px);top:14%}
+.p-l2{right:calc(50% + 190px);top:52%}
+.p-r1{left:calc(50% + 180px);top:16%}
+.p-r2{left:calc(50% + 210px);top:58%}
+.p-b1{left:calc(50% + 70px);top:6%}
+.p-b2{right:calc(50% + 80px);bottom:7%}
+.dots-nav{position:absolute;left:50%;bottom:3.5%;transform:translateX(-50%);display:flex;gap:8px;z-index:5}
+
+/* ---------- MOBIL ---------- */
+@media (max-width:760px){
+  .fig-dad{left:-60px!important;height:56vh!important}
+  .fig-doc{right:-50px!important;bottom:30vh!important;height:34vh!important;opacity:.95}
+  .chat{top:70px!important;width:calc(100% - 28px)!important}
+  .b1{animation:pop .45s cubic-bezier(.2,1.3,.4,1) .9s both, collapse .4s ease 6s forwards}
+  .b2{animation:pop .45s cubic-bezier(.2,1.3,.4,1) 2.6s both, collapse .4s ease 7.9s forwards}
+  .b3{animation:pop .45s cubic-bezier(.2,1.3,.4,1) 4.4s both, collapse .4s ease 9.6s forwards}
+  .p-hd{left:16px;right:16px;top:74px;text-align:center}
+  .p-hd .head{max-width:none;font-size:28px}
+  .p-l2{right:auto;left:8px;top:auto;bottom:10%}
+  .p-r1{left:auto;right:8px;top:30%}
+  .p-r2{left:auto;right:8px;top:auto;bottom:22%}
+  .p-b1,.p-b2{display:none}
+  #hint{display:none}
+  .card{padding:11px 13px;border-radius:18px;max-width:52vw}
+  .phone-w{width:min(230px,28vh)!important;margin-left:calc(min(230px,28vh) / -2)!important}
+}
+@media (prefers-reduced-motion:reduce){
+  .scene,.fig-dad,.fig-doc,.fig-dad svg,.fig-doc svg,.doc-eyes,.b,.b .t,.big h1,.phone-in,.fc,.tap{animation:none!important}
+  .b .dots,.big,.fogged,.skip{display:none!important}
+}
+
+#root{width:100%;background:#FBF7F3;color:#17161A;font-family:'Plus Jakarta Sans',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif}
+#root.intro-mode{height:100vh;height:100svh;overflow:hidden}
+.step{display:contents}
+.dot{height:8px;width:8px;border-radius:999px;background:#D9D8DC;transition:all .4s ease}
+.dot.on{width:26px;background:#17161A}
+#hint{transition:opacity .4s ease}
+#glow{transition:background .8s ease}
 </style>
 </head>
 <body>
-<div style="width:100%;min-height:100vh;background:#FFF5EE;color:#17161A;font-family:'Plus Jakarta Sans',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;position:relative;overflow:hidden">
-  <div aria-hidden="true" style="position:absolute;left:-240px;top:-220px;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle,rgba(247,147,30,.26),rgba(255,245,238,0) 66%)"></div>
-  <div aria-hidden="true" style="position:absolute;right:-240px;top:160px;width:820px;height:820px;border-radius:50%;background:radial-gradient(circle,rgba(238,63,122,.18),rgba(255,245,238,0) 66%)"></div>
+<div id="root" class="intro-mode">
 
-  <header style="position:relative;z-index:5;max-width:1200px;box-sizing:border-box;margin:0 auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px">
-    <a href="./" style="font-weight:800;font-size:24px;letter-spacing:-0.035em;text-decoration:none;min-height:44px;display:inline-flex;align-items:center">LifeOS</a>
-    <a href="https://lifeds.romarte.cz/" style="display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 14px;border-radius:999px;background:#FFFFFF;font-size:14px;font-weight:700;color:#3F4D00;text-decoration:none;white-space:nowrap">Pro školky
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg>
-    </a>
-  </header>
+  <!-- =================== 1. ÚVOD =================== -->
+  <div id="intro">
+    <section class="scene" aria-label="Situace v ordinaci" style="position:relative;height:100vh;min-height:560px;overflow:hidden;background:linear-gradient(180deg,#FFF6EF 0%,#FBEFE6 70%,#F3E3D6 100%)">
+      <!-- místnost -->
+      <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;height:18%;background:#EEDCCB"></div>
+      <div aria-hidden="true" style="position:absolute;right:8%;top:10%;width:min(220px,22vw);aspect-ratio:3/4;border-radius:18px;background:#FFFFFF;box-shadow:inset 0 0 0 10px #F3E6DA;opacity:.8"></div>
+      <div aria-hidden="true" style="position:absolute;left:-160px;top:-180px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,rgba(247,147,30,.18),rgba(255,246,239,0) 66%)"></div>
+      <div aria-hidden="true" style="position:absolute;right:-200px;bottom:-160px;width:680px;height:680px;border-radius:50%;background:radial-gradient(circle,rgba(238,63,122,.12),rgba(255,246,239,0) 66%)"></div>
 
-  <!-- 1. situace u doktora -->
-  <section style="position:relative;max-width:1200px;box-sizing:border-box;margin:0 auto;padding:32px 24px 96px;display:flex;flex-wrap:wrap;align-items:center;gap:56px">
-    <div style="flex:1 1 460px;min-width:0;display:flex;flex-direction:column;gap:26px">
-      <div style="display:flex;flex-direction:column;gap:12px">
-        <div class="rd-d1" style="display:flex;align-items:flex-end;gap:10px;align-self:flex-start;max-width:88%">
-          <span style="width:40px;height:40px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;background:#E8EFFD;color:#2F6FE0"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3v5a4 4 0 0 0 8 0V3"></path><path d="M10 12v3a5 5 0 0 0 10 0v-2"></path><circle cx="20" cy="11" r="2"></circle></svg></span>
-          <span class="rd-bub" style="background:#FFFFFF;border:1px solid #EEEEEC;border-radius:22px 22px 22px 6px;padding:13px 18px;font-size:clamp(17px,1.8vw,21px);line-height:1.35;font-weight:700;box-shadow:0 12px 30px -12px rgba(23,22,26,.18)"><span class="rd-dots" aria-hidden="true" style="color:#7A7780"><i></i><i></i><i></i></span><span class="rd-t">„Od kdy má teplotu?“</span></span>
-        </div>
-        <div class="rd-p1" style="display:flex;align-items:flex-end;gap:10px;align-self:flex-end;max-width:88%">
-          <span class="rd-bub" style="background:#F1F0EE;border-radius:22px 22px 6px 22px;padding:13px 18px;font-size:clamp(17px,1.8vw,21px);line-height:1.35;font-weight:600;color:#514F57"><span class="rd-dots" aria-hidden="true" style="color:#7A7780"><i></i><i></i><i></i></span><span class="rd-t rd-x">„Nevím… Od úterý? Nebo od středy…“</span></span>
-          <span style="width:40px;height:40px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;background:#FFF1E0;color:#7A4300;font-weight:800;font-size:13px">Vy</span>
-        </div>
-        <div class="rd-d2" style="display:flex;align-items:flex-end;gap:10px;align-self:flex-start;max-width:88%">
-          <span style="width:40px;height:40px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;background:#E8EFFD;color:#2F6FE0"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3v5a4 4 0 0 0 8 0V3"></path><path d="M10 12v3a5 5 0 0 0 10 0v-2"></path><circle cx="20" cy="11" r="2"></circle></svg></span>
-          <span class="rd-bub" style="background:#FFFFFF;border:1px solid #EEEEEC;border-radius:22px 22px 22px 6px;padding:13px 18px;font-size:clamp(17px,1.8vw,21px);line-height:1.35;font-weight:700;box-shadow:0 12px 30px -12px rgba(23,22,26,.18)"><span class="rd-dots" aria-hidden="true" style="color:#7A7780"><i></i><i></i><i></i></span><span class="rd-t">„Co jste mu podali za léky?“</span></span>
-        </div>
-        <div class="rd-p2" style="display:flex;align-items:flex-end;gap:10px;align-self:flex-end;max-width:88%">
-          <span class="rd-bub" style="background:#F1F0EE;border-radius:22px 22px 6px 22px;padding:13px 18px;font-size:clamp(17px,1.8vw,21px);line-height:1.35;font-weight:600;color:#514F57"><span class="rd-dots" aria-hidden="true" style="color:#7A7780"><i></i><i></i><i></i></span><span class="rd-t rd-x">„Počkejte… Nurofen? Nebo Panadol?“</span></span>
-          <span style="width:40px;height:40px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;background:#FFF1E0;color:#7A4300;font-weight:800;font-size:13px">Vy</span>
-        </div>
-      </div>
-      <h1 class="rd-h" style="margin:0;font-size:clamp(52px,7vw,92px);line-height:.96;letter-spacing:-0.05em;font-weight:800">Nevzpomínej.<br>Ukaž to.</h1>
-    </div>
+      <span aria-label="LifeOS" style="position:absolute;left:24px;top:20px;z-index:6;font-size:22px;letter-spacing:-0.03em"><span style="font-weight:600">Life</span><span style="font-weight:400;color:#514F57">OS</span></span>
 
-    <div style="flex:1 1 340px;min-width:0;display:flex;justify-content:center">
-      <div class="rd-phone" style="width:320px;max-width:100%;border-radius:52px;padding:10px;box-sizing:border-box;background:linear-gradient(145deg,#3A3840,#17161A 45%,#2E2D33);box-shadow:inset 0 0 0 2px #55535C,0 50px 90px -24px rgba(23,22,26,.38)">
-        <div style="position:relative;border-radius:43px;overflow:hidden;aspect-ratio:390/844;background:#FCFBFA">
-          <video poster="img/osa.jpg" autoplay muted loop playsinline preload="auto" aria-label="Časová osa v LifeOS: úterý 21:40, teplota 38,6 °C, Nurofen sirup 10 ml" style="width:100%;height:100%;object-fit:cover;display:block"><source src="media/osa.mp4" type="video/mp4"><source src="media/osa.webm" type="video/webm"></video>
-          <div style="position:absolute;left:50%;top:10px;transform:translateX(-50%);width:30%;height:24px;border-radius:999px;background:#0B0B0D"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 2. rodina pod jedním účtem -->
-  <section style="position:relative;padding:0 24px 104px">
-    <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:56px">
-      <div style="flex:1 1 400px;min-width:0;display:flex;flex-direction:column;gap:18px">
-        <span style="align-self:flex-start;display:inline-flex;align-items:center;gap:8px;background:#FFFFFF;border-radius:999px;padding:6px 14px 6px 6px;font-size:14px;font-weight:700;color:#8A1E4A"><span style="width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#EE3F7A;color:#FFFFFF"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"></circle><circle cx="17" cy="9.5" r="2.4"></circle><path d="M3.5 19c.6-3 2.8-4.8 5.5-4.8s4.9 1.8 5.5 4.8M15 15c2.6-.4 4.6 1 5.4 3.6"></path></svg></span>Rodina</span>
-        <h2 style="margin:0;font-size:clamp(38px,5vw,64px);line-height:1;letter-spacing:-0.05em;font-weight:800;text-wrap:balance">Celá rodina pod jedním účtem</h2>
-        <p style="margin:0;font-size:19px;line-height:1.5;color:#514F57;max-width:28em">Vy, partner nebo partnerka, děti. Každý má svou kartu. Přepnete jedním klepnutím.</p>
-        <ul style="margin:6px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px">
-          <li style="display:flex;gap:12px;align-items:flex-start;font-size:17px;line-height:1.4"><span style="width:28px;height:28px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;background:#D7F23A"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#17161A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span><b>Děti pod vaším účtem.</b> Teploty, očkování i školka na jednom místě.</span></li>
-          <li style="display:flex;gap:12px;align-items:flex-start;font-size:17px;line-height:1.4"><span style="width:28px;height:28px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;background:#D7F23A"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#17161A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span><b>Partner zapisuje s vámi.</b> Kdo dal lék, to vidí oba. Žádné „dal jsi mu už sirup?“</span></li>
-          <li style="display:flex;gap:12px;align-items:flex-start;font-size:17px;line-height:1.4"><span style="width:28px;height:28px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;background:#D7F23A"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#17161A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span><b>Babička na hlídání.</b> Pošlete jí přístup jen k dětem a jen na víkend.</span></li>
-          <li style="display:flex;gap:12px;align-items:flex-start;font-size:17px;line-height:1.4"><span style="width:28px;height:28px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;background:#17161A"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.5"></rect><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"></path></svg></span><span><b>Vy rozhodujete.</b> Kdo co vidí, nastavíte u každé karty zvlášť.</span></li>
-        </ul>
-        <span style="align-self:flex-start;background:#FFF1E0;color:#7A4300;border-radius:999px;padding:6px 12px;font-size:13px;font-weight:700">Sdílení mezi telefony připravujeme</span>
+      <!-- lékař (zepředu) -->
+      <div class="fig-doc" style="position:absolute;right:3%;bottom:4%;height:66vh;aspect-ratio:380/470;z-index:2">
+        <svg viewBox="0 0 380 470" width="100%" height="100%" role="img" aria-label="Lékař za stolem">
+          <defs>
+            <linearGradient id="coat" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"></stop><stop offset="1" stop-color="#E9EDF1"></stop></linearGradient>
+          </defs>
+          <path d="M66 470 C68 384 88 322 130 300 C154 290 174 286 190 286 C206 286 226 290 250 300 C292 322 312 384 314 470 Z" fill="url(#coat)"></path>
+          <path d="M160 292 L190 372 L220 292 Z" fill="#1F9E8F"></path>
+          <path d="M160 292 L176 300 L190 372 L150 330 Z" fill="#F4F6F8"></path>
+          <path d="M220 292 L204 300 L190 372 L230 330 Z" fill="#F4F6F8"></path>
+          <path d="M174 252 L206 252 L210 298 Q190 308 170 298 Z" fill="#B97E5A"></path>
+          <ellipse cx="132" cy="212" rx="11" ry="16" fill="#C68A64"></ellipse>
+          <ellipse cx="248" cy="212" rx="11" ry="16" fill="#C68A64"></ellipse>
+          <ellipse cx="190" cy="206" rx="58" ry="66" fill="#C98E6A"></ellipse>
+          <path d="M132 204 C126 150 158 126 192 126 C228 126 256 150 248 204 C240 178 216 166 190 168 C164 168 142 178 132 204 Z" fill="#2A2420"></path>
+          <path d="M150 150 C170 136 206 134 228 148" stroke="#5A4A40" stroke-width="5" fill="none" stroke-linecap="round" opacity=".55"></path>
+          <path d="M156 190 Q168 184 180 190" stroke="#2A2420" stroke-width="4" fill="none" stroke-linecap="round"></path>
+          <path d="M200 190 Q212 184 224 190" stroke="#2A2420" stroke-width="4" fill="none" stroke-linecap="round"></path>
+          <g class="doc-eyes"><circle cx="168" cy="210" r="4.5" fill="#2A2420"></circle><circle cx="212" cy="210" r="4.5" fill="#2A2420"></circle></g>
+          <circle cx="168" cy="210" r="17" fill="none" stroke="#17161A" stroke-width="3"></circle>
+          <circle cx="212" cy="210" r="17" fill="none" stroke="#17161A" stroke-width="3"></circle>
+          <path d="M185 210 L195 210" stroke="#17161A" stroke-width="3"></path>
+          <path d="M174 238 Q190 250 206 238" stroke="#7A3F2A" stroke-width="4" fill="none" stroke-linecap="round"></path>
+          <circle cx="150" cy="232" r="9" fill="#E07A6A" opacity=".25"></circle><circle cx="230" cy="232" r="9" fill="#E07A6A" opacity=".25"></circle>
+          <path d="M162 296 C146 330 150 366 172 380" stroke="#3A3840" stroke-width="5" fill="none" stroke-linecap="round"></path>
+          <path d="M218 296 C232 324 232 350 222 366" stroke="#3A3840" stroke-width="5" fill="none" stroke-linecap="round"></path>
+          <circle cx="222" cy="372" r="10" fill="#9AA3AD" stroke="#3A3840" stroke-width="4"></circle>
+          <rect x="246" y="330" width="40" height="12" rx="3" fill="#2F6FE0"></rect>
+          <!-- stůl -->
+          <rect x="0" y="396" width="380" height="74" fill="#E7D6C5"></rect>
+          <rect x="0" y="390" width="380" height="12" rx="4" fill="#F4E8DC"></rect>
+          <rect x="212" y="316" width="132" height="78" rx="9" fill="#CFCDD2"></rect>
+          <circle cx="278" cy="355" r="7" fill="#E7E5E9"></circle>
+          <ellipse cx="128" cy="392" rx="26" ry="11" fill="#C98E6A"></ellipse>
+          <path d="M96 390 C100 360 112 340 128 334 L150 344 C138 356 132 372 132 388 Z" fill="#F1F4F7"></path>
+          <rect x="30" y="372" width="54" height="18" rx="4" fill="#FFFFFF"></rect>
+          <rect x="34" y="364" width="54" height="10" rx="3" fill="#D7F23A"></rect>
+        </svg>
       </div>
 
-      <div style="flex:1 1 460px;min-width:0">
-        <div style="background:#FFFFFF;border-radius:36px;padding:26px;box-shadow:0 40px 80px -36px rgba(138,30,74,.35);display:flex;flex-direction:column;gap:14px">
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
-            <span style="display:flex;flex-direction:column;line-height:1.25"><span style="font-size:13px;font-weight:700;color:#6F6C75">Účet</span><span style="font-size:22px;font-weight:800;letter-spacing:-0.02em">Naše rodina</span></span>
-            <span style="display:flex"><span style="width:30px;height:30px;border-radius:50%;border:2px solid #FFFFFF;background:linear-gradient(145deg,#FFE9D2,#F8CFA6)"></span><span style="width:30px;height:30px;margin-left:-8px;border-radius:50%;border:2px solid #FFFFFF;background:linear-gradient(145deg,#E6EEFC,#C9D8F6)"></span><span style="width:30px;height:30px;margin-left:-8px;border-radius:50%;border:2px solid #FFFFFF;background:linear-gradient(145deg,#E2F5F9,#BFE6EF)"></span><span style="width:30px;height:30px;margin-left:-8px;border-radius:50%;border:2px solid #FFFFFF;background:linear-gradient(145deg,#F3E9FD,#DEC8F7)"></span></span>
+      <!-- otec s dítětem (zezadu) -->
+      <div class="fig-dad" style="position:absolute;left:2%;bottom:-2%;height:80vh;aspect-ratio:420/560;z-index:3">
+        <svg viewBox="0 0 420 560" width="100%" height="100%" role="img" aria-label="Otec drží v náruči nemocné dítě, pohled zezadu">
+          <defs>
+            <linearGradient id="shirt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5A79C2"></stop><stop offset="1" stop-color="#3F5B9E"></stop></linearGradient>
+          </defs>
+          <!-- hlava dítěte (dívá se přes rameno) -->
+          <circle cx="122" cy="198" r="54" fill="#F2C29E"></circle>
+          <ellipse cx="70" cy="204" rx="9" ry="13" fill="#E8B08A"></ellipse>
+          <path d="M68 194 C64 152 94 128 124 130 C158 132 180 156 176 190 C168 170 148 158 126 158 C100 158 80 172 68 194 Z" fill="#B97A3E"></path>
+          <path d="M112 136 C118 148 132 152 144 148" stroke="#9A6330" stroke-width="5" fill="none" stroke-linecap="round"></path>
+          <path d="M96 202 q9 7 18 0" stroke="#5A3A2A" stroke-width="3.5" fill="none" stroke-linecap="round"></path>
+          <path d="M128 202 q9 7 18 0" stroke="#5A3A2A" stroke-width="3.5" fill="none" stroke-linecap="round"></path>
+          <circle cx="98" cy="218" r="10" fill="#EE3F7A" opacity=".32"></circle>
+          <circle cx="146" cy="218" r="10" fill="#EE3F7A" opacity=".32"></circle>
+          <path d="M114 232 q7 -4 14 0" stroke="#8A3A2A" stroke-width="3" fill="none" stroke-linecap="round"></path>
+          <!-- otec -->
+          <path d="M58 560 C60 420 70 330 110 290 C140 262 180 252 210 250 C240 252 284 262 312 290 C352 330 362 420 364 560 Z" fill="url(#shirt)"></path>
+          <path d="M210 262 L210 560" stroke="#36508E" stroke-width="3" opacity=".45"></path>
+          <path d="M110 292 C78 322 66 372 72 420 C74 438 90 442 98 432 C102 400 108 362 120 332 Z" fill="#3F5B9E"></path>
+          <path d="M312 290 C350 312 368 362 372 430 C376 482 370 522 364 560 L330 560 C334 520 336 468 332 420 Z" fill="#3F5B9E"></path>
+          <path d="M176 254 Q210 272 244 254 L242 266 Q210 282 178 266 Z" fill="#36508E"></path>
+          <path d="M182 214 L238 214 L242 258 Q210 270 178 258 Z" fill="#D9A07B"></path>
+          <ellipse cx="151" cy="178" rx="11" ry="17" fill="#D9A07B"></ellipse>
+          <ellipse cx="269" cy="178" rx="11" ry="17" fill="#D9A07B"></ellipse>
+          <ellipse cx="210" cy="166" rx="60" ry="68" fill="#3B2A22"></ellipse>
+          <path d="M170 128 C196 112 232 116 250 136" stroke="#5A4236" stroke-width="6" fill="none" stroke-linecap="round" opacity=".6"></path>
+          <path d="M160 196 C170 214 190 222 210 222 C230 222 250 214 260 196" stroke="#2B1E18" stroke-width="5" fill="none" opacity=".5"></path>
+          <!-- ručička dítěte na tátově zádech -->
+          <path d="M150 252 C170 246 196 252 212 264 C222 272 214 284 202 282 C184 278 168 274 148 274 Z" fill="#F7B3C7"></path>
+          <ellipse cx="214" cy="276" rx="13" ry="10" fill="#F2C29E"></ellipse>
+        </svg>
+      </div>
+
+      <!-- rozhovor -->
+      <div class="chat" style="position:absolute;left:50%;top:11%;transform:translateX(-50%);width:min(460px,92vw);z-index:5">
+        <div class="b doc b1"><span class="who" aria-hidden="true">Dr</span><span class="bub"><span class="dots" aria-hidden="true" style="color:#7A7780"><i></i><i></i><i></i></span><span class="t">Jak dlouho potíže trvají?</span></span></div>
+        <div class="b dad b2"><span class="who" aria-hidden="true">Táta</span><span class="bub"><span class="dots" aria-hidden="true" style="color:#B9B7BD"><i></i><i></i><i></i></span><span class="t">Asi tři… nebo čtyři dny.</span></span></div>
+        <div class="b doc b3"><span class="who" aria-hidden="true">Dr</span><span class="bub"><span class="dots" aria-hidden="true" style="color:#7A7780"><i></i><i></i><i></i></span><span class="t">Jak vysokou měl teplotu?</span></span></div>
+        <div class="b dad b4"><span class="who" aria-hidden="true">Táta</span><span class="bub"><span class="dots" aria-hidden="true" style="color:#B9B7BD"><i></i><i></i><i></i></span><span class="t">Kolem devětatřiceti. Myslím.</span></span></div>
+        <div class="b doc b5"><span class="who" aria-hidden="true">Dr</span><span class="bub"><span class="dots" aria-hidden="true" style="color:#7A7780"><i></i><i></i><i></i></span><span class="t">A jaký lék dostal? Kdy naposledy?</span></span></div>
+        <div class="b dad b6"><span class="who" aria-hidden="true">Táta</span><span class="bub"><span class="dots" aria-hidden="true" style="color:#B9B7BD"><i></i><i></i><i></i></span><span class="t">Nemůžu si vzpomenout…</span></span></div>
+      </div>
+
+      <div class="fogged" aria-hidden="true"></div>
+      <div class="big"><h1>Nevzpomínej.<br>Ukaž.</h1></div>
+      <button type="button" class="skip" id="skip">Přeskočit</button>
+    </section>
+  </div>
+
+  <!-- =================== 2. ONE PAGE =================== -->
+  <div id="app" hidden>
+    <div style="position:relative">
+      <header style="position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:flex-start;gap:12px;padding:16px 24px;min-height:76px;background:rgba(251,247,243,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)">
+        <span aria-label="LifeOS" style="font-size:22px;letter-spacing:-0.03em"><span style="font-weight:600">Life</span><span style="font-weight:400;color:#514F57">OS</span></span>
+      </header>
+
+      <!-- scrollytelling: telefon stojí, obsah se mění -->
+      <div id="scrolly" style="position:relative;height:500vh;margin-top:-76px">
+        <div style="position:sticky;top:0;height:100vh;min-height:560px;overflow:hidden">
+          <div id="glow" aria-hidden="true" style="position:absolute;left:50%;top:50%;width:min(760px,140vw);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(215,242,58,.45) 0%,rgba(251,247,243,0) 62%);transition:background .8s ease"></div>
+
+          <!-- telefon -->
+          <div class="phone-in phone-w" style="position:absolute;left:50%;top:50%;width:min(300px,34vh);margin-left:calc(min(300px,34vh) / -2);transform-origin:center;z-index:3">
+            <div style="transform:translateY(-50%)">
+              <div style="border-radius:48px;padding:9px;background:linear-gradient(145deg,#3A3840,#17161A 45%,#2E2D33);box-shadow:inset 0 0 0 2px #55535C,0 50px 100px -30px rgba(23,22,26,.45)">
+                <div class="screen" style="position:relative;border-radius:40px;overflow:hidden;aspect-ratio:390/844;background:#FCFBFA">
+                  <img src="img/prehled.jpg" alt="Přehled: rodina, lékaři a co se blíží" class="scr" style="opacity:1;transform:translateX(0%)">
+                  <img src="img/osa.jpg" alt="Časová osa: úterý 21:40, teplota 38,6 °C, Nurofen sirup 10 ml" class="scr" style="opacity:0;transform:translateX(12%)">
+                  <img src="img/dokumenty.jpg" alt="Dokumenty: zprávy, výsledky a recepty" class="scr" style="opacity:0;transform:translateX(12%)">
+                  <img src="img/nouze.jpg" alt="Nouzová karta s krevní skupinou a alergiemi" class="scr" style="opacity:0;transform:translateX(12%)">
+                  <img src="img/kalendar.jpg" alt="Kalendář termínů celé rodiny" class="scr" style="opacity:0;transform:translateX(12%)">
+                  <span class="tap" id="tap" style="left:62%;top:30%;margin:-23px 0 0 -23px"></span>
+                  <div style="position:absolute;left:50%;top:9px;transform:translateX(-50%);width:30%;height:22px;border-radius:999px;background:#0B0B0D"></div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:12px">
-            <div class="rd-m rd-m1" style="border-radius:24px;background:#FFF5EE;padding:16px;display:flex;flex-direction:column;gap:10px">
-              <span style="display:flex;align-items:center;gap:10px"><span style="width:42px;height:42px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 45%,#D7F23A 0%,#C6E82E 50%,#E6F7A0 100%);font-weight:800;font-size:14px">KL</span><span style="display:flex;flex-direction:column;line-height:1.25;min-width:0"><b style="font-size:16px">Klára</b><span style="font-size:13px;color:#6F6C75">Já · správce účtu</span></span></span>
-              <span style="align-self:flex-start;background:#FFFFFF;border-radius:10px;padding:5px 9px;font-size:12.5px;font-weight:700">Vitamin D · 12:30</span>
-            </div>
-            <div class="rd-m rd-m2" style="border-radius:24px;background:#F1F5FE;padding:16px;display:flex;flex-direction:column;gap:10px">
-              <span style="display:flex;align-items:center;gap:10px"><span style="width:42px;height:42px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#E6EEFC,#C9D8F6);font-weight:800;font-size:14px">DL</span><span style="display:flex;flex-direction:column;line-height:1.25;min-width:0"><b style="font-size:16px">David</b><span style="font-size:13px;color:#6F6C75">Partner · zapisuje</span></span></span>
-              <span style="align-self:flex-start;background:#FFFFFF;border-radius:10px;padding:5px 9px;font-size:12.5px;font-weight:700">Podal Filipovi Nurofen</span>
-            </div>
-            <div class="rd-m rd-m3" style="border-radius:24px;background:#EEF9FB;padding:16px;display:flex;flex-direction:column;gap:10px">
-              <span style="display:flex;align-items:center;gap:10px"><span style="width:42px;height:42px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#E2F5F9,#BFE6EF);font-weight:800;font-size:14px">AL</span><span style="display:flex;flex-direction:column;line-height:1.25;min-width:0"><b style="font-size:16px">Adam</b><span style="font-size:13px;color:#6F6C75">8 let</span></span></span>
-              <span style="align-self:flex-start;background:#FFFFFF;border-radius:10px;padding:5px 9px;font-size:12.5px;font-weight:700">Očkování za 2 týdny</span>
-            </div>
-            <div class="rd-m rd-m4" style="border-radius:24px;background:#F8F1FE;padding:16px;display:flex;flex-direction:column;gap:10px">
-              <span style="display:flex;align-items:center;gap:10px"><span class="rd-live" style="width:42px;height:42px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#F3E9FD,#DEC8F7);font-weight:800;font-size:14px">FL</span><span style="display:flex;flex-direction:column;line-height:1.25;min-width:0"><b style="font-size:16px">Filip</b><span style="font-size:13px;color:#6F6C75">4 roky · školka</span></span></span>
-              <span style="align-self:flex-start;background:#FDE8EF;color:#8A1E4A;border-radius:10px;padding:5px 9px;font-size:12.5px;font-weight:800">38,6 °C · úterý 21:40</span>
-            </div>
+
+          <!-- krok 1: Rodina / Přehled -->
+          <div class="step" data-s="0">
+            <div class="fc front p-hd d1"><div class="head">Celá rodina pod jedním účtem</div></div>
+            <div class="fc front p-r1 d2"><div class="card" style="display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex">
+                <span style="width:52px;height:52px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block"><svg viewBox="0 0 56 56" width="100%" height="100%" role="img" aria-label="Žena"><circle cx="28" cy="28" r="28" fill="#FDE8EF"></circle><path d="M12 40 C10 20 18 10 28 10 C40 10 46 20 44 40 Z" fill="#5A3A2A"></path><circle cx="28" cy="25" r="11" fill="#F2C29E"></circle><path d="M17 23 C18 14 38 12 39 23 C34 18 24 18 17 23Z" fill="#5A3A2A"></path><path d="M8 56 C10 44 18 39 28 39 C38 39 46 44 48 56Z" fill="#EE3F7A"></path></svg></span>
+                <span style="width:52px;height:52px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block"><svg viewBox="0 0 56 56" width="100%" height="100%" role="img" aria-label="Muž"><circle cx="28" cy="28" r="28" fill="#E6EEFC"></circle><circle cx="28" cy="25" r="11" fill="#C98E6A"></circle><path d="M17 22 C17 13 39 12 39 22 C34 17 22 17 17 22Z" fill="#2A2420"></path><path d="M20 30 C22 37 34 37 36 30 C34 34 22 34 20 30Z" fill="#2A2420"></path><path d="M8 56 C10 44 18 39 28 39 C38 39 46 44 48 56Z" fill="#2F6FE0"></path></svg></span>
+                <span style="width:52px;height:52px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block"><svg viewBox="0 0 56 56" width="100%" height="100%" role="img" aria-label="Dítě"><circle cx="28" cy="28" r="28" fill="#FFF1E0"></circle><circle cx="15" cy="22" r="6" fill="#B97A3E"></circle><circle cx="41" cy="22" r="6" fill="#B97A3E"></circle><circle cx="28" cy="28" r="10" fill="#F2C29E"></circle><path d="M18 25 C19 17 37 17 38 25 C33 21 23 21 18 25Z" fill="#B97A3E"></path><path d="M12 56 C13 46 20 41 28 41 C36 41 43 46 44 56Z" fill="#F7931E"></path></svg></span>
+                <span style="width:52px;height:52px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block"><svg viewBox="0 0 56 56" width="100%" height="100%" role="img" aria-label="Babička"><circle cx="28" cy="28" r="28" fill="#F3E9FD"></circle><circle cx="28" cy="11" r="6" fill="#C9C7CC"></circle><circle cx="28" cy="25" r="11" fill="#E9B896"></circle><path d="M17 24 C17 14 39 14 39 24 C34 19 22 19 17 24Z" fill="#C9C7CC"></path><circle cx="23.5" cy="26" r="3.6" fill="none" stroke="#3A3840" stroke-width="1.4"></circle><circle cx="32.5" cy="26" r="3.6" fill="none" stroke="#3A3840" stroke-width="1.4"></circle><path d="M8 56 C10 44 18 39 28 39 C38 39 46 44 48 56Z" fill="#9B3FE0"></path></svg></span>
+                <span style="width:52px;height:52px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block"><svg viewBox="0 0 56 56" width="100%" height="100%" role="img" aria-label="Děda"><circle cx="28" cy="28" r="28" fill="#E0F5EC"></circle><circle cx="28" cy="25" r="11" fill="#D9A07B"></circle><path d="M17 26 C16 20 18 17 20 18 L20 26Z" fill="#E7E5E9"></path><path d="M39 26 C40 20 38 17 36 18 L36 26Z" fill="#E7E5E9"></path><path d="M22 31 C25 29 31 29 34 31 C31 33 25 33 22 31Z" fill="#E7E5E9"></path><path d="M8 56 C10 44 18 39 28 39 C38 39 46 44 48 56Z" fill="#17694F"></path></svg></span>
+              </div>
+              <span style="font-size:14px;font-weight:700">Vy, partner, děti, prarodiče</span>
+            </div></div>
+            <div class="fc front p-r2 d3"><div class="card" style="display:flex;align-items:center;gap:12px">
+              <span style="width:42px;height:42px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#FFF1E0;color:#7A4300;font-weight:800;font-size:15px;line-height:1">14<small style="font-size:9px">ŘÍJ</small></span>
+              <span style="display:flex;flex-direction:column;line-height:1.3"><b style="font-size:15px">Odběr krve</b><span style="font-size:13px;color:#6F6C75">St 7:30 · za 3 týdny</span></span>
+            </div></div>
+            <div class="fc front p-l2 d4"><div class="card" style="display:flex;align-items:center;gap:12px;background:#17161A;color:#FFFFFF">
+              <span style="width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#D7F23A;color:#17161A;font-weight:800;font-size:12px">DL</span>
+              <span style="display:flex;flex-direction:column;line-height:1.3"><b style="font-size:15px">David zapsal lék</b><span style="font-size:13px;color:#D9D8DC">Filip · Nurofen 10 ml</span></span>
+            </div></div>
+            <div class="fc back p-b2 d5"><div style="width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 50% 45%,#D7F23A 0%,#C6E82E 50%,#E6F7A0 100%)"></div></div>
           </div>
-          <div class="rd-m rd-m5" style="display:flex;align-items:center;gap:12px;border:1.5px dashed #D9D8DC;border-radius:20px;padding:12px 14px">
-            <span style="width:38px;height:38px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;background:#F4F4F3;color:#514F57"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span>
-            <span style="display:flex;flex-direction:column;line-height:1.3"><b style="font-size:15px">Babička Jana</b><span style="font-size:13px;color:#6F6C75">vidí jen Adama a Filipa · do neděle</span></span>
+
+          <!-- krok 2: Časová osa -->
+          <div class="step" data-s="1" style="display:none">
+            <div class="fc front p-hd d1"><div class="head">Den po dni. Co, kdy, kolik.</div></div>
+            <div class="fc front p-r1 d2"><div class="card" style="background:linear-gradient(145deg,#FDE8EF,#F7C3D5)">
+              <span style="font-size:13px;font-weight:800;color:#8A1E4A">Úterý 21:40</span>
+              <div style="font-size:30px;font-weight:800;letter-spacing:-0.04em">38,6 °C</div>
+            </div></div>
+            <div class="fc front p-l2 d3"><div class="card" style="display:flex;align-items:center;gap:12px">
+              <span style="width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#F3E9FD;color:#7B2FBF"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6v4l2 3v9a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v-9l2-3z"></path><path d="M7 13h10"></path></svg></span>
+              <span style="display:flex;flex-direction:column;line-height:1.3"><b style="font-size:15px">Nurofen sirup 10 ml</b><span style="font-size:13px;color:#6F6C75">další dávka za 6 h</span></span>
+            </div></div>
+            <div class="fc front p-r2 d4"><div class="card" style="display:flex;align-items:center;gap:12px">
+              <span style="width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#E0F5EC;color:#17694F"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"></path></svg></span>
+              <span style="display:flex;flex-direction:column;line-height:1.3"><b style="font-size:15px">Apple Zdraví · Health Connect</b><span style="font-size:13px;color:#6F6C75">teploměr zapíše sám · brzy</span></span>
+            </div></div>
+            <div class="fc back p-b1 d5"><div class="card" style="background:#F3E9FD;color:#6E24B0;font-weight:700;font-size:14px">Postřeh dne: horečka od úterý</div></div>
+          </div>
+
+          <!-- krok 3: Dokumenty -->
+          <div class="step" data-s="2" style="display:none">
+            <div class="fc front p-hd d1"><div class="head">Zprávy od lékaře v kapse</div></div>
+            <div class="fc front p-r1 d2"><div class="card" style="display:flex;align-items:center;gap:12px">
+              <span style="width:38px;height:48px;border-radius:8px;background:#FFFFFF;box-shadow:inset 0 0 0 1.5px #E6E5E2;display:flex;flex-direction:column;gap:3px;padding:8px 6px"><i style="height:3px;border-radius:2px;background:#E6E5E2;display:block"></i><i style="height:3px;width:70%;border-radius:2px;background:#E6E5E2;display:block"></i><i style="height:3px;border-radius:2px;background:#E6E5E2;display:block"></i></span>
+              <span style="display:flex;flex-direction:column;line-height:1.3"><b style="font-size:15px">Zpráva z prohlídky</b><span style="font-size:13px;color:#6F6C75">PDF · 21. 9. 2026</span></span>
+            </div></div>
+            <div class="fc front p-l2 d3"><div class="card" style="display:flex;align-items:center;gap:12px;background:#17161A;color:#FFFFFF">
+              <span style="width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#FFFFFF;color:#17161A"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg></span>
+              <b style="font-size:15px">Vyfoť a máš</b>
+            </div></div>
+            <div class="fc front p-r2 d4"><div class="card" style="display:flex;align-items:center;gap:12px">
+              <span style="width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#FFF1E0;color:#7A4300;font-weight:800;font-size:12px">eR</span>
+              <span style="display:flex;flex-direction:column;line-height:1.3"><b style="font-size:15px">eRecept</b><span style="font-size:13px;color:#6F6C75">kód po ruce v lékárně</span></span>
+            </div></div>
+            <div class="fc back p-b2 d5"><div class="card" style="background:#E6EEFC;color:#2C4A8C;font-weight:700;font-size:14px">Očkovací průkaz · 1,4 MB</div></div>
+          </div>
+
+          <!-- krok 4: Nouzová karta -->
+          <div class="step" data-s="3" style="display:none">
+            <div class="fc front p-hd d1"><div class="head">Když jde o minuty</div></div>
+            <div class="fc front p-r1 d2"><div class="card"><span style="font-size:13px;font-weight:700;color:#6F6C75">Krevní skupina</span><div style="font-size:28px;font-weight:800;letter-spacing:-0.04em">A Rh+</div></div></div>
+            <div class="fc front p-l2 d3"><div class="card" style="background:#FDECEA;display:flex;align-items:center;gap:10px"><span style="width:12px;height:12px;border-radius:50%;background:#D92D20"></span><b style="font-size:15px;color:#8A1C14">Alergie: penicilin</b></div></div>
+            <div class="fc front p-r2 d4"><div class="card" style="display:flex;align-items:center;gap:12px">
+              <span style="width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#E0F5EC;color:#17694F"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"></path></svg></span>
+              <span style="display:flex;flex-direction:column;line-height:1.3"><b style="font-size:15px">Zavolat: David</b><span style="font-size:13px;color:#6F6C75">manžel</span></span>
+            </div></div>
+            <div class="fc back p-b1 d5"><div style="width:110px;height:110px;border-radius:50%;background:radial-gradient(circle at 50% 45%,#EE3F7A 0%,#F2729A 48%,#F7B3C7 100%)"></div></div>
+          </div>
+
+          <!-- krok 5: Kalendář a školka -->
+          <div class="step" data-s="4" style="display:none">
+            <div class="fc front p-hd d1"><div class="head">Nic vám neuteče</div></div>
+            <div class="fc front p-r1 d2"><div class="card" style="display:flex;align-items:center;gap:12px">
+              <span style="width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#E6EEFC;color:#2F6FE0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2l4 4M17 7l-9 9M8 16l-4 4M11 6l7 7M6 11l7 7"></path></svg></span>
+              <span style="display:flex;flex-direction:column;line-height:1.3"><b style="font-size:15px">Očkování · Adam</b><span style="font-size:13px;color:#6F6C75">za 2 týdny</span></span>
+            </div></div>
+            <div class="fc front p-l2 d3"><div class="card" style="display:flex;align-items:center;gap:12px;background:#F2F6E4">
+              <span style="width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#D7F23A;color:#17161A"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"></path><path d="M5 10v10h14V10"></path></svg></span>
+              <span style="display:flex;flex-direction:column;line-height:1.3"><b style="font-size:15px">Ze školky: Filip 38,4 °C</b><span style="font-size:13px;color:#4A4751">10:12 · rodiče upozorněni</span></span>
+            </div></div>
+            <div class="fc front p-r2 d4"><div class="card" style="display:flex;align-items:center;gap:12px">
+              <span style="width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#FFF1E0;color:#7A4300"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg></span>
+              <span style="display:flex;flex-direction:column;line-height:1.3"><b style="font-size:15px">Preventivní prohlídka</b><span style="font-size:13px;color:#6F6C75">pediatr · čt 9:00</span></span>
+            </div></div>
+            <div class="fc back p-b2 d5"><div class="card" style="background:#FFF1E0;color:#7A4300;font-weight:700;font-size:14px">Připomenutí léku · 19:00</div></div>
+          </div>
+
+          <div class="dots-nav" aria-hidden="true">
+            <span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          </div>
+          <div id="hint" aria-hidden="true" style="position:absolute;left:50%;bottom:9%;transform:translateX(-50%);z-index:5;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;font-weight:700;color:#7A7780;transition:opacity .4s ease">
+            <span>Posuňte dolů</span>
+            <svg style="animation:hint 1.6s ease-in-out infinite" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- 3. co v aplikaci je -->
-  <section style="position:relative;background:#FFFFFF;border-top:1px solid #F3E6DD">
-    <div style="max-width:1200px;box-sizing:border-box;margin:0 auto;padding:96px 24px;display:flex;flex-direction:column;gap:48px">
-      <h2 style="margin:0;text-align:center;font-size:clamp(34px,4.4vw,54px);line-height:1.04;letter-spacing:-0.045em;font-weight:800;text-wrap:balance">Všechno důležité na jednom místě</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:18px">
-        <article class="rd-card" style="border-radius:30px;background:linear-gradient(160deg,#F3E9FD,#E4D2F8);padding:26px 26px 0;display:flex;flex-direction:column;gap:8px;overflow:hidden;height:440px;box-sizing:border-box">
-          <h3 style="margin:0;font-size:22px;letter-spacing:-0.02em;font-weight:800">Časová osa</h3>
-          <p style="margin:0;font-size:15px;line-height:1.45;color:#4A3A5C">Teploty, léky, návštěvy. Den po dni.</p>
-          <img src="img/osa.jpg" alt="Časová osa s úterním záznamem teploty" style="width:200px;align-self:center;margin-top:auto;border-radius:26px 26px 0 0;border:7px solid #17161A;border-bottom:0;display:block">
-        </article>
-        <article class="rd-card" style="border-radius:30px;background:linear-gradient(160deg,#E6EEFC,#CFDDF8);padding:26px 26px 0;display:flex;flex-direction:column;gap:8px;overflow:hidden;height:440px;box-sizing:border-box">
-          <h3 style="margin:0;font-size:22px;letter-spacing:-0.02em;font-weight:800">Dokumenty</h3>
-          <p style="margin:0;font-size:15px;line-height:1.45;color:#2C3E5C">Zprávy, výsledky, recepty. Vyfotit a mít.</p>
-          <img src="img/dokumenty.jpg" alt="Dokumenty: zpráva z prohlídky, krevní obraz, eRecept, očkovací průkaz" style="width:200px;align-self:center;margin-top:auto;border-radius:26px 26px 0 0;border:7px solid #17161A;border-bottom:0;display:block">
-        </article>
-        <article class="rd-card" style="border-radius:30px;background:linear-gradient(160deg,#FDE8EF,#F8C9D9);padding:26px 26px 0;display:flex;flex-direction:column;gap:8px;overflow:hidden;height:440px;box-sizing:border-box">
-          <h3 style="margin:0;font-size:22px;letter-spacing:-0.02em;font-weight:800">Nouzová karta</h3>
-          <p style="margin:0;font-size:15px;line-height:1.45;color:#5C2A3C">Krevní skupina, alergie, koho volat.</p>
-          <img src="img/nouze.jpg" alt="Nouzová karta s krevní skupinou, alergiemi a kontaktem" style="width:200px;align-self:center;margin-top:auto;border-radius:26px 26px 0 0;border:7px solid #17161A;border-bottom:0;display:block">
-        </article>
-        <article class="rd-card" style="border-radius:30px;background:linear-gradient(160deg,#FFEBD6,#FBD3AB);padding:26px 26px 0;display:flex;flex-direction:column;gap:8px;overflow:hidden;height:440px;box-sizing:border-box">
-          <h3 style="margin:0;font-size:22px;letter-spacing:-0.02em;font-weight:800">Termíny</h3>
-          <p style="margin:0;font-size:15px;line-height:1.45;color:#5C3A12">Lékaři, prohlídky, očkování celé rodiny.</p>
-          <img src="img/kalendar.jpg" alt="Kalendář termínů" style="width:200px;align-self:center;margin-top:auto;border-radius:26px 26px 0 0;border:7px solid #17161A;border-bottom:0;display:block">
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3. Apple Zdraví a Health Connect -->
-  <section style="position:relative;background:#FFFFFF;border-top:1px solid #F3E6DD">
-    <div style="max-width:1200px;box-sizing:border-box;margin:0 auto;padding:24px 24px 96px;display:flex;flex-wrap:wrap;align-items:center;gap:56px">
-      <div style="flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:16px">
-        <span style="align-self:flex-start;background:#FFF1E0;color:#7A4300;border-radius:999px;padding:6px 12px;font-size:13px;font-weight:800">Připravujeme</span>
-        <h2 style="margin:0;font-size:clamp(32px,4vw,50px);line-height:1.04;letter-spacing:-0.045em;font-weight:800;text-wrap:balance">Spojte LifeOS se zdravím v telefonu</h2>
-        <p style="margin:0;font-size:18px;line-height:1.5;color:#514F57;max-width:28em">Chytrý teploměr, hodinky nebo váha už data ukládají. LifeOS si je vezme sám a zařadí do správného dne.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:6px">
-          <span style="display:inline-flex;align-items:center;gap:10px;background:#F4F4F3;border-radius:16px;padding:10px 16px 10px 10px;font-weight:700;font-size:16px"><span style="width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#17161A;color:#FFFFFF"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"></rect><path d="M11 18.5h2"></path></svg></span><span style="display:flex;flex-direction:column;line-height:1.2">Apple Zdraví<span style="font-size:13px;font-weight:600;color:#6F6C75">iPhone, Apple Watch</span></span></span>
-          <span style="display:inline-flex;align-items:center;gap:10px;background:#F4F4F3;border-radius:16px;padding:10px 16px 10px 10px;font-weight:700;font-size:16px"><span style="width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#17694F;color:#FFFFFF"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"></rect><path d="M11 18.5h2"></path></svg></span><span style="display:flex;flex-direction:column;line-height:1.2">Health Connect<span style="font-size:13px;font-weight:600;color:#6F6C75">Android, hodinky, váhy</span></span></span>
+      <!-- konec: zapoj se -->
+      <section id="zapoj" style="position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:96px 20px;overflow:hidden;background:#FBF7F3;color:#17161A">
+        <div aria-hidden="true" style="position:absolute;left:-180px;top:-200px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,rgba(238,63,122,.16),rgba(251,247,243,0) 66%)"></div>
+        <div aria-hidden="true" style="position:absolute;right:-200px;bottom:-220px;width:680px;height:680px;border-radius:50%;background:radial-gradient(circle,rgba(215,242,58,.40),rgba(251,247,243,0) 66%)"></div>
+        <div style="position:relative;width:100%;max-width:880px;display:flex;flex-direction:column;align-items:center;gap:28px;text-align:center">
+          <h2 style="margin:0;font-size:clamp(44px,7vw,92px);line-height:.95;letter-spacing:-0.05em;font-weight:800">Zapoj se do testování</h2>
+          <p style="margin:0;font-size:clamp(17px,1.6vw,20px);line-height:1.5;color:#514F57;max-width:30em">Vyzkoušej LifeOS dřív než ostatní a řekni nám, co ti chybí.</p>
+          <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px">
+            <a href="#" style="display:inline-flex;align-items:center;gap:14px;min-height:64px;padding:0 26px 0 18px;border-radius:20px;background:#17161A;color:#FFFFFF;text-decoration:none;box-shadow:0 18px 36px -18px rgba(23,22,26,.5)">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"></rect><path d="M11 18.5h2"></path></svg>
+              <span style="display:flex;flex-direction:column;align-items:flex-start;line-height:1.2"><span style="font-size:12px;font-weight:600;color:#B9B7BD">Testovací verze pro</span><b style="font-size:19px">iPhone</b></span>
+            </a>
+            <a href="#" style="display:inline-flex;align-items:center;gap:14px;min-height:64px;padding:0 26px 0 18px;border-radius:20px;background:#D7F23A;color:#17161A;text-decoration:none;box-shadow:0 18px 36px -18px rgba(140,170,10,.6)">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"></rect><path d="M11 18.5h2"></path></svg>
+              <span style="display:flex;flex-direction:column;align-items:flex-start;line-height:1.2"><span style="font-size:12px;font-weight:600;color:#3F4D00">Testovací verze pro</span><b style="font-size:19px">Android</b></span>
+            </a>
+          </div>
+          <div style="margin-top:28px;width:100%;max-width:620px;border-radius:28px;background:#FFFFFF;padding:24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;text-align:left;box-shadow:0 24px 50px -28px rgba(23,22,26,.3)">
+            <span style="display:flex;flex-direction:column;gap:4px;min-width:0"><b style="font-size:22px;letter-spacing:-0.02em">Chceš se zapojit?</b><span style="font-size:15px;color:#6F6C75">Hledáme lékaře, rodiče i vývojáře.</span></span>
+            <a href="#" style="display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 22px;border-radius:999px;background:#17161A;color:#FFFFFF;font-weight:800;font-size:16px;text-decoration:none;white-space:nowrap">Ozvi se nám na LinkedIn
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg>
+            </a>
+          </div>
         </div>
-        <p style="margin:0;font-size:14px;color:#6F6C75">Co se načte, určujete vy. Každý údaj zvlášť povolíte v telefonu.</p>
-      </div>
-
-      <div style="flex:1 1 460px;min-width:0;display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap">
-        <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
-          <span class="rd-flow" style="display:flex;align-items:center;gap:10px;background:#FDE8EF;border-radius:16px;padding:10px 16px 10px 10px;font-weight:700;font-size:15px"><span style="width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#FFFFFF;color:#B1245E"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 14.8V4a2 2 0 0 0-4 0v10.8a4 4 0 1 0 4 0z"></path></svg></span>Teplota</span>
-          <span class="rd-flow rd-f2" style="display:flex;align-items:center;gap:10px;background:#FFF1E0;border-radius:16px;padding:10px 16px 10px 10px;font-weight:700;font-size:15px"><span style="width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#FFFFFF;color:#7A4300"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2-5 4 10 2-5h6"></path></svg></span>Tep</span>
-          <span class="rd-flow rd-f3" style="display:flex;align-items:center;gap:10px;background:#E6EEFC;border-radius:16px;padding:10px 16px 10px 10px;font-weight:700;font-size:15px"><span style="width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#FFFFFF;color:#2F6FE0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"></path></svg></span>Spánek</span>
-          <span class="rd-flow rd-f4" style="display:flex;align-items:center;gap:10px;background:#E0F5EC;border-radius:16px;padding:10px 16px 10px 10px;font-weight:700;font-size:15px"><span style="width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#FFFFFF;color:#17694F"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="4"></rect><path d="M9 9.5a4 4 0 0 1 6 0L12 13z"></path></svg></span>Hmotnost a výška</span>
-          <span class="rd-flow rd-f5" style="display:flex;align-items:center;gap:10px;background:#F3E9FD;border-radius:16px;padding:10px 16px 10px 10px;font-weight:700;font-size:15px"><span style="width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#FFFFFF;color:#7B2FBF"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M12 8v4l3 2"></path></svg></span>Cyklus</span>
-        </div>
-        <svg width="56" height="24" viewBox="0 0 56 24" fill="none" stroke="#B9B7BD" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12h48M42 4l8 8-8 8"></path></svg>
-        <div class="rd-beat" style="width:200px;border-radius:30px;padding:22px;box-sizing:border-box;background:linear-gradient(160deg,#FFE9D2,#F8CFA6);display:flex;flex-direction:column;gap:10px;box-shadow:0 30px 60px -24px rgba(247,147,30,.55)">
-          <span style="font-weight:800;font-size:22px;letter-spacing:-0.035em">LifeOS</span>
-          <span style="background:#FFFFFF;border-radius:14px;padding:10px 12px;font-size:13px;line-height:1.3"><b style="display:block;font-size:12px;color:#8A1E4A">Út 21:40</b><span style="font-weight:800;font-size:16px">38,6 °C</span><span style="display:block;font-size:12px;color:#6F6C75">z teploměru</span></span>
-        </div>
-      </div>
+      </section>
+      <footer style="background:#FBF7F3;color:#6F6C75;border-top:1px solid #EFE6DD;padding:20px 24px 32px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:13px">
+        <span>© 2026 LifeOS · Ukázková data. LifeOS nenahrazuje lékařskou péči.</span>
+        <span style="display:flex;gap:18px"><a href="soukromi.html" style="color:inherit">Ochrana soukromí</a><a href="podminky.html" style="color:inherit">Podmínky použití</a></span>
+      </footer>
     </div>
-  </section>
-
-  <!-- 4. propojení se školkou -->
-  <section style="position:relative;padding:96px 24px">
-    <div style="max-width:1100px;margin:0 auto;border-radius:40px;background:#17161A;color:#FFFFFF;padding:clamp(32px,5vw,56px);box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;gap:40px;overflow:hidden;position:relative">
-      <div aria-hidden="true" style="position:absolute;right:-160px;top:-160px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(215,242,58,.35),rgba(23,22,26,0) 66%)"></div>
-      <div style="position:relative;flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:14px">
-        <span style="align-self:flex-start;background:#D7F23A;color:#17161A;border-radius:999px;padding:6px 12px;font-size:13px;font-weight:800">Se školkou</span>
-        <h2 style="margin:0;font-size:clamp(30px,3.6vw,44px);line-height:1.05;letter-spacing:-0.04em;font-weight:800;text-wrap:balance">Ze školky rovnou do telefonu</h2>
-        <p style="margin:0;font-size:18px;line-height:1.5;color:#D9D8DC;max-width:30em">Když učitelka zapíše teplotu nebo úraz, máte to hned v LifeOS. I s časem a tím, jak to ve školce ošetřili.</p>
-        <a href="https://lifeds.romarte.cz/" style="align-self:flex-start;display:inline-flex;align-items:center;gap:8px;min-height:44px;color:#D7F23A;font-weight:700;font-size:16px;text-decoration:none">Jak funguje Digitální školka
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
-        </a>
-      </div>
-      <div style="position:relative;flex:0 1 360px;min-width:0;display:flex;flex-direction:column;gap:10px">
-        <div style="display:flex;align-items:center;gap:12px;background:#FFFFFF;color:#17161A;border-radius:20px;padding:12px 16px 12px 12px">
-          <span style="width:40px;height:40px;border-radius:12px;flex:none;display:flex;align-items:center;justify-content:center;background:#FDE8EF;color:#B1245E"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 14.8V4a2 2 0 0 0-4 0v10.8a4 4 0 1 0 4 0z"></path></svg></span>
-          <span style="display:flex;flex-direction:column;line-height:1.3"><span style="font-size:15px;font-weight:800">38,4 °C · 10:12</span><span style="font-size:13px;font-weight:600;color:#514F57">Třída Sluníčka · rodiče upozorněni</span></span>
-        </div>
-        <div style="display:flex;align-items:center;gap:12px;background:#FFFFFF;color:#17161A;border-radius:20px;padding:12px 16px 12px 12px;margin-left:28px">
-          <span style="width:40px;height:40px;border-radius:12px;flex:none;display:flex;align-items:center;justify-content:center;background:#FFF1E0;color:#7A4300"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span>
-          <span style="display:flex;flex-direction:column;line-height:1.3"><span style="font-size:15px;font-weight:800">Odřené koleno · 13:40</span><span style="font-size:13px;font-weight:600;color:#514F57">ošetřeno, náplast</span></span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. připravujeme -->
-  <section style="position:relative;padding:0 24px 96px">
-    <div style="max-width:1000px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:24px;text-align:center">
-      <h2 style="margin:0;font-size:clamp(28px,3.2vw,38px);line-height:1.1;letter-spacing:-0.04em;font-weight:800">Připravujeme</h2>
-      <ul style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:10px">
-        <li style="display:flex;align-items:center;gap:10px;background:#FFFFFF;border-radius:999px;padding:12px 18px 12px 12px;font-weight:700;font-size:16px"><span style="width:12px;height:12px;border-radius:50%;background:#D7F23A"></span>Sdílení s partnerem a babičkou</li>
-        <li style="display:flex;align-items:center;gap:10px;background:#FFFFFF;border-radius:999px;padding:12px 18px 12px 12px;font-weight:700;font-size:16px"><span style="width:12px;height:12px;border-radius:50%;background:#2F6FE0"></span>Přihlášení přes BankID</li>
-        <li style="display:flex;align-items:center;gap:10px;background:#FFFFFF;border-radius:999px;padding:12px 18px 12px 12px;font-weight:700;font-size:16px"><span style="width:12px;height:12px;border-radius:50%;background:#17694F"></span>Očkování ze státních registrů</li>
-        <li style="display:flex;align-items:center;gap:10px;background:#FFFFFF;border-radius:999px;padding:12px 18px 12px 12px;font-weight:700;font-size:16px"><span style="width:12px;height:12px;border-radius:50%;background:#EE3F7A"></span>Elektronická zdravotní karta</li>
-        <li style="display:flex;align-items:center;gap:10px;background:#FFFFFF;border-radius:999px;padding:12px 18px 12px 12px;font-weight:700;font-size:16px"><span style="width:12px;height:12px;border-radius:50%;background:#9B3FE0"></span>Záloha a obnova dat</li>
-      </ul>
-    </div>
-  </section>
-
-  <footer style="position:relative;max-width:1200px;box-sizing:border-box;margin:0 auto;padding:0 24px 36px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:13px;color:#6F6C75">
-    <span>© 2026 LifeOS · Ukázková data. LifeOS nenahrazuje lékařskou péči.</span>
-    <span style="display:flex;gap:18px;flex-wrap:wrap"><a href="soukromi" style="color:inherit">Ochrana soukromí</a><a href="podminky" style="color:inherit">Podmínky použití</a></span>
-  </footer>
+  </div>
 </div>
+<script>
+(function(){
+  var root=document.getElementById('root'),intro=document.getElementById('intro'),app=document.getElementById('app');
+  var scrolly=document.getElementById('scrolly'),steps=[].slice.call(document.querySelectorAll('.step')),imgs=[].slice.call(document.querySelectorAll('.scr'));
+  var dots=[].slice.call(document.querySelectorAll('.dot')),tap=document.getElementById('tap'),glow=document.getElementById('glow'),hint=document.getElementById('hint');
+  var glows=['rgba(215,242,58,.45)','rgba(238,63,122,.30)','rgba(47,111,224,.22)','rgba(217,45,32,.20)','rgba(247,147,30,.30)'];
+  var tapPos=[['62%','30%'],['55%','58%'],['30%','45%'],['50%','40%'],['68%','36%']];
+  var phase='intro',step=0,timer;
+  function setStep(s){
+    step=s;
+    steps.forEach(function(el,i){el.style.display=i===s?'contents':'none';});
+    imgs.forEach(function(el,i){el.style.opacity=i===s?1:0;el.style.transform='translateX('+(i===s?0:(i<s?-12:12))+'%)';});
+    dots.forEach(function(el,i){el.classList.toggle('on',i===s);});
+    glow.style.background='radial-gradient(circle,'+glows[s]+' 0%,rgba(251,247,243,0) 62%)';
+    hint.style.opacity=s===0?1:0;
+    var t=tap.cloneNode();t.style.left=tapPos[s][0];t.style.top=tapPos[s][1];tap.parentNode.replaceChild(t,tap);tap=t;
+  }
+  function onScroll(){
+    if(phase!=='app')return;
+    var r=scrolly.getBoundingClientRect(),vh=window.innerHeight||800;
+    var i=Math.floor((-r.top+vh*0.5)/vh);if(i<0)i=0;if(i>4)i=4;
+    if(i!==step)setStep(i);
+  }
+  function goApp(){
+    clearTimeout(timer);if(phase==='app')return;phase='app';
+    intro.parentNode.removeChild(intro);app.hidden=false;root.classList.remove('intro-mode');
+    try{window.scrollTo(0,0);}catch(e){}
+  }
+  document.getElementById('skip').addEventListener('click',goApp);
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  timer=setTimeout(goApp,reduce?600:14600);
+  window.addEventListener('scroll',onScroll,{passive:true});
+})();
+</script>
 </body>
 </html>
