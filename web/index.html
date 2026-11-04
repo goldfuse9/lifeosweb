@@ -200,6 +200,13 @@ a{color:#17161A}a:hover{color:#514F57}
 .dlg-sec{width:100%;background:#FFFFFF;color:#17161A;box-shadow:inset 0 0 0 1.5px #E6DED6}
 .dlg-small{margin-top:8px;font-size:12px;color:#7A7780;text-align:center}.dlg-small a{color:#514F57}
 #and-ok{text-align:left}
+
+.and-steps{list-style:none;margin:0 0 16px;padding:0;display:flex;flex-direction:column;gap:10px}
+.and-steps li{display:flex;align-items:center;gap:12px}
+.and-steps li > span{width:30px;height:30px;flex:none;border-radius:50%;background:#17161A;color:#D7F23A;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px}
+.and-steps a{flex:1;display:flex;flex-direction:column;gap:2px;background:#FFFFFF;border-radius:16px;padding:12px 14px;font-weight:800;font-size:15px;text-decoration:none;color:#17161A;box-shadow:inset 0 0 0 1.5px #E6DED6}
+.and-steps a:hover{box-shadow:inset 0 0 0 1.5px #17161A}
+.and-steps small{font-size:12.5px;font-weight:600;color:#7A7780}
 </style>
 </head>
 <body>
@@ -628,7 +635,11 @@ a{color:#17161A}a:hover{color:#514F57}
   <div id="and-ok" hidden>
     <span class="dlg-ic ok"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
     <h3>Díky, jsi na seznamu!</h3>
-    <p>Do pár dní ti napíšeme na <b id="and-ok-mail"></b> s odkazem do testování v Google Play.</p>
+    <p>Přidáme <b id="and-ok-mail"></b> mezi testery a dáme ti vědět e-mailem. Pak už jen:</p>
+    <ol class="and-steps">
+      <li><span>1</span><a href="https://play.google.com/apps/testing/cz.lifeos.app" target="_blank" rel="noopener">Potvrď účast v testování<small>play.google.com · stačí jednou</small></a></li>
+      <li><span>2</span><a href="https://play.google.com/store/apps/details?id=cz.lifeos.app" target="_blank" rel="noopener">Stáhni LifeOS z Google Play<small>testovací verze se ti nainstaluje sama</small></a></li>
+    </ol>
     <button type="button" data-close class="dlg-sec">Zavřít</button>
   </div>
 </dialog>
