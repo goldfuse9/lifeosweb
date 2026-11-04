@@ -5,154 +5,467 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Digitální školka – Školka bez papírů</title>
 <meta name="description" content="Ředitelna, třída i jídelna v jedné aplikaci. Rodiče vidí vše v LifeOS.">
-<meta name="theme-color" content="#FAFAF9">
+<meta name="theme-color" content="#F7F8EF">
 <meta property="og:title" content="Digitální školka – Školka bez papírů">
 <meta property="og:description" content="Ředitelna, třída i jídelna v jedné aplikaci. Rodiče vidí vše v LifeOS.">
-<meta property="og:image" content="img/trida.jpg">
+<meta property="og:image" content="https://lifeds.romarte.cz/img/trida.jpg">
 <link rel="icon" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-<style>
-body{margin:0;background:#F2F6E4}
-a{color:#17161A}a:hover{color:#4A4751}
-@keyframes sk-in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
-@keyframes sk-dev{from{opacity:0;transform:translateY(70px)}to{opacity:1;transform:none}}
-@keyframes sk-cross{from{text-decoration-color:rgba(122,119,128,0)}to{text-decoration-color:rgba(122,119,128,1)}}
-@keyframes sk-fix{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.sk-h{animation:sk-in .8s cubic-bezier(.2,1,.3,1) .1s both}
-.sk-dev{animation:sk-dev 1.1s cubic-bezier(.2,1,.3,1) .35s both}
-.sk-old{text-decoration:line-through;text-decoration-thickness:2px;text-decoration-color:rgba(122,119,128,0);animation:sk-cross .5s ease both}
-.sk-new{animation:sk-fix .5s ease both}
-.sk-p1 .sk-old{animation-delay:1.2s}.sk-p1 .sk-new{animation-delay:1.5s}
-.sk-p2 .sk-old{animation-delay:1.5s}.sk-p2 .sk-new{animation-delay:1.8s}
-.sk-p3 .sk-old{animation-delay:1.8s}.sk-p3 .sk-new{animation-delay:2.1s}
-.sk-p4 .sk-old{animation-delay:2.1s}.sk-p4 .sk-new{animation-delay:2.4s}
-.sk-p5 .sk-old{animation-delay:2.4s}.sk-p5 .sk-new{animation-delay:2.7s}
-.sk-p6 .sk-old{animation-delay:2.7s}.sk-p6 .sk-new{animation-delay:3s}
-@keyframes sk-split{from{clip-path:polygon(100% 0,100% 0,100% 100%,100% 100%)}to{clip-path:polygon(58% 0,100% 0,100% 100%,42% 100%)}}
-@keyframes sk-seam{from{opacity:0;transform:translateX(900%) rotate(14.4deg)}to{opacity:1;transform:rotate(14.4deg)}}
-@keyframes sk-tag{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.sk-right{clip-path:polygon(58% 0,100% 0,100% 100%,42% 100%);animation:sk-split 1.1s cubic-bezier(.7,0,.2,1) 1s both}
-.sk-seam{animation:sk-seam 1.1s cubic-bezier(.7,0,.2,1) 1s both}
-.sk-tag1{animation:sk-tag .5s ease 1.9s both}.sk-tag2{animation:sk-tag .5s ease 2.1s both}
-.sk-card{transition:transform .4s cubic-bezier(.2,1,.3,1)}
-.sk-card:hover{transform:translateY(-6px)}
-@media (prefers-reduced-motion:reduce){.sk-h,.sk-dev,.sk-old,.sk-new,.sk-right,.sk-seam,.sk-tag1,.sk-tag2{animation:none!important}.sk-old{text-decoration-color:#7A7780}.sk-card{transition:none}}
+<style>body{margin:0;background:#F7F8EF}
+a{color:#17161A}a:hover{color:#514F57}
+*{box-sizing:border-box}
+#root{width:100%;background:#F7F8EF;color:#17161A;font-family:'Plus Jakarta Sans',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif}
+#root.intro-mode{height:100vh;height:100svh;overflow:hidden}
+
+/* ---------- ÚVOD ---------- */
+@keyframes in-scene{from{opacity:0}to{opacity:1}}
+@keyframes in-fig-l{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:none}}
+@keyframes in-fig-r{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+@keyframes breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.92)}to{opacity:1;transform:none}}
+@keyframes show{from{opacity:0}to{opacity:1}}
+@keyframes gone{to{opacity:0;visibility:hidden}}
+@keyframes dot{0%,60%,100%{transform:translateY(0);opacity:.35}30%{transform:translateY(-4px);opacity:1}}
+@keyframes collapse{from{max-height:140px;margin-bottom:10px;opacity:1}to{max-height:0;margin-bottom:0;opacity:0}}
+@keyframes fog{from{opacity:0;backdrop-filter:blur(0);-webkit-backdrop-filter:blur(0)}to{opacity:1;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}}
+@keyframes title-in{from{opacity:0;transform:scale(1.08);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+@keyframes title-out{to{opacity:0;transform:scale(.12);filter:blur(4px)}}
+@keyframes hint{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+@keyframes ring{0%,100%{opacity:0}10%,40%{opacity:1}50%{opacity:0}}
+@keyframes shake{0%,100%{transform:rotate(0)}10%,30%{transform:rotate(-4deg)}20%,40%{transform:rotate(4deg)}50%{transform:rotate(0)}}
+@keyframes drift{0%{transform:translate(0,0) rotate(var(--r))}50%{transform:translate(14px,-18px) rotate(calc(var(--r) * -1))}100%{transform:translate(0,0) rotate(var(--r))}}
+@keyframes look{0%,40%,100%{transform:translateX(0)}50%,85%{transform:translateX(7px)}}
+@keyframes tick{to{transform:rotate(360deg)}}
+
+.scene{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;background:linear-gradient(180deg,#F7F9EC 0%,#F1F3E2 70%,#E9EDD4 100%);animation:in-scene .8s ease both}
+.floor{position:absolute;left:0;right:0;bottom:0;height:18%;background:#E3E7CC}
+.fig-red{position:absolute;right:3%;bottom:4%;height:66vh;aspect-ratio:380/470;z-index:3;animation:in-fig-r 1s cubic-bezier(.2,1,.3,1) .35s both}
+.fig-reg{position:absolute;left:3%;bottom:6%;height:56vh;aspect-ratio:300/420;z-index:2;animation:in-fig-l 1s cubic-bezier(.2,1,.3,1) .2s both}
+.fig-red svg{animation:breathe 4.6s ease-in-out infinite}
+.r-eyes{animation:look 5s ease-in-out 2s infinite}
+.r-phone{transform-origin:113px 378px;animation:shake 1.4s ease-in-out infinite}
+.r-ring{animation:ring 1.4s ease-in-out infinite}
+.paper{position:absolute;z-index:1;width:46px;height:58px;border-radius:4px;background:#FFFFFF;box-shadow:0 12px 24px -14px rgba(23,22,26,.35);opacity:.9;animation:drift 7s ease-in-out infinite}
+.paper::before{content:"";position:absolute;left:8px;right:8px;top:10px;height:3px;border-radius:2px;background:#E1E3D6;box-shadow:0 8px 0 #E1E3D6,0 16px 0 #E1E3D6,0 24px 0 #E1E3D6}
+.cork{position:absolute;left:24%;top:7%;width:min(240px,17vw);aspect-ratio:5/3.4;border-radius:12px;background:#D9B98E;box-shadow:inset 0 0 0 7px #C49A66,0 18px 40px -26px rgba(122,67,0,.35)}
+.draw{position:absolute;width:34%;aspect-ratio:6/5;box-shadow:0 6px 12px -8px rgba(0,0,0,.4)}
+.pin{position:absolute;width:9px;height:9px;border-radius:50%;background:#EE3F7A;box-shadow:0 2px 3px rgba(0,0,0,.3)}
+.clock{position:absolute;right:30%;top:7%;width:min(74px,5.4vw);aspect-ratio:1;border-radius:50%;background:#FFFFFF;box-shadow:inset 0 0 0 5px #E6E8D2,0 14px 30px -18px rgba(70,80,0,.4)}
+.clock .hh,.clock .mh{position:absolute;left:50%;bottom:50%;border-radius:2px;transform-origin:50% 100%}
+.clock .hh{width:3px;height:24%;margin-left:-1.5px;background:#2A2930;transform:rotate(-60deg)}
+.clock .mh{width:2px;height:34%;margin-left:-1px;background:#EE3F7A;animation:tick 6s linear infinite}
+.wm-intro{position:absolute;left:24px;top:20px;z-index:6}
+
+.chat{position:absolute;left:50%;top:11%;transform:translateX(-50%);width:min(440px,92vw);z-index:5;display:flex;flex-direction:column}
+.b{display:flex;align-items:flex-end;gap:10px;max-width:94%;margin-bottom:10px;max-height:140px;overflow:visible}
+.b.in{align-self:flex-start}
+.b.me{align-self:flex-end;flex-direction:row-reverse}
+.bub{display:grid;border-radius:20px;padding:11px 16px;font-size:clamp(15px,1.45vw,18px);line-height:1.35;box-shadow:0 14px 30px -14px rgba(23,22,26,.25)}
+.bub > *{grid-area:1/1}
+.in .bub{background:#FFFFFF;border-radius:6px 20px 20px 20px;font-weight:700}
+.me .bub{background:#17161A;color:#FFFFFF;border-radius:20px 6px 20px 20px;font-weight:700}
+.bub small{display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:800;color:#7A7780;margin-bottom:2px;letter-spacing:.01em}
+.bub small i{width:7px;height:7px;border-radius:50%;display:block}
+.who{width:38px;height:38px;border-radius:50%;flex:none;overflow:hidden;border:2px solid #FFFFFF}
+.dots{display:flex;gap:5px;align-items:center}
+.dots i{width:7px;height:7px;border-radius:50%;background:currentColor;animation:dot 1s ease-in-out infinite}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+.b1{animation:pop .45s cubic-bezier(.2,1.3,.4,1) .9s both}  .b1 .dots{animation:gone .1s linear 1.6s forwards} .b1 .t{animation:show .3s ease 1.6s both}
+.b2{animation:pop .45s cubic-bezier(.2,1.3,.4,1) 2.5s both} .b2 .dots{animation:gone .1s linear 3.2s forwards} .b2 .t{animation:show .3s ease 3.2s both}
+.b3{animation:pop .45s cubic-bezier(.2,1.3,.4,1) 4.1s both} .b3 .dots{animation:gone .1s linear 4.9s forwards} .b3 .t{animation:show .3s ease 4.9s both}
+.b4{animation:pop .45s cubic-bezier(.2,1.3,.4,1) 5.9s both} .b4 .dots{animation:gone .1s linear 6.6s forwards} .b4 .t{animation:show .3s ease 6.6s both}
+.b5{animation:pop .45s cubic-bezier(.2,1.3,.4,1) 7.5s both} .b5 .dots{animation:gone .1s linear 8.2s forwards} .b5 .t{animation:show .3s ease 8.2s both}
+.b6{animation:pop .45s cubic-bezier(.2,1.3,.4,1) 9.2s both} .b6 .dots{animation:gone .1s linear 10.4s forwards} .b6 .t{animation:show .3s ease 10.4s both}
+.fogged{position:absolute;inset:0;z-index:20;background:rgba(247,248,239,.8);animation:fog 1.1s ease 11.3s both;pointer-events:none}
+.big{position:absolute;inset:0;z-index:21;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;pointer-events:none}
+.big h1{margin:0;font-size:clamp(54px,9vw,132px);line-height:.95;letter-spacing:-0.055em;font-weight:800;animation:title-in .9s cubic-bezier(.2,1,.3,1) 11.9s both, title-out .6s cubic-bezier(.7,0,.8,.4) 13.5s forwards}
+.skip{position:absolute;right:20px;bottom:20px;z-index:30;min-height:44px;padding:0 18px;border-radius:999px;border:0;background:rgba(255,255,255,.88);font:700 14px 'Plus Jakarta Sans',system-ui,sans-serif;color:#514F57;cursor:pointer}
+
+/* ---------- ONE PAGE ---------- */
+@keyframes phone-in{from{opacity:0;transform:scale(.2)}to{opacity:1;transform:none}}
+@keyframes fc-in{from{opacity:0;transform:translateY(24px) scale(.94)}to{opacity:1;transform:none}}
+@keyframes fc-float{0%,100%{translate:0 0}50%{translate:0 -8px}}
+@keyframes tap{0%{opacity:0;transform:scale(.4)}30%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(1.8)}}
+@keyframes hdr-in{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:none}}
+@keyframes cross{from{text-decoration-color:rgba(122,119,128,0)}to{text-decoration-color:rgba(122,119,128,1)}}
+@keyframes fade-old{to{opacity:.55}}
+.hdr{position:fixed;left:0;right:0;top:0;z-index:30;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;pointer-events:none;transition:opacity .45s ease,transform .45s cubic-bezier(.2,1,.3,1);animation:hdr-in .9s cubic-bezier(.2,1,.3,1) .5s backwards}
+.hdr.hide{opacity:0;transform:translateY(-16px)}
+.plink{pointer-events:auto;font-size:14px;font-weight:800;text-decoration:none;background:rgba(255,255,255,.75);padding:8px 14px;border-radius:999px;white-space:nowrap}
+.stage{position:sticky;top:0;height:100vh;height:100svh;min-height:560px;overflow:hidden}
+.glow{position:absolute;left:50%;top:50%;width:min(900px,150vw);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(215,242,58,.45) 0%,rgba(247,248,239,0) 62%);transition:background .8s ease}
+.phone-in{animation:phone-in .8s cubic-bezier(.2,1.2,.3,1) both}
+.tab-w{position:absolute;left:50%;top:50%;width:min(600px,50vw,68vh);margin-left:calc(min(600px,50vw,68vh) / -2);z-index:3}
+.tab{transform:translateY(-50%);border-radius:34px;padding:12px;background:linear-gradient(145deg,#3A3840,#17161A 45%,#2E2D33);box-shadow:inset 0 0 0 2px #55535C,0 50px 100px -30px rgba(23,22,26,.45)}
+.screen{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:1194/834;background:#FFFFFF}
+.screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top left;transition:opacity .55s ease, transform .55s cubic-bezier(.2,1,.3,1)}
+.tap{position:absolute;width:46px;height:46px;border-radius:50%;background:rgba(238,63,122,.35);border:2px solid rgba(238,63,122,.8);animation:tap 1.1s ease .2s both;pointer-events:none}
+.step{display:contents}
+.fc{position:absolute;animation:fc-in .7s cubic-bezier(.2,1.1,.3,1) both, fc-float 6s ease-in-out 1s infinite}
+.fc.d1{animation-delay:.05s,1s}.fc.d2{animation-delay:.18s,1.6s}.fc.d3{animation-delay:.31s,2.2s}.fc.d4{animation-delay:.44s,2.8s}.fc.d5{animation-delay:.57s,3.4s}
+.front{z-index:4}.back{z-index:1}
+.card{background:#FFFFFF;border-radius:24px;padding:16px 18px;box-shadow:0 24px 50px -24px rgba(23,22,26,.35)}
+.head{font-size:clamp(26px,2.5vw,40px);line-height:1.02;letter-spacing:-0.045em;font-weight:800;max-width:10ch}
+.roles{display:flex;flex-direction:column;gap:12px}
+.role{display:flex;align-items:center;gap:12px}.role > span:last-child{display:flex;flex-direction:column;line-height:1.3}.role b{font-size:15px}.role > span:last-child > span{font-size:13px;color:#6F6C75}
+.old{font-size:13.5px;font-weight:700;color:#7A7780;text-decoration:line-through;text-decoration-thickness:2px;animation:cross .5s ease .9s both,fade-old .5s ease .9s both}
+.pill{font-size:12.5px;font-weight:800;border-radius:999px;padding:5px 10px}
+.p-hd{right:calc(50% + 330px);top:16%}
+.p-l2{right:calc(50% + 330px);top:56%}
+.p-r1{left:calc(50% + 330px);top:16%}
+.p-r2{left:calc(50% + 330px);top:58%}
+.av{display:flex;flex-direction:column;align-items:center;gap:6px}
+.avc{width:76px;height:76px;border-radius:50%;overflow:hidden;border:4px solid #FFFFFF;box-shadow:0 18px 36px -18px rgba(23,22,26,.45);display:block}
+.avc svg{width:100%;height:100%;display:block}
+.avt{background:#FFFFFF;border-radius:999px;padding:4px 11px;font-size:12px;font-weight:800;box-shadow:0 8px 18px -10px rgba(23,22,26,.35);white-space:nowrap}
+.a-1{left:calc(50% + 180px);top:calc(50% + min(210px,17.5vw,23.8vh) - 10px)}
+.a-2{right:calc(50% + 180px);top:calc(50% + min(210px,17.5vw,23.8vh) - 10px)}
+.dots-nav{position:absolute;left:50%;bottom:3.5%;transform:translateX(-50%);display:flex;gap:8px;z-index:5}
+.dot{height:8px;width:8px;border-radius:999px;background:#D9D8DC;transition:all .4s ease}
+.dot.on{width:26px;background:#17161A}
+#hint{position:absolute;left:50%;bottom:8%;transform:translateX(-50%);z-index:5;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;font-weight:700;color:#7A7780;transition:opacity .4s ease}
+#hint svg{animation:hint 1.6s ease-in-out infinite}
+
+/* ---------- SEKCE ---------- */
+.rv{opacity:0;transform:translateY(32px);transition:opacity .8s ease,transform .9s cubic-bezier(.2,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+.sec-vis.rv{transform:scale(.85)}.sec-vis.rv.in{transform:none}
+.flt{animation:fc-float 6s ease-in-out infinite}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:#FFFFFF;border-radius:999px;padding:6px 14px 6px 6px;font-size:13px;font-weight:800;box-shadow:0 6px 18px -8px rgba(23,22,26,.25)}
+.h2{margin:18px 0 0;font-size:clamp(40px,5.2vw,72px);line-height:.98;letter-spacing:-0.05em;font-weight:800}
+.lead{margin:18px 0 0;font-size:clamp(17px,1.5vw,19px);line-height:1.55;color:#514F57;max-width:34em}
+.more{display:inline-flex;align-items:center;gap:8px;margin-top:24px;font-weight:800;font-size:15px}
+.band{position:relative;padding:110px 20px 40px;overflow:hidden}
+.band-in{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:56px;align-items:center}
+.feed{display:flex;flex-direction:column;gap:14px}
+.note{display:flex;gap:12px;align-items:center;background:#FFFFFF;border-radius:22px;padding:14px 16px;box-shadow:0 24px 50px -28px rgba(23,22,26,.35);max-width:420px}
+.note .nav{flex:none;display:flex}
+.note > span:last-child{display:flex;flex-direction:column;gap:3px;line-height:1.35}
+.note small{font-size:12px;font-weight:800;color:#7A7780}.note b{font-size:15px}
+.sec-grid{position:relative;max-width:1120px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:56px;align-items:center}
+.sec-vis{position:relative;height:440px}
+.ring{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;border:1.5px dashed #D6DABF}
+.lock{position:absolute;left:50%;top:50%;width:168px;height:168px;margin:-84px 0 0 -84px;border-radius:48px;background:linear-gradient(145deg,#33323A,#17161A 60%);display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 2px #45434C,0 40px 80px -30px rgba(23,22,26,.55);animation:lockp 3.2s ease-in-out infinite}
+@keyframes lockp{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+.chip{position:absolute;background:#FFFFFF;border-radius:999px;padding:9px 16px;font-size:14px;font-weight:800;box-shadow:0 16px 34px -18px rgba(23,22,26,.4)}
+.orb-av{position:absolute;width:72px;height:72px;border-radius:50%;border:4px solid #FFFFFF;box-shadow:0 18px 36px -18px rgba(23,22,26,.45)}
+.orb-av svg{border-radius:50%;display:block}
+.orb-av i{position:absolute;right:-6px;bottom:-4px;width:26px;height:26px;border-radius:50%;background:#17161A;color:#D7F23A;display:flex;align-items:center;justify-content:center;border:2px solid #FFFFFF}
+.orb-av i svg{width:13px;height:13px;border-radius:0}
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px}
+.sitem{display:flex;gap:12px;align-items:flex-start;background:#FFFFFF;border-radius:20px;padding:16px;box-shadow:0 18px 40px -30px rgba(23,22,26,.35)}
+.sitem > span:last-child{display:flex;flex-direction:column;gap:3px;line-height:1.35}
+.sitem b{font-size:15px}.sitem > span:last-child > span{font-size:14px;color:#6F6C75}
+.z-av{position:absolute;width:76px;height:76px;border-radius:50%;overflow:hidden;border:4px solid #FFFFFF;box-shadow:0 18px 36px -18px rgba(23,22,26,.45)}
+.z-av svg{display:block}
+.cta{display:inline-flex;align-items:center;gap:10px;min-height:60px;padding:0 28px;border-radius:999px;background:#17161A;color:#FFFFFF;font-weight:800;font-size:17px;text-decoration:none;box-shadow:0 20px 40px -20px rgba(23,22,26,.6)}
+.cta:hover{color:#D7F23A}
+.foot{background:#F7F8EF;color:#6F6C75;border-top:1px solid #E6E8D2;padding:20px 24px 32px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:13px}
+
+/* ---------- RESPONZIVITA ---------- */
+@media (max-width:1180px){
+  .p-hd{right:calc(50% + 290px)}.p-l2{right:calc(50% + 290px)}.p-r1,.p-r2{left:calc(50% + 290px)}
+  .card{max-width:230px}
+}
+@media (max-width:1000px){
+  .tab-w{width:min(520px,58vw,60vh);margin-left:calc(min(520px,58vw,60vh) / -2)}
+  .p-hd{left:24px;right:24px;top:80px;text-align:center}.p-hd .head{max-width:none}
+  .p-l2{right:auto;left:16px;top:auto;bottom:9%}
+  .p-r1{left:auto;right:16px;top:auto;bottom:22%}
+  .p-r2{left:auto;right:16px;top:auto;bottom:6%}
+  .a-1,.a-2{display:none}
+  .band-in,.sec-grid{grid-template-columns:1fr;gap:28px}
+  .sec-vis{height:340px;max-width:420px;width:100%;margin:0 auto}
+  .z-av{display:none}
+  .cork,.clock{display:none}
+}
+@media (max-width:760px){
+  .fig-red{right:-40px;bottom:2%;height:44vh}
+  .fig-reg{display:none}
+  .paper{display:none}
+  .chat{top:66px;width:calc(100% - 28px)}
+  .b1{animation:pop .45s cubic-bezier(.2,1.3,.4,1) .9s both, collapse .4s ease 5.9s forwards}
+  .b2{animation:pop .45s cubic-bezier(.2,1.3,.4,1) 2.5s both, collapse .4s ease 7.5s forwards}
+  .b3{animation:pop .45s cubic-bezier(.2,1.3,.4,1) 4.1s both, collapse .4s ease 9.2s forwards}
+  .wm-intro{left:16px;top:18px}
+  .hdr{padding:16px}
+  .hdr > span{font-size:18px!important}
+  .tab-w{width:calc(100vw - 24px);margin-left:calc(50vw * -1 + 12px)}
+  .tab{border-radius:22px;padding:7px}.screen{border-radius:15px}
+  .p-hd{top:72px}.head{font-size:30px}
+  .card{padding:11px 13px;border-radius:18px;max-width:62vw}
+  .p-r1{bottom:auto;top:calc(50% + 28vw + 14px);right:10px}
+  .p-l2{bottom:auto;top:calc(50% - 28vw - 112px);left:10px}
+  .p-r2{display:none}
+  .roles{gap:8px}
+  #hint{display:none}
+  .sgrid{grid-template-columns:1fr}
+  .lock{width:132px;height:132px;margin:-66px 0 0 -66px;border-radius:38px}.lock svg{width:56px;height:56px}
+  .orb-av{width:60px;height:60px}
+  .band{padding-top:80px}
+}
+@media (prefers-reduced-motion:reduce){
+  .scene,.fig-red,.fig-reg,.fig-red svg,.r-eyes,.r-phone,.r-ring,.paper,.b,.b .t,.big h1,.phone-in,.fc,.tap,.flt,.lock,.hdr,.old,.clock .mh{animation:none!important}
+  .b .dots,.big,.fogged,.skip{display:none!important}
+  .rv{opacity:1!important;transform:none!important;transition:none}
+}
 </style>
 </head>
 <body>
-<div style="width:100%;min-height:100vh;background:#F2F6E4;color:#17161A;font-family:'Plus Jakarta Sans',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;position:relative;overflow:hidden">
-  <div aria-hidden="true" style="position:absolute;right:-220px;top:-220px;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle,rgba(215,242,58,.5),rgba(242,246,228,0) 66%)"></div>
-  <div aria-hidden="true" style="position:absolute;left:-260px;top:280px;width:820px;height:820px;border-radius:50%;background:radial-gradient(circle,rgba(47,111,224,.13),rgba(242,246,228,0) 66%)"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="g-zena" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FDE8EF"/><stop offset="1" stop-color="#F9CFDD"/></linearGradient><symbol id="av-zena" viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="url(#g-zena)"/><path d="M13 44 C9 22 17 10 28 10 C40 10 48 22 44 44 Z" fill="#5A3A2A"/><path d="M7 58 C9 45 17 40 28 40 C39 40 47 45 49 58 Z" fill="#EE3F7A"/><path d="M23 35 L33 35 L33 41 Q28 44 23 41 Z" fill="#F2C29E" opacity=".85"/><ellipse cx="28" cy="27" rx="11.5" ry="12" fill="#F2C29E"/><path d="M16 25 C16 14 26 11 31 12 C38 13 41 18 40 25 C35 20 26 18 16 25 Z" fill="#5A3A2A"/><circle cx="22.5" cy="27" r="1.9" fill="#2A1E18"/><circle cx="33.5" cy="27" r="1.9" fill="#2A1E18"/><path d="M24 33 Q28 36.5 32 33" stroke="#8A3A2A" stroke-width="1.6" fill="none" stroke-linecap="round"/><circle cx="20" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/><circle cx="36" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/></symbol><linearGradient id="g-muz" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E6EEFC"/><stop offset="1" stop-color="#C9DAF8"/></linearGradient><symbol id="av-muz" viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="url(#g-muz)"/><path d="M7 58 C9 45 17 40 28 40 C39 40 47 45 49 58 Z" fill="#2F6FE0"/><path d="M23 35 L33 35 L33 41 Q28 44 23 41 Z" fill="#C98E6A" opacity=".85"/><ellipse cx="28" cy="27" rx="11.5" ry="12" fill="#C98E6A"/><path d="M16.5 24 C15 13 24 10 29 10.5 C37 11 41 16 39.5 24 C37 18 31 16.5 28 16.5 C24 16.5 19 18 16.5 24 Z" fill="#2A2420"/><circle cx="22.5" cy="27" r="1.9" fill="#2A1E18"/><circle cx="33.5" cy="27" r="1.9" fill="#2A1E18"/><path d="M24 33 Q28 36.5 32 33" stroke="#8A3A2A" stroke-width="1.6" fill="none" stroke-linecap="round"/><circle cx="20" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/><circle cx="36" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/><path d="M18.5 30 C19 38 24 41 28 41 C32 41 37 38 37.5 30 C35 35 31 36 28 36 C25 36 21 35 18.5 30 Z" fill="#2A2420"/></symbol><linearGradient id="g-holka" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF1E0"/><stop offset="1" stop-color="#FFDDB5"/></linearGradient><symbol id="av-holka" viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="url(#g-holka)"/><circle cx="13" cy="24" r="6.5" fill="#B97A3E"/><circle cx="43" cy="24" r="6.5" fill="#B97A3E"/><path d="M7 58 C9 45 17 40 28 40 C39 40 47 45 49 58 Z" fill="#F7931E"/><path d="M23 35 L33 35 L33 41 Q28 44 23 41 Z" fill="#F6CBA8" opacity=".85"/><ellipse cx="28" cy="27" rx="11.5" ry="12" fill="#F6CBA8"/><path d="M17 25 C17 15 39 15 39 25 C34 20 22 20 17 25 Z" fill="#B97A3E"/><circle cx="22.5" cy="27" r="1.9" fill="#2A1E18"/><circle cx="33.5" cy="27" r="1.9" fill="#2A1E18"/><path d="M24 33 Q28 36.5 32 33" stroke="#8A3A2A" stroke-width="1.6" fill="none" stroke-linecap="round"/><circle cx="20" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/><circle cx="36" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/></symbol><linearGradient id="g-kluk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E0F5EC"/><stop offset="1" stop-color="#BFE9D6"/></linearGradient><symbol id="av-kluk" viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="url(#g-kluk)"/><path d="M7 58 C9 45 17 40 28 40 C39 40 47 45 49 58 Z" fill="#17A06B"/><path d="M23 35 L33 35 L33 41 Q28 44 23 41 Z" fill="#E8B48E" opacity=".85"/><ellipse cx="28" cy="27" rx="11.5" ry="12" fill="#E8B48E"/><path d="M16.5 25 C14 14 24 10 30 11 C36 11 42 15 39.5 25 C38 21 35 19 32 18 C30 21 22 22 16.5 25 Z" fill="#3B2A22"/><circle cx="22.5" cy="27" r="1.9" fill="#2A1E18"/><circle cx="33.5" cy="27" r="1.9" fill="#2A1E18"/><path d="M24 33 Q28 36.5 32 33" stroke="#8A3A2A" stroke-width="1.6" fill="none" stroke-linecap="round"/><circle cx="20" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/><circle cx="36" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/></symbol><linearGradient id="g-babicka" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3E9FD"/><stop offset="1" stop-color="#E2D0FA"/></linearGradient><symbol id="av-babicka" viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="url(#g-babicka)"/><circle cx="28" cy="10" r="5.5" fill="#D4D2D8"/><path d="M7 58 C9 45 17 40 28 40 C39 40 47 45 49 58 Z" fill="#9B3FE0"/><path d="M23 35 L33 35 L33 41 Q28 44 23 41 Z" fill="#EBBB98" opacity=".85"/><ellipse cx="28" cy="27" rx="11.5" ry="12" fill="#EBBB98"/><path d="M16.5 25 C16 15 40 15 39.5 25 C35 19 22 19 16.5 25 Z" fill="#D4D2D8"/><circle cx="22.5" cy="27" r="1.9" fill="#2A1E18"/><circle cx="33.5" cy="27" r="1.9" fill="#2A1E18"/><path d="M24 33 Q28 36.5 32 33" stroke="#8A3A2A" stroke-width="1.6" fill="none" stroke-linecap="round"/><circle cx="20" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/><circle cx="36" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/><circle cx="22.5" cy="27" r="4.3" fill="none" stroke="#3A3840" stroke-width="1.3"/><circle cx="33.5" cy="27" r="4.3" fill="none" stroke="#3A3840" stroke-width="1.3"/><path d="M26.8 27 L29.2 27" stroke="#3A3840" stroke-width="1.3"/></symbol><linearGradient id="g-ucitelka" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E0F5F3"/><stop offset="1" stop-color="#BDE8E3"/></linearGradient><symbol id="av-ucitelka" viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="url(#g-ucitelka)"/><path d="M38 14 C48 14 50 26 46 34 C44 28 42 22 38 20 Z" fill="#3B2A22"/><path d="M7 58 C9 45 17 40 28 40 C39 40 47 45 49 58 Z" fill="#1F9E8F"/><path d="M23 35 L33 35 L33 41 Q28 44 23 41 Z" fill="#EDBE9A" opacity=".85"/><ellipse cx="28" cy="27" rx="11.5" ry="12" fill="#EDBE9A"/><path d="M16.5 26 C15 14 26 11 30 11.5 C37 12 41 17 39.5 25 C35 19 27 18 16.5 26 Z" fill="#3B2A22"/><circle cx="22.5" cy="27" r="1.9" fill="#2A1E18"/><circle cx="33.5" cy="27" r="1.9" fill="#2A1E18"/><path d="M24 33 Q28 36.5 32 33" stroke="#8A3A2A" stroke-width="1.6" fill="none" stroke-linecap="round"/><circle cx="20" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/><circle cx="36" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/><circle cx="40" cy="17" r="2.2" fill="#D7F23A"/></symbol><linearGradient id="g-reditelka" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF1E0"/><stop offset="1" stop-color="#FFD9A8"/></linearGradient><symbol id="av-reditelka" viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="url(#g-reditelka)"/><path d="M14 36 C10 18 18 11 28 11 C39 11 46 18 42 36 Z" fill="#8F3E22"/><path d="M7 58 C9 45 17 40 28 40 C39 40 47 45 49 58 Z" fill="#F2A541"/><path d="M23 35 L33 35 L33 41 Q28 44 23 41 Z" fill="#F3C6A2" opacity=".85"/><ellipse cx="28" cy="27" rx="11.5" ry="12" fill="#F3C6A2"/><path d="M16.5 25 C16 15 26 12 30 12.5 C37 13 41 18 40 25 C34 19 25 19 16.5 25 Z" fill="#8F3E22"/><circle cx="22.5" cy="27" r="1.9" fill="#2A1E18"/><circle cx="33.5" cy="27" r="1.9" fill="#2A1E18"/><path d="M24 33 Q28 36.5 32 33" stroke="#8A3A2A" stroke-width="1.6" fill="none" stroke-linecap="round"/><circle cx="20" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/><circle cx="36" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/><circle cx="22.5" cy="27" r="4.2" fill="none" stroke="#3A3840" stroke-width="1.3"/><circle cx="33.5" cy="27" r="4.2" fill="none" stroke="#3A3840" stroke-width="1.3"/><path d="M26.8 27 L29.2 27" stroke="#3A3840" stroke-width="1.3"/></symbol><linearGradient id="g-kucharka" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2F6E4"/><stop offset="1" stop-color="#DDE8B8"/></linearGradient><symbol id="av-kucharka" viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="url(#g-kucharka)"/><path d="M7 58 C9 45 17 40 28 40 C39 40 47 45 49 58 Z" fill="#FFFFFF"/><path d="M23 35 L33 35 L33 41 Q28 44 23 41 Z" fill="#E8B48E" opacity=".85"/><ellipse cx="28" cy="27" rx="11.5" ry="12" fill="#E8B48E"/><path d="M17 21 C15 10 22 6 28 9 C34 6 41 10 39 21 Z" fill="#FFFFFF" stroke="#E6E5E2" stroke-width="1"/><rect x="17" y="19" width="22" height="4" rx="1.5" fill="#F2F1EE"/><circle cx="22.5" cy="27" r="1.9" fill="#2A1E18"/><circle cx="33.5" cy="27" r="1.9" fill="#2A1E18"/><path d="M24 33 Q28 36.5 32 33" stroke="#8A3A2A" stroke-width="1.6" fill="none" stroke-linecap="round"/><circle cx="20" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/><circle cx="36" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/><path d="M20 44 L36 44" stroke="#D7F23A" stroke-width="3"/></symbol><linearGradient id="g-dedecek" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EAF2DC"/><stop offset="1" stop-color="#D4E6B5"/></linearGradient><symbol id="av-dedecek" viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="url(#g-dedecek)"/><path d="M7 58 C9 45 17 40 28 40 C39 40 47 45 49 58 Z" fill="#5C7A2A"/><path d="M23 35 L33 35 L33 41 Q28 44 23 41 Z" fill="#D9A07B" opacity=".85"/><ellipse cx="28" cy="27" rx="11.5" ry="12" fill="#D9A07B"/><path d="M16 27 C15 19 18 16 20 17 L20 26 Z" fill="#E7E5E9"/><path d="M40 27 C41 19 38 16 36 17 L36 26 Z" fill="#E7E5E9"/><circle cx="22.5" cy="27" r="1.9" fill="#2A1E18"/><circle cx="33.5" cy="27" r="1.9" fill="#2A1E18"/><path d="M24 33 Q28 36.5 32 33" stroke="#8A3A2A" stroke-width="1.6" fill="none" stroke-linecap="round"/><circle cx="20" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/><circle cx="36" cy="31.5" r="2.6" fill="#EE3F7A" opacity=".18"/><path d="M21.5 32 C24.5 30 31.5 30 34.5 32 C31.5 34 24.5 34 21.5 32 Z" fill="#E7E5E9"/></symbol></defs></svg>
+<div id="root" class="intro-mode">
+  <!-- =================== 1. ÚVOD: ředitelna v chaosu =================== -->
+  <div id="intro">
+    <section class="scene" aria-label="Běžné ráno v ředitelně školky">
+      <div aria-hidden="true" class="floor"></div>
+      <div aria-hidden="true" style="position:absolute;left:-160px;top:-180px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,rgba(215,242,58,.30),rgba(247,248,239,0) 66%)"></div>
+      <div aria-hidden="true" style="position:absolute;right:-200px;bottom:-160px;width:680px;height:680px;border-radius:50%;background:radial-gradient(circle,rgba(247,147,30,.16),rgba(247,248,239,0) 66%)"></div>
+      <div class="deco cork" aria-hidden="true">
+        <span class="draw" style="left:8%;top:12%;transform:rotate(-6deg)"><svg viewBox="0 0 60 50" width="100%" height="100%"><rect width="60" height="50" rx="3" fill="#FFFFFF"/><circle cx="16" cy="16" r="8" fill="#FFD23F"/><path d="M16 3v4M16 25v4M3 16h4M25 16h4M7 7l3 3M22 22l3 3M25 7l-3 3M10 22l-3 3" stroke="#FFD23F" stroke-width="2" stroke-linecap="round"/><path d="M4 46 Q30 30 56 46" fill="#9BD07E"/></svg></span>
+        <span class="draw" style="left:52%;top:8%;transform:rotate(5deg)"><svg viewBox="0 0 60 50" width="100%" height="100%"><rect width="60" height="50" rx="3" fill="#FFFFFF"/><path d="M14 26 L30 12 L46 26 Z" fill="#EE3F7A"/><rect x="18" y="26" width="24" height="18" fill="#F7931E"/><rect x="26" y="32" width="8" height="12" fill="#FFFFFF"/></svg></span>
+        <span class="draw" style="left:28%;top:52%;transform:rotate(3deg)"><svg viewBox="0 0 60 50" width="100%" height="100%"><rect width="60" height="50" rx="3" fill="#FFFFFF"/><circle cx="18" cy="18" r="5" fill="#2F6FE0"/><path d="M18 23v12M18 27l-6 4M18 27l6 4M18 35l-5 8M18 35l5 8" stroke="#2F6FE0" stroke-width="2" stroke-linecap="round"/><circle cx="40" cy="22" r="4" fill="#EE3F7A"/><path d="M40 26v10M40 29l-5 3M40 29l5 3M40 36l-4 7M40 36l4 7" stroke="#EE3F7A" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <span class="pin" style="left:20%;top:10%"></span><span class="pin" style="left:64%;top:6%"></span><span class="pin" style="left:40%;top:50%"></span>
+      </div>
+      <div class="deco clock" aria-hidden="true"><span class="hh"></span><span class="mh"></span></div>
+      <div class="fig-reg" aria-hidden="true"><svg viewBox="0 0 300 420" width="100%" height="100%" role="img" aria-label="Regál plný šanonů a papírů">
+  <defs><linearGradient id="gW" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E8D3BC"/><stop offset="1" stop-color="#D3BA9E"/></linearGradient></defs>
+  <rect x="20" y="40" width="260" height="380" rx="10" fill="url(#gW)"/>
+  <rect x="32" y="52" width="236" height="356" rx="6" fill="#F3E7DA"/>
+  <rect x="32" y="160" width="236" height="10" fill="#D3BA9E"/>
+  <rect x="32" y="280" width="236" height="10" fill="#D3BA9E"/>
+  <!-- šanony nahoře -->
+  <g font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="10" text-anchor="middle">
+    <rect x="44" y="66" width="34" height="94" rx="4" fill="#D7F23A"/><text x="61" y="113" transform="rotate(-90 61 113)" fill="#3F4D00">MATRIKA</text>
+    <rect x="82" y="66" width="34" height="94" rx="4" fill="#2F6FE0"/><text x="99" y="113" transform="rotate(-90 99 113)" fill="#FFFFFF">PLATBY</text>
+    <rect x="120" y="66" width="34" height="94" rx="4" fill="#F7931E"/><text x="137" y="113" transform="rotate(-90 137 113)" fill="#FFFFFF">OBĚDY</text>
+    <rect x="158" y="72" width="34" height="88" rx="4" fill="#EE3F7A" transform="rotate(8 175 116)"/><text x="178" y="117" transform="rotate(-82 178 117)" fill="#FFFFFF">OMLUVENKY</text>
+    <rect x="212" y="66" width="34" height="94" rx="4" fill="#9B3FE0"/><text x="229" y="113" transform="rotate(-90 229 113)" fill="#FFFFFF">DOCHÁZKA</text>
+  </g>
+  <!-- prostřední police: krabice a papíry -->
+  <rect x="46" y="214" width="96" height="66" rx="6" fill="#F7B04F"/><rect x="74" y="232" width="40" height="14" rx="3" fill="#FFFFFF" opacity=".85"/>
+  <rect x="156" y="258" width="98" height="8" rx="2" fill="#FFFFFF"/><rect x="152" y="248" width="100" height="10" rx="2" fill="#F7F4EF" transform="rotate(-3 202 253)"/><rect x="158" y="238" width="96" height="10" rx="2" fill="#FFFFFF" transform="rotate(4 206 243)"/><rect x="154" y="228" width="98" height="10" rx="2" fill="#FBF8F3" transform="rotate(-6 203 233)"/><rect x="160" y="268" width="94" height="12" rx="2" fill="#FFFFFF"/>
+  <!-- dolní police: šanony nakřivo -->
+  <rect x="48" y="300" width="34" height="100" rx="4" fill="#17694F"/>
+  <rect x="86" y="304" width="34" height="96" rx="4" fill="#E0F5EC" transform="rotate(-6 103 352)"/>
+  <rect x="138" y="300" width="34" height="100" rx="4" fill="#2F6FE0"/>
+  <rect x="176" y="300" width="34" height="100" rx="4" fill="#FDE8EF"/>
+  <rect x="214" y="300" width="34" height="100" rx="4" fill="#F7931E"/>
+  <!-- papíry na regálu -->
+  <rect x="60" y="24" width="90" height="16" rx="2" fill="#FFFFFF" transform="rotate(-4 105 32)"/>
+  <rect x="70" y="10" width="86" height="16" rx="2" fill="#F7F4EF" transform="rotate(5 113 18)"/>
+  <rect x="190" y="18" width="64" height="22" rx="3" fill="#FFE27A" transform="rotate(8 222 29)"/>
+</svg></div>
+      <div class="fig-red"><svg viewBox="0 0 380 470" width="100%" height="100%" role="img" aria-label="Ředitelka školky za stolem plným papírů">
+  <defs>
+    <linearGradient id="rCard" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F7B04F"/><stop offset="1" stop-color="#E2892A"/></linearGradient>
+    <linearGradient id="rSkin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3C6A2"/><stop offset="1" stop-color="#E5AE88"/></linearGradient>
+    <linearGradient id="rHair" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A2492A"/><stop offset="1" stop-color="#6B2A16"/></linearGradient>
+    <linearGradient id="rDesk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EADBC8"/><stop offset="1" stop-color="#D6C0A8"/></linearGradient>
+    <radialGradient id="rCheek"><stop offset="0" stop-color="#EE3F7A" stop-opacity=".35"/><stop offset="1" stop-color="#EE3F7A" stop-opacity="0"/></radialGradient>
+  </defs>
+  <!-- vlasy vzadu (mikádo) -->
+  <path d="M124 214 C112 150 150 118 192 118 C236 118 270 152 258 214 C256 240 250 262 240 270 L144 270 C132 262 126 240 124 214 Z" fill="url(#rHair)"/>
+  <!-- krk -->
+  <path d="M172 244 L210 244 L214 294 Q191 308 168 294 Z" fill="#DDA27C"/>
+  <!-- tělo: halenka + svetr -->
+  <path d="M60 470 C62 386 84 326 128 304 C150 294 170 290 190 290 C210 290 230 294 252 304 C296 326 318 386 320 470 Z" fill="url(#rCard)"/>
+  <path d="M166 292 L190 350 L214 292 Z" fill="#FFFFFF"/>
+  <path d="M166 292 L178 286 L190 304 L202 286 L214 292 L190 318 Z" fill="#F5F2EE"/>
+  <path d="M150 300 L184 420 M230 300 L196 420" stroke="#C9741E" stroke-width="3" opacity=".55"/>
+  <circle cx="186" cy="380" r="4" fill="#FFFFFF" opacity=".85"/><circle cx="186" cy="404" r="4" fill="#FFFFFF" opacity=".85"/>
+  <!-- šňůrka s kartou -->
+  <path d="M168 296 C176 330 184 352 190 362 M212 296 C206 330 198 352 190 362" stroke="#D7F23A" stroke-width="4" fill="none"/>
+  <rect x="176" y="360" width="28" height="36" rx="5" fill="#FFFFFF"/><rect x="182" y="366" width="16" height="12" rx="3" fill="#2F6FE0" opacity=".8"/><rect x="181" y="383" width="18" height="3" rx="1.5" fill="#C9CED4"/>
+  <!-- pravá ruka (z pohledu diváka levá) u spánku -->
+  <path d="M120 322 C82 300 88 230 130 196" stroke="url(#rCard)" stroke-width="38" fill="none" stroke-linecap="round"/>
+  <path d="M104 300 C92 280 96 250 112 228" stroke="#C9741E" stroke-width="3" fill="none" opacity=".45" stroke-linecap="round"/>
+  <!-- uši -->
+  <ellipse cx="136" cy="206" rx="10" ry="14" fill="#E5AE88"/>
+  <ellipse cx="246" cy="206" rx="10" ry="14" fill="#E5AE88"/>
+  <!-- obličej -->
+  <ellipse cx="191" cy="200" rx="55" ry="62" fill="url(#rSkin)"/>
+  <!-- ofina -->
+  <path d="M134 196 C128 148 160 124 194 124 C230 124 258 150 250 200 C244 176 232 160 216 154 C198 166 162 176 134 196 Z" fill="url(#rHair)"/>
+  <path d="M164 140 C182 132 208 132 226 142" stroke="#C4643E" stroke-width="4" fill="none" stroke-linecap="round" opacity=".6"/>
+  <!-- ustarané obočí -->
+  <path d="M156 180 Q166 172 180 176" stroke="#5A2414" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M202 176 Q216 172 226 180" stroke="#5A2414" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <!-- oči (koukají stranou) -->
+  <g class="r-eyes">
+    <ellipse cx="169" cy="200" rx="7.5" ry="8" fill="#FFFFFF"/><circle cx="165.5" cy="201" r="4.6" fill="#2E1E16"/><circle cx="167" cy="199" r="1.4" fill="#FFFFFF"/>
+    <ellipse cx="213" cy="200" rx="7.5" ry="8" fill="#FFFFFF"/><circle cx="209.5" cy="201" r="4.6" fill="#2E1E16"/><circle cx="211" cy="199" r="1.4" fill="#FFFFFF"/>
+  </g>
+  <!-- brýle na čtení -->
+  <path d="M152 206 Q169 220 186 206 M196 206 Q213 220 230 206" stroke="#7A3424" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M186 206 Q191 202 196 206" stroke="#7A3424" stroke-width="3" fill="none"/>
+  <!-- nos, tváře, ústa -->
+  <path d="M192 210 Q187 224 194 228" stroke="#C98A64" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <circle cx="154" cy="230" r="13" fill="url(#rCheek)"/><circle cx="228" cy="230" r="13" fill="url(#rCheek)"/>
+  <path d="M180 243 Q186 238 192 243 Q198 248 204 243" stroke="#8A3A2A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  <!-- kapka potu -->
+  <path d="M256 168 C252 176 250 182 254 186 C258 189 263 186 262 180 C261 175 258 172 256 168 Z" fill="#9FD3F2"/>
+  <!-- ruka u spánku -->
+  <ellipse cx="130" cy="190" rx="19" ry="22" fill="#EDB792"/>
+  <path d="M120 176 L114 192 M128 172 L122 190 M136 172 L132 190" stroke="#D69872" stroke-width="2.4" stroke-linecap="round"/>
+  <!-- stůl -->
+  <rect x="0" y="398" width="380" height="72" fill="url(#rDesk)"/>
+  <rect x="0" y="390" width="380" height="12" rx="4" fill="#F6ECDF"/>
+  <!-- hromady papírů -->
+  <g>
+    <rect x="236" y="374" width="104" height="18" rx="2" fill="#FFFFFF" transform="rotate(-3 288 383)"/>
+    <rect x="240" y="358" width="100" height="18" rx="2" fill="#F7F4EF" transform="rotate(4 290 367)"/>
+    <rect x="232" y="342" width="106" height="18" rx="2" fill="#FFFFFF" transform="rotate(-5 285 351)"/>
+    <rect x="244" y="326" width="96" height="18" rx="2" fill="#FBF8F3" transform="rotate(6 292 335)"/>
+    <rect x="238" y="310" width="100" height="18" rx="2" fill="#FFFFFF" transform="rotate(-2 288 319)"/>
+    <rect x="252" y="298" width="56" height="12" rx="2" fill="#FFE27A" transform="rotate(-10 280 304)"/>
+  </g>
+  <!-- šanon -->
+  <rect x="30" y="300" width="44" height="92" rx="5" fill="#EE3F7A"/>
+  <rect x="38" y="316" width="28" height="50" rx="3" fill="#FFFFFF" opacity=".9"/>
+  <circle cx="52" cy="378" r="5" fill="#B82A5B"/>
+  <text x="52" y="342" font-size="9" font-weight="800" fill="#B82A5B" text-anchor="middle" transform="rotate(-90 52 342)" font-family="Plus Jakarta Sans, sans-serif">ÚRAZY</text>
+  <!-- zvonící telefon -->
+  <g class="r-phone">
+    <rect x="80" y="364" width="66" height="28" rx="8" fill="#2F6FE0"/>
+    <path d="M82 364 C82 346 144 346 144 364 L132 364 C132 356 94 356 94 364 Z" fill="#2559BE"/>
+    <circle cx="102" cy="378" r="3" fill="#FFFFFF" opacity=".8"/><circle cx="113" cy="378" r="3" fill="#FFFFFF" opacity=".8"/><circle cx="124" cy="378" r="3" fill="#FFFFFF" opacity=".8"/>
+  </g>
+  <path class="r-ring" d="M72 344 Q66 352 72 360 M64 338 Q54 352 64 366 M154 344 Q160 352 154 360 M162 338 Q172 352 162 366" stroke="#2F6FE0" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- hrnek -->
+  <path d="M196 364 L222 364 L220 392 Q209 397 198 392 Z" fill="#D7F23A"/>
+  <path d="M222 370 C232 370 232 384 221 384" stroke="#B7CF26" stroke-width="4" fill="none"/>
+</svg></div>
+      <span class="paper" aria-hidden="true" style="left:30%;top:18%;animation-delay:0s;--r:-14deg"></span><span class="paper" aria-hidden="true" style="left:64%;top:12%;animation-delay:1.2s;--r:10deg"></span><span class="paper" aria-hidden="true" style="left:44%;top:64%;animation-delay:2.1s;--r:-6deg"></span><span class="paper" aria-hidden="true" style="left:72%;top:58%;animation-delay:0.6s;--r:18deg"></span><span class="paper" aria-hidden="true" style="left:24%;top:52%;animation-delay:1.7s;--r:8deg"></span><span class="paper" aria-hidden="true" style="left:58%;top:34%;animation-delay:2.6s;--r:-20deg"></span>
+      <span class="wm-intro"><span aria-label="LifeOS Digitální školka" style="font-size:20px;letter-spacing:-0.03em;white-space:nowrap"><span style="font-weight:600">Life</span><span style="font-weight:400;color:#514F57">OS</span><span style="font-weight:500;color:#7A7780;margin-left:8px;font-size:15px;letter-spacing:-0.01em">· Digitální školka</span></span></span>
+      <div class="chat"><div class="b in b1"><span class="bub"><span class="dots" aria-hidden="true" style="color:#7A7780"><i></i><i></i><i></i></span><span class="t"><small><i style="background:#EE3F7A"></i>SMS · máma Emy</small>Ema dnes nepřijde, má rýmu.</span></span></div><div class="b in b2"><span class="bub"><span class="dots" aria-hidden="true" style="color:#7A7780"><i></i><i></i><i></i></span><span class="t"><small><i style="background:#F7931E"></i>Kuchyně</small>Kolik dnes vaříme obědů?</span></span></div><div class="b in b3"><span class="bub"><span class="dots" aria-hidden="true" style="color:#7A7780"><i></i><i></i><i></i></span><span class="t"><small><i style="background:#17A06B"></i>Třída Sluníčka</small>Oliver má 38,4. Mámě se nemůžu dovolat.</span></span></div><div class="b in b4"><span class="bub"><span class="dots" aria-hidden="true" style="color:#7A7780"><i></i><i></i><i></i></span><span class="t"><small><i style="background:#2F6FE0"></i>Hospodářka</small>Platba od Nováků nesedí s Excelem.</span></span></div><div class="b in b5"><span class="bub"><span class="dots" aria-hidden="true" style="color:#7A7780"><i></i><i></i><i></i></span><span class="t"><small><i style="background:#9B3FE0"></i>Kalendář</small>Matrika se odevzdává v pátek!</span></span></div><div class="b me b6"><span class="who"><svg viewBox="0 0 56 56" width="100%" height="100%" aria-hidden="true"><use href="#av-reditelka"></use></svg></span><span class="bub"><span class="dots" aria-hidden="true" style="color:#B9B7BD"><i></i><i></i><i></i></span><span class="t">Kde jsem to jen zapsala…?</span></span></div></div>
+      <div class="fogged" aria-hidden="true"></div>
+      <div class="big"><h1>Školka<br>bez papírů.</h1></div>
+      <button type="button" class="skip" id="skip">Přeskočit</button>
+    </section>
+  </div>
 
-  <header style="position:relative;z-index:5;max-width:1200px;box-sizing:border-box;margin:0 auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px">
-    <a href="./" style="display:inline-flex;align-items:center;gap:10px;min-height:44px;text-decoration:none">
-      <span style="font-weight:800;font-size:24px;letter-spacing:-0.035em">LifeOS</span>
-      <span style="display:inline-flex;align-items:center;min-height:30px;padding:0 12px;border-radius:999px;background:#FFFFFF;font-size:13px;font-weight:700;color:#3F4D00;white-space:nowrap">Digitální školka</span>
-    </a>
-    <a href="https://lifeos.romarte.cz/" style="display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 14px;border-radius:999px;background:#FFFFFF;font-size:14px;font-weight:700;color:#8A1E4A;text-decoration:none;white-space:nowrap">Pro rodiče
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg>
-    </a>
-  </header>
-
-  <!-- 1. úvod -->
-  <section style="position:relative;max-width:1200px;box-sizing:border-box;margin:0 auto;padding:32px 24px 0;display:flex;flex-wrap:wrap;align-items:center;gap:48px">
-    <div class="sk-h" style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:18px">
-      <h1 style="margin:0;font-size:clamp(52px,7vw,96px);line-height:.95;letter-spacing:-0.05em;font-weight:800">Školka bez papírů.</h1>
-      <p style="margin:0;font-size:clamp(18px,1.6vw,21px);line-height:1.5;color:#4A4751;max-width:26em">Ředitelna, třída i jídelna v jedné aplikaci. Rodiče v LifeOS.</p>
-    </div>
-    <div style="flex:1 1 520px;min-width:0">
-      <div class="sk-dev" style="border-radius:34px;padding:14px;box-sizing:border-box;background:linear-gradient(145deg,#3A3840,#17161A 45%,#2E2D33);box-shadow:inset 0 0 0 2px #55535C,0 50px 100px -30px rgba(23,22,26,.42)">
-        <div style="position:relative;border-radius:22px;overflow:hidden;aspect-ratio:16/10;background:#FFFFFF">
-          <img src="img/trida.jpg" alt="Tablet ve třídě: zdraví, oběd s alergeny, kdo dnes vyzvedává a dlaždice dětí" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left top;display:block">
-          <div class="sk-right" style="position:absolute;inset:0">
-            <img src="img/reditelna.jpg" alt="Ředitelna: přehled dne, co vyžaduje pozornost a obsazenost tříd" style="width:100%;height:100%;object-fit:cover;object-position:right top;display:block">
+  <!-- =================== 2. ONE PAGE =================== -->
+  <div id="app" hidden>
+    <header id="hdr" class="hdr"><span aria-label="LifeOS Digitální školka" style="font-size:20px;letter-spacing:-0.03em;white-space:nowrap"><span style="font-weight:600">Life</span><span style="font-weight:400;color:#514F57">OS</span><span style="font-weight:500;color:#7A7780;margin-left:8px;font-size:15px;letter-spacing:-0.01em">· Digitální školka</span></span><a class="plink" href="https://lifeos.romarte.cz/">Pro rodiče ↗</a></header>
+    <div id="scrolly" style="position:relative;height:500vh">
+      <div class="stage">
+        <div id="glow" aria-hidden="true" class="glow"></div>
+        <div class="tab-w phone-in">
+          <div class="tab">
+            <div class="screen"><img class="scr" src="img/login.jpg" alt="Přihlášení do Digitální školky: Ředitelna, Třída nebo Jídelna" style="opacity:1;transform:translateX(0%)"><img class="scr" src="img/trida.jpg" alt="Tablet učitelky ve třídě: děti, zdraví, obědy" style="opacity:0;transform:translateX(8%)"><img class="scr" src="img/reditelna.jpg" alt="Ředitelna: přehled školky na počítači" style="opacity:0;transform:translateX(8%)"><span class="tap" id="tap" style="left:30%;top:40%;margin:-23px 0 0 -23px"></span></div>
           </div>
-          <div class="sk-seam" aria-hidden="true" style="position:absolute;left:50%;top:-10%;width:6px;height:120%;margin-left:-3px;background:#D7F23A;box-shadow:0 0 0 3px rgba(255,255,255,.9),0 0 30px rgba(215,242,58,.8);transform:rotate(14.4deg)"></div>
-          <span class="sk-tag1" style="position:absolute;left:16px;bottom:16px;display:flex;align-items:center;gap:8px;background:#17161A;color:#FFFFFF;border-radius:999px;padding:8px 14px 8px 10px;font-size:14px;font-weight:700"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"></rect></svg>Třída · tablet</span>
-          <span class="sk-tag2" style="position:absolute;right:16px;top:16px;display:flex;align-items:center;gap:8px;background:#D7F23A;color:#17161A;border-radius:999px;padding:8px 14px 8px 10px;font-size:14px;font-weight:800"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M8 20h8M12 16v4"></path></svg>Ředitelna · počítač</span>
         </div>
+        <div class="step" data-s="0"><div class="fc front p-hd d1"><div class="head">Každý vidí jen to své</div></div><div class="fc front p-r1 d2"><div class="card roles"><div class="role"><span style="width:40px;height:40px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#E6EEFC;color:#2F6FE0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M8 20h8M12 16v4"></path></svg></span><span><b>Ředitelna</b><span>ředitelka, hospodářka</span></span></div><div class="role"><span style="width:40px;height:40px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#E0F5F3;color:#17806F"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2.5"></rect><path d="M11 17h2"></path></svg></span><span><b>Třída</b><span>učitelka na tabletu</span></span></div></div></div><div class="fc front p-r2 d3"><div class="card roles"><div class="role"><span style="width:40px;height:40px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#FFF1E0;color:#7A4300"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v8a2 2 0 0 0 2 2v8M11 3v8M5 3v8M17 3c-2 0-3 3-3 6s1 4 3 4v8"></path></svg></span><span><b>Jídelna</b><span>vedoucí, kuchařka</span></span></div><div class="role"><span style="width:40px;height:40px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#FDE8EF;color:#B82A5B"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"></rect><path d="M11 18.5h2"></path></svg></span><span><b>Rodiče</b><span>v aplikaci LifeOS</span></span></div></div></div><div class="fc front p-l2 d4"><div class="card" style="display:flex;align-items:center;gap:12px;"><span style="width:38px;height:38px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#17161A;color:#D7F23A"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"></rect><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"></path></svg></svg></span><span style="display:flex;flex-direction:column;line-height:1.3"><b style="font-size:15px">Přístupy zakládá ředitelka</b><span style="font-size:13px;color:#6F6C75">žádná registrace zvenku</span></span></div></div><div class="fc av back a-2 d5"><span class="avc"><svg viewBox="0 0 56 56" role="img" aria-label="Ředitelka"><use href="#av-reditelka"></use></svg></span><span class="avt">Ředitelka</span></div></div><div class="step" data-s="1" style="display:none"><div class="fc front p-hd d1"><div class="head">Omluvenky bez papírků</div></div><div class="fc front p-r1 d2"><div class="card" style="display:flex;flex-direction:column;gap:6px;max-width:260px"><span class="old">SMS: „Ema dnes nepřijde“</span><span style="display:flex;align-items:center;gap:8px;font-weight:800;font-size:15px"><span style="width:22px;height:22px;flex:none;border-radius:50%;background:#D7F23A;display:flex;align-items:center;justify-content:center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#17161A" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Omluveno v aplikaci</span></div></div><div class="fc front p-l2 d3"><div class="card" style="display:flex;align-items:center;gap:12px;"><span style="width:38px;height:38px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#FFF1E0;color:#7A4300"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v8a2 2 0 0 0 2 2v8M11 3v8M5 3v8M17 3c-2 0-3 3-3 6s1 4 3 4v8"></path></svg></span><span style="display:flex;flex-direction:column;line-height:1.3"><b style="font-size:15px">Oběd se odhlásí sám</b><span style="font-size:13px;color:#6F6C75">kuchyně to ví hned</span></span></div></div><div class="fc front p-r2 d4"><div class="card" style="display:flex;align-items:center;gap:12px;"><span style="width:38px;height:38px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#E6EEFC;color:#2F6FE0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg></span><span style="display:flex;flex-direction:column;line-height:1.3"><b style="font-size:15px">Docházka 53 / 62</b><span style="font-size:13px;color:#6F6C75">spočítaná bez sčítání</span></span></div></div><div class="fc av back a-1 d5"><span class="avc"><svg viewBox="0 0 56 56" role="img" aria-label="Táta Emy"><use href="#av-muz"></use></svg></span><span class="avt">Táta Emy</span></div></div><div class="step" data-s="2" style="display:none"><div class="fc front p-hd d1"><div class="head">Teplota? Rodič to ví hned.</div></div><div class="fc front p-r1 d2"><div class="card" style="background:linear-gradient(145deg,#FDE8EF,#F7C3D5)"><span style="font-size:13px;font-weight:800;color:#8A1E4A">Oliver N. · 10:12</span><div style="font-size:30px;font-weight:800;letter-spacing:-0.04em">38,4 °C</div></div></div><div class="fc front p-r2 d3"><div class="card" style="display:flex;align-items:center;gap:12px;"><span style="width:38px;height:38px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#17161A;color:#D7F23A"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9a6 6 0 0 1 12 0c0 6 2.5 7.5 2.5 7.5h-17S6 15 6 9"></path><path d="M10 20a2 2 0 0 0 4 0"></path></svg></span><span style="display:flex;flex-direction:column;line-height:1.3"><b style="font-size:15px">Máma to viděla 10:13</b><span style="font-size:13px;color:#6F6C75">bez obvolávání</span></span></div></div><div class="fc front p-l2 d4"><div class="card" style="display:flex;flex-direction:column;gap:6px;max-width:260px"><span class="old">Kniha úrazů v šanonu</span><span style="display:flex;align-items:center;gap:8px;font-weight:800;font-size:15px"><span style="width:22px;height:22px;flex:none;border-radius:50%;background:#D7F23A;display:flex;align-items:center;justify-content:center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#17161A" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Úraz z tabletu i se svědkem</span></div></div><div class="fc av back a-2 d5"><span class="avc"><svg viewBox="0 0 56 56" role="img" aria-label="Paní učitelka"><use href="#av-ucitelka"></use></svg></span><span class="avt">Paní učitelka</span></div></div><div class="step" data-s="3" style="display:none"><div class="fc front p-hd d1"><div class="head">Kuchyně ví, kolik vařit</div></div><div class="fc front p-r1 d2"><div class="card"><span style="font-size:13px;font-weight:700;color:#6F6C75">Dnes obědvá</span><div style="font-size:30px;font-weight:800;letter-spacing:-0.04em">46 dětí</div></div></div><div class="fc front p-r2 d3"><div class="card" style="display:flex;flex-direction:column;gap:8px"><span style="font-size:13px;font-weight:800">Alergie a diety</span><span style="display:flex;gap:6px;flex-wrap:wrap"><span class="pill" style="background:#FDECEA;color:#8A1C14">Ema · bez mléka</span><span class="pill" style="background:#FFF1E0;color:#7A4300">Anna · bez lepku</span></span></div></div><div class="fc front p-l2 d4"><div class="card" style="display:flex;flex-direction:column;gap:6px;max-width:260px"><span class="old">„Kolik dnes vaříme?“</span><span style="display:flex;align-items:center;gap:8px;font-weight:800;font-size:15px"><span style="width:22px;height:22px;flex:none;border-radius:50%;background:#D7F23A;display:flex;align-items:center;justify-content:center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#17161A" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Přesný počet každé ráno</span></div></div><div class="fc av back a-1 d5"><span class="avc"><svg viewBox="0 0 56 56" role="img" aria-label="Kuchyně"><use href="#av-kucharka"></use></svg></span><span class="avt">Kuchyně</span></div></div><div class="step" data-s="4" style="display:none"><div class="fc front p-hd d1"><div class="head">Platby a matrika bez Excelu</div></div><div class="fc front p-r1 d2"><div class="card" style="display:flex;align-items:center;gap:12px;"><span style="width:38px;height:38px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#E6EEFC;color:#2F6FE0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1"></rect><rect x="14" y="4" width="6" height="6" rx="1"></rect><rect x="4" y="14" width="6" height="6" rx="1"></rect><path d="M14 14h2v2h-2zM18 18h2v2h-2zM14 18h2M18 14h2"></path></svg></span><span style="display:flex;flex-direction:column;line-height:1.3"><b style="font-size:15px">Školkovné přes QR</b><span style="font-size:13px;color:#6F6C75">výpis z banky se spáruje sám</span></span></div></div><div class="fc front p-r2 d3"><div class="card" style="display:flex;align-items:center;gap:12px;"><span style="width:38px;height:38px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#FDECEA;color:#C42B1C"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M9 13h6M9 17h4"></path></svg></span><span style="display:flex;flex-direction:column;line-height:1.3"><b style="font-size:15px">Matrika: 4 chyby</b><span style="font-size:13px;color:#6F6C75">uvidíte je dřív než termín</span></span></div></div><div class="fc front p-l2 d4"><div class="card" style="display:flex;flex-direction:column;gap:6px;max-width:260px"><span class="old">Párování plateb v Excelu</span><span style="display:flex;align-items:center;gap:8px;font-weight:800;font-size:15px"><span style="width:22px;height:22px;flex:none;border-radius:50%;background:#D7F23A;display:flex;align-items:center;justify-content:center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#17161A" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Zaplaceno · spárováno</span></div></div><div class="fc av back a-2 d5"><span class="avc"><svg viewBox="0 0 56 56" role="img" aria-label="Ředitelka"><use href="#av-reditelka"></use></svg></span><span class="avt">Ředitelka</span></div></div>
+        <div class="dots-nav" aria-hidden="true"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div id="hint" aria-hidden="true"><span>Posuňte dolů</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></div>
       </div>
     </div>
-  </section>
 
-  <!-- 2. pálčivé problémy -->
-  <section style="position:relative;max-width:1200px;box-sizing:border-box;margin:0 auto;padding:110px 24px 96px;display:flex;flex-direction:column;gap:44px">
-    <h2 style="margin:0;text-align:center;font-size:clamp(34px,4.4vw,54px);line-height:1.04;letter-spacing:-0.045em;font-weight:800;text-wrap:balance">Co ve školce zdržuje</h2>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px">
-      <article class="sk-card sk-p1" style="background:#FFFFFF;border-radius:28px;padding:28px;display:flex;flex-direction:column;gap:12px">
-        <p class="sk-old" style="margin:0;font-size:17px;font-weight:600;color:#6F6C75">Omluvenky v SMS a na papírku</p>
-        <p class="sk-new" style="margin:0;font-size:22px;line-height:1.25;font-weight:800;letter-spacing:-0.02em">Rodič omluví v aplikaci. Oběd se odhlásí sám.</p>
-      </article>
-      <article class="sk-card sk-p2" style="background:#FFFFFF;border-radius:28px;padding:28px;display:flex;flex-direction:column;gap:12px">
-        <p class="sk-old" style="margin:0;font-size:17px;font-weight:600;color:#6F6C75">Volání rodičům kvůli teplotě</p>
-        <p class="sk-new" style="margin:0;font-size:22px;line-height:1.25;font-weight:800;letter-spacing:-0.02em">Učitelka zapíše. Rodič to vidí hned.</p>
-      </article>
-      <article class="sk-card sk-p3" style="background:#FFFFFF;border-radius:28px;padding:28px;display:flex;flex-direction:column;gap:12px">
-        <p class="sk-old" style="margin:0;font-size:17px;font-weight:600;color:#6F6C75">Párování plateb v Excelu</p>
-        <p class="sk-new" style="margin:0;font-size:22px;line-height:1.25;font-weight:800;letter-spacing:-0.02em">QR platba. Výpis z banky se spáruje sám.</p>
-      </article>
-      <article class="sk-card sk-p4" style="background:#FFFFFF;border-radius:28px;padding:28px;display:flex;flex-direction:column;gap:12px">
-        <p class="sk-old" style="margin:0;font-size:17px;font-weight:600;color:#6F6C75">Matrika na poslední chvíli</p>
-        <p class="sk-new" style="margin:0;font-size:22px;line-height:1.25;font-weight:800;letter-spacing:-0.02em">Chyby uvidíte dřív, než přijde termín.</p>
-      </article>
-      <article class="sk-card sk-p5" style="background:#FFFFFF;border-radius:28px;padding:28px;display:flex;flex-direction:column;gap:12px">
-        <p class="sk-old" style="margin:0;font-size:17px;font-weight:600;color:#6F6C75">Kniha úrazů v šanonu</p>
-        <p class="sk-new" style="margin:0;font-size:22px;line-height:1.25;font-weight:800;letter-spacing:-0.02em">Úraz z tabletu je v knize hned. I se svědkem.</p>
-      </article>
-      <article class="sk-card sk-p6" style="background:#FFFFFF;border-radius:28px;padding:28px;display:flex;flex-direction:column;gap:12px">
-        <p class="sk-old" style="margin:0;font-size:17px;font-weight:600;color:#6F6C75">Kuchyně neví, kolik vařit</p>
-        <p class="sk-new" style="margin:0;font-size:22px;line-height:1.25;font-weight:800;letter-spacing:-0.02em">Jídelna vidí přesný počet a alergie.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- 3. tři přihlášení -->
-  <section style="position:relative;background:#FFFFFF">
-    <div style="max-width:1100px;box-sizing:border-box;margin:0 auto;padding:88px 24px;display:flex;flex-direction:column;align-items:center;gap:32px;text-align:center">
-      <h2 style="margin:0;font-size:clamp(30px,3.6vw,44px);line-height:1.05;letter-spacing:-0.04em;font-weight:800;text-wrap:balance">Každý vidí jen to své</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px;width:100%">
-        <div style="border-radius:24px;background:#E6EEFC;padding:24px;display:flex;flex-direction:column;align-items:center;gap:10px">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2F6FE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10l9-6 9 6"></path><path d="M5 10v9h14v-9"></path><path d="M9 19v-5h6v5"></path></svg>
-          <span style="font-size:20px;font-weight:800">Ředitelna</span>
-          <span style="font-size:15px;color:#3A4A66">ředitelka, hospodářka</span>
+    <!-- rodiče -->
+    <section id="rodice" aria-labelledby="rodice-h" class="band">
+      <div class="band-in">
+        <div class="rv">
+          <span class="eyebrow"><span style="width:26px;height:26px;flex:none;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#FDE8EF;color:#B82A5B"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"></rect><path d="M11 18.5h2"></path></svg></span>Rodiče v LifeOS</span>
+          <h2 id="rodice-h" class="h2">Rodiče vidí vše v telefonu.</h2>
+          <p class="lead">Omluvenky, teplota, úrazy, jídelníček, akce i platby. Ve stejné aplikaci, kde mají zdraví celé rodiny.</p>
+          <a class="more" href="https://lifeos.romarte.cz/">Aplikace LifeOS pro rodiče <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg></a>
         </div>
-        <div style="border-radius:24px;background:#FFF1E0;padding:24px;display:flex;flex-direction:column;align-items:center;gap:10px">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7A4300" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"></rect><path d="M11 16h2"></path></svg>
-          <span style="font-size:20px;font-weight:800">Třída</span>
-          <span style="font-size:15px;color:#6B4512">učitelka na tabletu</span>
-        </div>
-        <div style="border-radius:24px;background:#E0F5EC;padding:24px;display:flex;flex-direction:column;align-items:center;gap:10px">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#17694F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v8M5 3v4a2 2 0 0 0 4 0V3M7 11v10M16 3c-1.7 0-3 2-3 5s1.3 4 3 4v9"></path></svg>
-          <span style="font-size:20px;font-weight:800">Jídelna</span>
-          <span style="font-size:15px;color:#1F5A45">vedoucí, kuchařka</span>
-        </div>
-        <div style="border-radius:24px;background:#FDE8EF;padding:24px;display:flex;flex-direction:column;align-items:center;gap:10px">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#B1245E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"></rect><path d="M11 18.5h2"></path></svg>
-          <span style="font-size:20px;font-weight:800">Rodiče</span>
-          <span style="font-size:15px;color:#6E2244">v aplikaci LifeOS</span>
+        <div class="feed rv" aria-hidden="true">
+          <div class="note flt"><span class="nav"><span style="width:40px;height:40px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" aria-hidden="true"><use href="#av-ucitelka"></use></svg></span></span><span><small>Třída Sluníčka · 10:12</small><b>Oliver má 38,4 °C. Prosíme o vyzvednutí.</b></span></div>
+          <div class="note flt" style="animation-delay:1.2s;margin-left:36px"><span class="nav"><span style="width:40px;height:40px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" aria-hidden="true"><use href="#av-kucharka"></use></svg></span></span><span><small>Jídelna · zítra</small><b>Rizoto se sýrem, Ema bez mléka.</b></span></div>
+          <div class="note flt" style="animation-delay:2.2s"><span class="nav"><span style="width:40px;height:40px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" aria-hidden="true"><use href="#av-reditelka"></use></svg></span></span><span><small>Ředitelna · platby</small><b>Školkovné za listopad je zaplacené.</b></span></div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- 4. bezpečí -->
-  <section style="position:relative;padding:88px 24px 96px">
-    <div style="max-width:1000px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:24px;text-align:center">
-      <h2 style="margin:0;font-size:clamp(28px,3.2vw,38px);line-height:1.1;letter-spacing:-0.04em;font-weight:800">Údaje dětí v bezpečí</h2>
-      <ul style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:10px">
-        <li style="display:flex;align-items:center;gap:10px;background:#FFFFFF;border-radius:999px;padding:12px 18px 12px 12px;font-weight:700;font-size:16px"><span style="width:12px;height:12px;border-radius:50%;background:#17161A"></span>Přístupy zakládá jen ředitelka</li>
-        <li style="display:flex;align-items:center;gap:10px;background:#FFFFFF;border-radius:999px;padding:12px 18px 12px 12px;font-weight:700;font-size:16px"><span style="width:12px;height:12px;border-radius:50%;background:#2F6FE0"></span>Učitelky nevidí rodná čísla</li>
-        <li style="display:flex;align-items:center;gap:10px;background:#FFFFFF;border-radius:999px;padding:12px 18px 12px 12px;font-weight:700;font-size:16px"><span style="width:12px;height:12px;border-radius:50%;background:#17694F"></span>Každá změna se zapisuje</li>
-      </ul>
-    </div>
-  </section>
+    <!-- bezpečí -->
+    <section id="bezpeci" aria-labelledby="bezpeci-h" style="position:relative;padding:110px 20px;overflow:hidden">
+      <div class="sec-grid">
+        <div class="sec-vis rv" aria-hidden="true">
+          <span class="ring" style="width:300px;height:300px"></span>
+          <span class="ring" style="width:440px;height:440px;opacity:.6"></span>
+          <div class="lock"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#D7F23A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"></rect><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"></path><circle cx="12" cy="15.3" r="1.4" fill="#D7F23A"></circle></svg></div>
+          <span class="chip flt" style="left:4%;top:16%">Role a přístupy</span>
+          <span class="chip flt" style="right:2%;top:46%;animation-delay:1.2s">Servery v EU</span>
+          <span class="chip flt" style="left:8%;bottom:12%;animation-delay:2.1s">HTTPS</span>
+          <span class="orb-av flt" style="right:12%;top:8%;animation-delay:.6s"><svg viewBox="0 0 56 56" width="100%" height="100%" aria-hidden="true"><use href="#av-ucitelka"></use></svg><i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"></rect><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"></path></svg></i></span>
+          <span class="orb-av flt" style="right:20%;bottom:6%;animation-delay:1.8s"><svg viewBox="0 0 56 56" width="100%" height="100%" aria-hidden="true"><use href="#av-holka"></use></svg><i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"></rect><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"></path></svg></i></span>
+          <span class="orb-av flt" style="left:0;top:52%;animation-delay:2.6s;width:56px;height:56px"><svg viewBox="0 0 56 56" width="100%" height="100%" aria-hidden="true"><use href="#av-reditelka"></use></svg><i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"></rect><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"></path></svg></i></span>
+        </div>
+        <div>
+          <span class="eyebrow rv"><span style="width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#17161A;color:#D7F23A"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"></rect><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"></path></svg></span>Bezpečí na prvním místě</span>
+          <h2 id="bezpeci-h" class="h2 rv">Údaje dětí<br>v bezpečí.</h2>
+          <p class="lead rv">Zdravotní údaje, alergie a kontakty na rodiče vidí jen ten, kdo je ke své práci potřebuje.</p>
+          <div class="sgrid"><div class="sitem rv"><span style="width:40px;height:40px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#F2F6E4;color:#3F4D00"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6"></path><path d="M16 11l2 2 4-4"></path></svg></span><span><b>Přístupy zakládá jen ředitelka</b><span>Žádná registrace zvenku. Každý má jen svou roli.</span></span></div><div class="sitem rv"><span style="width:40px;height:40px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#F2F6E4;color:#3F4D00"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18"></path><path d="M10.6 5.1A10 10 0 0 1 12 5c5 0 9 4.5 10 7-.4 1-1.2 2.3-2.4 3.5M6.6 6.6C4.6 7.9 3.1 9.9 2 12c1 2.5 5 7 10 7 1.7 0 3.2-.5 4.6-1.3"></path></svg></span><span><b>Učitelky nevidí rodná čísla</b><span>Citlivé údaje jsou jen v ředitelně.</span></span></div><div class="sitem rv"><span style="width:40px;height:40px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#F2F6E4;color:#3F4D00"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8v5l3 2"></path><circle cx="12" cy="12" r="9"></circle></svg></span><span><b>Každá změna se zapisuje</b><span>Kdo, co a kdy změnil, je dohledatelné.</span></span></div><div class="sitem rv"><span style="width:40px;height:40px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#F2F6E4;color:#3F4D00"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"></path></svg></span><span><b>Servery v EU</b><span>Data leží v datacentru v Evropské unii.</span></span></div><div class="sitem rv"><span style="width:40px;height:40px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#F2F6E4;color:#3F4D00"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"></rect><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"></path></svg></span><span><b>Šifrovaný přenos</b><span>Vše mezi tabletem, ředitelnou a rodiči jde přes HTTPS.</span></span></div><div class="sitem rv"><span style="width:40px;height:40px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#F2F6E4;color:#3F4D00"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18"></path><path d="M7 7h-.01M12 2l8 4v6c0 1.6-.4 3-1 4.3M5.4 5.4C4.5 6 4 7 4 8v4c0 5 3.4 8.7 8 10 1.5-.4 2.8-1.1 4-2"></path></svg></span><span><b>Žádná reklama, žádný prodej dat</b><span>Údaje dětí slouží jen školce a rodičům.</span></span></div></div>
+        </div>
+      </div>
+    </section>
 
-  <footer style="position:relative;max-width:1200px;box-sizing:border-box;margin:0 auto;padding:0 24px 36px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:13px;color:#5E5B66">
-    <span>© 2026 LifeOS · Digitální školka · Ukázková mateřská škola.</span>
-    <a href="https://lifeos.romarte.cz/" style="color:inherit">LifeOS pro rodiny</a>
-  </footer>
+    <!-- konec -->
+    <section id="kontakt" style="position:relative;min-height:90vh;display:flex;align-items:center;justify-content:center;padding:96px 20px;overflow:hidden">
+      <div aria-hidden="true" style="position:absolute;left:-180px;top:-200px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,rgba(47,111,224,.12),rgba(247,248,239,0) 66%)"></div>
+      <div aria-hidden="true" style="position:absolute;right:-200px;bottom:-220px;width:680px;height:680px;border-radius:50%;background:radial-gradient(circle,rgba(215,242,58,.45),rgba(247,248,239,0) 66%)"></div>
+      <span class="z-av flt" aria-hidden="true" style="left:9%;top:18%"><svg viewBox="0 0 56 56" width="100%" height="100%"><use href="#av-ucitelka"></use></svg></span>
+      <span class="z-av flt" aria-hidden="true" style="right:10%;top:24%;width:64px;height:64px;animation-delay:1.4s"><svg viewBox="0 0 56 56" width="100%" height="100%"><use href="#av-kucharka"></use></svg></span>
+      <span class="z-av flt" aria-hidden="true" style="left:14%;bottom:16%;width:58px;height:58px;animation-delay:2.2s"><svg viewBox="0 0 56 56" width="100%" height="100%"><use href="#av-kluk"></use></svg></span>
+      <span class="z-av flt" aria-hidden="true" style="right:13%;bottom:12%;animation-delay:.8s"><svg viewBox="0 0 56 56" width="100%" height="100%"><use href="#av-reditelka"></use></svg></span>
+      <div style="position:relative;width:100%;max-width:880px;display:flex;flex-direction:column;align-items:center;gap:26px;text-align:center">
+        <div class="rv" style="display:flex;flex-direction:column;align-items:center;gap:10px"><div style="display:flex"><span style="width:48px;height:48px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" aria-hidden="true"><use href="#av-reditelka"></use></svg></span><span style="width:48px;height:48px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" aria-hidden="true"><use href="#av-ucitelka"></use></svg></span><span style="width:48px;height:48px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" aria-hidden="true"><use href="#av-kucharka"></use></svg></span><span style="width:48px;height:48px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" aria-hidden="true"><use href="#av-holka"></use></svg></span><span style="width:48px;height:48px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" aria-hidden="true"><use href="#av-muz"></use></svg></span><span style="width:48px;height:48px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" aria-hidden="true"><use href="#av-kluk"></use></svg></span><span style="width:48px;height:48px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" aria-hidden="true"><use href="#av-zena"></use></svg></span></div><span style="font-size:14px;font-weight:700;color:#6F6C75">Ředitelna, třída, jídelna i rodiče v jednom</span></div>
+        <h2 class="rv" style="margin:0;font-size:clamp(42px,6.6vw,88px);line-height:.95;letter-spacing:-0.05em;font-weight:800">Chcete školku<br>bez papírů?</h2>
+        <p class="rv lead" style="margin:0;max-width:30em">Ukážeme vám Digitální školku na příkladu vaší školky. Nezávazně.</p>
+        <a class="rv cta" href="https://www.linkedin.com/in/roman-arte-98b38533a" target="_blank" rel="noopener">Ozvěte se nám na LinkedIn <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg></a>
+      </div>
+    </section>
+    <footer class="foot">
+      <span>© 2026 LifeOS · Digitální školka · Ukázková data, smyšlená mateřská škola.</span>
+      <span style="display:flex;gap:18px"><a href="https://lifeos.romarte.cz/" style="color:inherit">LifeOS pro rodiče</a><a href="https://lifeos.romarte.cz/soukromi" style="color:inherit">Ochrana soukromí</a></span>
+    </footer>
+  </div>
 </div>
+<script>
+var STEPIMG=[0, 1, 1, 1, 2];
+(function(){
+  var root=document.getElementById('root'),intro=document.getElementById('intro'),app=document.getElementById('app');
+  var scrolly=document.getElementById('scrolly'),steps=[].slice.call(document.querySelectorAll('.step')),imgs=[].slice.call(document.querySelectorAll('.scr'));
+  var dots=[].slice.call(document.querySelectorAll('.dot')),tap=document.getElementById('tap'),glow=document.getElementById('glow'),hint=document.getElementById('hint'),hdr=document.getElementById('hdr');
+  var glows=['rgba(215,242,58,.45)','rgba(238,63,122,.22)','rgba(217,45,32,.18)','rgba(247,147,30,.30)','rgba(47,111,224,.22)'];
+  var tapPos=[['28%','48%'],['42%','14%'],['33%','38%'],['62%','30%'],['70%','10%']];
+  var phase='intro',step=0,timer;
+  function setStep(s){
+    step=s;var im=STEPIMG[s];
+    steps.forEach(function(el,i){el.style.display=i===s?'contents':'none';});
+    imgs.forEach(function(el,i){el.style.opacity=i===im?1:0;el.style.transform='translateX('+(i===im?0:(i<im?-8:8))+'%)';});
+    dots.forEach(function(el,i){el.classList.toggle('on',i===s);});
+    glow.style.background='radial-gradient(circle,'+glows[s]+' 0%,rgba(247,248,239,0) 62%)';
+    hint.style.opacity=s===0?1:0;
+    var t=tap.cloneNode();t.style.left=tapPos[s][0];t.style.top=tapPos[s][1];tap.parentNode.replaceChild(t,tap);tap=t;
+  }
+  function onScroll(){
+    if(phase!=='app')return;
+    var r=scrolly.getBoundingClientRect(),vh=window.innerHeight||800;
+    var i=Math.floor((-r.top+vh*0.5)/vh);if(i<0)i=0;if(i>4)i=4;
+    if(i!==step)setStep(i);
+    hdr.classList.toggle('hide',r.bottom<vh*0.6);
+  }
+  function goApp(){
+    clearTimeout(timer);if(phase==='app')return;phase='app';
+    intro.parentNode.removeChild(intro);app.hidden=false;root.classList.remove('intro-mode');
+    try{window.scrollTo(0,0);}catch(e){}
+  }
+  document.getElementById('skip').addEventListener('click',goApp);
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  timer=setTimeout(goApp,reduce?600:14100);
+  window.addEventListener('scroll',onScroll,{passive:true});
+  // postupné odhalování sekcí
+  var els=[].slice.call(document.querySelectorAll('.rv')),g={};
+  els.forEach(function(el){var k=el.parentNode;var n=(k.__n=(k.__n||0)+1);el.style.transitionDelay=((n-1)*0.09)+'s';});
+  if(!('IntersectionObserver' in window)){els.forEach(function(el){el.classList.add('in');});}
+  else{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15,rootMargin:'0px 0px -6% 0px'});els.forEach(function(el){io.observe(el);});}
+})();
+
+</script>
 </body>
 </html>
