@@ -212,6 +212,27 @@ a{color:#17161A}a:hover{color:#514F57}
   .b .dots,.big,.fogged,.skip{display:none!important}
   .rv{opacity:1!important;transform:none!important;transition:none}
 }
+
+.cta{border:0;font-family:inherit;cursor:pointer}
+#sk-dlg{width:min(440px,calc(100vw - 32px));border:0;border-radius:28px;padding:32px 28px 26px;background:#F7F8EF;color:#17161A;font-family:'Plus Jakarta Sans',ui-sans-serif,system-ui,sans-serif;box-shadow:0 40px 90px -30px rgba(23,22,26,.55)}
+#sk-dlg[open]{animation:dlg-in .45s cubic-bezier(.2,1.2,.3,1)}
+#sk-dlg::backdrop{background:rgba(23,22,26,.38);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+@keyframes dlg-in{from{opacity:0;transform:translateY(24px) scale(.95)}to{opacity:1;transform:none}}
+#sk-dlg h3{margin:16px 0 8px;font-size:26px;line-height:1.1;letter-spacing:-0.035em;font-weight:800}
+#sk-dlg p{margin:0 0 18px;font-size:15px;line-height:1.5;color:#514F57}
+.dlg-ic{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:#D7F23A;color:#17161A}
+.dlg-ic.ok{background:#17161A;color:#D7F23A;border-radius:50%}
+.dlg-x{position:absolute;right:14px;top:14px;width:40px;height:40px;border:0;border-radius:50%;background:#FFFFFF;color:#514F57;display:flex;align-items:center;justify-content:center;cursor:pointer}
+#sk-form{display:flex;flex-direction:column;gap:6px}
+#sk-form label{font-size:13px;font-weight:800}
+#sk-form input:not(.hp){width:100%;min-height:54px;padding:0 16px;border-radius:16px;border:1.5px solid #E1E4CF;background:#FFFFFF;font:600 16px 'Plus Jakarta Sans',system-ui,sans-serif;color:#17161A;outline:none;transition:border-color .2s,box-shadow .2s}
+#sk-form input:focus{border-color:#17161A;box-shadow:0 0 0 4px rgba(215,242,58,.6)}
+.dlg-err{min-height:18px;font-size:13px;font-weight:700;color:#C42B1C}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+#sk-send,.dlg-sec{min-height:54px;border:0;border-radius:999px;background:#17161A;color:#FFFFFF;font:800 16px 'Plus Jakarta Sans',system-ui,sans-serif;cursor:pointer}
+#sk-send[disabled]{opacity:.6;cursor:progress}
+.dlg-sec{width:100%;background:#FFFFFF;color:#17161A;box-shadow:inset 0 0 0 1.5px #E1E4CF}
+.dlg-small{margin-top:8px;font-size:12px;color:#7A7780;text-align:center}
 </style>
 </head>
 <body>
@@ -416,7 +437,7 @@ a{color:#17161A}a:hover{color:#514F57}
         <div class="rv" style="display:flex;flex-direction:column;align-items:center;gap:10px"><div style="display:flex"><span style="width:48px;height:48px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" aria-hidden="true"><use href="#av-reditelka"></use></svg></span><span style="width:48px;height:48px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" aria-hidden="true"><use href="#av-ucitelka"></use></svg></span><span style="width:48px;height:48px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" aria-hidden="true"><use href="#av-kucharka"></use></svg></span><span style="width:48px;height:48px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" aria-hidden="true"><use href="#av-holka"></use></svg></span><span style="width:48px;height:48px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" aria-hidden="true"><use href="#av-muz"></use></svg></span><span style="width:48px;height:48px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" aria-hidden="true"><use href="#av-kluk"></use></svg></span><span style="width:48px;height:48px;margin-left:-14px;border-radius:50%;overflow:hidden;border:3px solid #FFFFFF;display:block;flex:none"><svg viewBox="0 0 56 56" width="100%" height="100%" aria-hidden="true"><use href="#av-zena"></use></svg></span></div><span style="font-size:14px;font-weight:700;color:#6F6C75">Ředitelna, třída, jídelna i rodiče v jednom</span></div>
         <h2 class="rv" style="margin:0;font-size:clamp(42px,6.6vw,88px);line-height:.95;letter-spacing:-0.05em;font-weight:800">Chcete školku<br>bez papírů?</h2>
         <p class="rv lead" style="margin:0;max-width:30em">Ukážeme vám Digitální školku na příkladu vaší školky. Nezávazně.</p>
-        <a class="rv cta" href="https://www.linkedin.com/in/roman-arte-98b38533a" target="_blank" rel="noopener">Ozvěte se nám na LinkedIn <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg></a>
+        <button type="button" class="rv cta" id="sk-btn" aria-haspopup="dialog">Ozvěte se nám <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg></button>
       </div>
     </section>
     <footer class="foot">
@@ -425,6 +446,31 @@ a{color:#17161A}a:hover{color:#514F57}
     </footer>
   </div>
 </div>
+
+<dialog id="sk-dlg" aria-labelledby="sk-h">
+  <button type="button" class="dlg-x" data-close aria-label="Zavřít"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+  <div id="sk-form-wrap">
+    <span class="dlg-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"></path><path d="M5 10v10h14V10"></path></svg></span>
+    <h3 id="sk-h">Digitální školka pro vaši školku</h3>
+    <p>Nechte nám e-mail a ozveme se vám s ukázkou. Nezávazně.</p>
+    <form id="sk-form" novalidate>
+      <label for="sk-email">E-mail</label>
+      <input id="sk-email" name="email" type="email" inputmode="email" autocomplete="email" required placeholder="reditelka@ms-slunicko.cz">
+      <label for="sk-name" style="margin-top:8px">Název školky <span style="font-weight:600;color:#7A7780">(nepovinné)</span></label>
+      <input id="sk-name" name="skolka" type="text" autocomplete="organization" placeholder="MŠ Sluníčko, Praha 6">
+      <input class="hp" name="web" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <span id="sk-err" class="dlg-err" role="alert"></span>
+      <button type="submit" id="sk-send">Chci ukázku</button>
+      <span class="dlg-small">E-mail použijeme jen k tomu, abychom se vám ozvali.</span>
+    </form>
+  </div>
+  <div id="sk-ok" hidden>
+    <span class="dlg-ic ok"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+    <h3>Děkujeme!</h3>
+    <p>Brzy se vám ozveme na <b id="sk-ok-mail"></b>.</p>
+    <button type="button" data-close class="dlg-sec">Zavřít</button>
+  </div>
+</dialog>
 <script>
 var STEPIMG=[0, 1, 1, 1, 2];
 (function(){
@@ -464,6 +510,29 @@ var STEPIMG=[0, 1, 1, 1, 2];
   els.forEach(function(el){var k=el.parentNode;var n=(k.__n=(k.__n||0)+1);el.style.transitionDelay=((n-1)*0.09)+'s';});
   if(!('IntersectionObserver' in window)){els.forEach(function(el){el.classList.add('in');});}
   else{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15,rootMargin:'0px 0px -6% 0px'});els.forEach(function(el){io.observe(el);});}
+})();
+
+(function(){
+  var dlg=document.getElementById('sk-dlg'),btn=document.getElementById('sk-btn');
+  if(!dlg||!btn)return;
+  var form=document.getElementById('sk-form'),mail=document.getElementById('sk-email'),err=document.getElementById('sk-err'),send=document.getElementById('sk-send');
+  var wrap=document.getElementById('sk-form-wrap'),ok=document.getElementById('sk-ok');
+  function open(){wrap.hidden=false;ok.hidden=true;err.textContent='';if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');setTimeout(function(){mail.focus();},60);}
+  function close(){if(dlg.close)dlg.close();else dlg.removeAttribute('open');}
+  btn.addEventListener('click',open);
+  [].forEach.call(dlg.querySelectorAll('[data-close]'),function(b){b.addEventListener('click',close);});
+  dlg.addEventListener('click',function(e){if(e.target===dlg)close();});
+  form.addEventListener('submit',function(e){
+    e.preventDefault();err.textContent='';
+    var v=mail.value.trim();
+    if(!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v)){err.textContent='Zkontrolujte prosím e-mail.';mail.focus();return;}
+    send.disabled=true;send.textContent='Odesílám…';
+    fetch('/api/kontakt',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:v,skolka:form.skolka.value,web:form.web.value})})
+      .then(function(r){return r.json().then(function(j){if(!r.ok||!j.ok)throw new Error(j.error||'Chyba');});})
+      .then(function(){document.getElementById('sk-ok-mail').textContent=v;wrap.hidden=true;ok.hidden=false;form.reset();})
+      .catch(function(x){err.textContent=(x&&x.message&&x.message!=='Failed to fetch'&&x.message!=='Chyba')?x.message:'Nepodařilo se odeslat. Zkuste to prosím znovu.';})
+      .then(function(){send.disabled=false;send.textContent='Chci ukázku';});
+  });
 })();
 
 </script>

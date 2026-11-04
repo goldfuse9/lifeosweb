@@ -1,9 +1,16 @@
-// Cloudflare Workers se statickými soubory: Digitální školka na lifeds.romarte.cz.
+// Cloudflare Workers: Digitální školka na lifeds.romarte.cz.
 // V Cloudflare: další projekt z repa lifeosweb, název „lifeds“, Path „/lifeds“.
+// Statické soubory ze site/ + worker src/worker.js pro poptávky školek (/api/kontakt).
 {
   "name": "lifeds",
+  "main": "src/worker.js",
   "compatibility_date": "2026-10-01",
   "assets": {
-    "directory": "./site"
-  }
+    "directory": "./site",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  "observability": { "enabled": true },
+  // Upozornění na každou poptávku (Email Routing na romarte.cz, ověřená adresa).
+  "send_email": [{ "name": "LIFEOS_MAIL", "destination_address": "artejsem@gmail.com" }]
 }
